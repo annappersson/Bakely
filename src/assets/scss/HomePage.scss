@@ -1,0 +1,208 @@
+:root {
+    --cat-pink: #ffe0e9;
+    --cat-purple: #e8dbff;
+    --cat-green: #e5f7de;
+    --cat-yellow: #fff3d6;
+  }
+  
+.home-page {
+    padding: 1rem;
+    padding-bottom: 80px; // för bottomnav
+  
+    .home-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+  
+      .logo {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+    }
+  
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f3f3f3;
+      padding: 0.8rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+  
+      input {
+        border: none;
+        background: none;
+        width: 100%;
+        outline: none;
+      }
+    }
+  
+    .build-card {
+      background: #fbe8f5;
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+  
+      .btn-start {
+        margin-top: 0.8rem;
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background: #ff7abd;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: .8rem;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .btn-start:hover{
+        background: #fa6ab2;
+      }
+    }
+  
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+  
+    .recipe-list {
+      display: grid;
+      gap: 1rem;
+  
+      .recipe-card {
+        background: #fff;
+        height: 160px;
+        border-radius: 16px;
+      }
+    }
+  
+    .categories {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+  
+      .cat {
+        background: #f3f3f3;
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+      }
+    }
+
+    .feature-card {
+        background: #fdf0ff; // ljus pastel
+        border-radius: 16px;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      
+        .content {
+          h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 600;
+          }
+      
+          p {
+            margin: 4px 0 10px;
+            font-size: .85rem;
+            opacity: .8;
+          }
+      
+          .btn-startPlan {
+            margin-top: 0.8rem;
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            background: #ff7abd;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: .8rem;
+            text-decoration: none;
+            cursor: pointer;
+          }
+
+
+          .btn-startPlan:hover{
+            background: #fa6ab2;
+          }
+        }
+      
+        .icon {
+          width: 70px;
+          opacity: 0.6;
+        }
+      }
+      
+      .planning-card {
+        background: #e6f4ff; // blå pastel istället för rosa
+      }
+      
+      .categories {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 60px;
+      
+        .cat {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 12px 6px;
+          border-radius: 16px;
+          font-size: 12px;
+          font-weight: 600;
+          transition: transform 0.2s ease, background 0.2s ease;
+          cursor: pointer;
+          user-select: none;
+      
+          svg {
+            margin-bottom: 6px;
+          }
+      
+          // Hover (desktop)
+          &:hover {
+            transform: translateY(-3px);
+          }
+      
+          // Active (mobil tryck)
+          &:active {
+            transform: scale(0.95);
+            filter: brightness(0.9);
+          }
+        }
+      
+        // FÄRGER
+        .cat-cookies {
+          background: #FFE8E8;
+          color: #FF7777;
+        }
+      
+        .cat-cakes {
+          background: #FFF0D9;
+          color: #FFA94D;
+        }
+      
+        .cat-breads {
+          background: #E8F7FF;
+          color: #4DAAFF;
+        }
+      
+        .cat-more {
+          background: #F4E8FF;
+          color: #B46BFF;
+        }
+      }
+      
+  }
+  
