@@ -1,23 +1,40 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router";
+import "./assets/scss/BottomNav.scss";
+
+import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
+import CakeBuilderPage from "./pages/CakeBuilderPage";
+import PlannerPage from "./pages/PlannerPage";
+import SavedPage from "./pages/SavedPage";
+import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/Auth/LoginPage";
+import SignupPage from "./pages/Auth/SignupPage";
+
+import BottomNav from "./components/BottomNav";
+import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div id="app">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+
+        {/* Skyddade rutter */}
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/builder" element={<CakeBuilderPage />} />
+          <Route path="/planner" element={<PlannerPage />} />
+          <Route path="/saved" element={<SavedPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+
+      {/* Bottom Navigation - alltid synlig när man är inloggad */}
+      <BottomNav />
+    </div>
   );
 }
 
