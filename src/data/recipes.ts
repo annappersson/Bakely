@@ -1,3 +1,19 @@
+import kardemummabullar from "../img/kardemummabullar.jpg";
+import vaniljbullar from "../img/vaniljbullar.jpg";
+import kanelbullar from "../img/kanelbullar.jpg";
+import chokladsnittar from "../img/chokladsnitt.jpg";
+import drommar from "../img/drommar.jpg";
+import havrekakor from "../img/oat-cookies.jpg";
+import kolakakor from "../img/kolakakor.jpg";
+import chocChip from "../img/choc-chip.jpg";
+import bananamuffins from "../img/banana-muffins.jpg";
+import hallonmuffins from "../img/raspberry-whitechoc.jpg";
+import citronmuffins from "../img/lemon-muffins.jpg";
+import chokladmuffins from "../img/chocolate-muffins.jpg";
+import blåbärMuffins from "../img/blueberry-muffins.jpg";
+import nutellabullar from "../img/nutellabullar.jpg";
+import saffransbullarVanilj from "../img/saffransbullarVanilj.jpg";
+
 export const recipes = [
   /* -------------------------------------------------- */
   /* 🧁 MUFFINS (5 st) */
@@ -6,7 +22,7 @@ export const recipes = [
     id: "muffin-1",
     title: "Blåbärsmuffins",
     category: "Muffins",
-    image: "/img/blueberry-muffins.jpg",
+    image: blåbärMuffins,
     description: "Saftiga muffins fyllda med söta blåbär.",
     time: { prep: 10, bake: 18 },
     difficulty: "Lätt",
@@ -38,7 +54,7 @@ export const recipes = [
     id: "muffin-2",
     title: "Chokladmuffins",
     category: "Muffins",
-    image: "/img/chocolate-muffins.jpg",
+    image: chokladmuffins,
     description: "Mörka och extra fluffiga chokladmuffins.",
     time: { prep: 8, bake: 17 },
     difficulty: "Lätt",
@@ -75,7 +91,7 @@ export const recipes = [
     id: "muffin-3",
     title: "Citronmuffins",
     category: "Muffins",
-    image: "/img/lemon-muffins.jpg",
+    image: citronmuffins,
     description: "Friska och luftiga citronmuffins.",
     time: { prep: 10, bake: 18 },
     difficulty: "Lätt",
@@ -111,7 +127,7 @@ export const recipes = [
     id: "muffin-4",
     title: "Hallon-vitchokladmuffins",
     category: "Muffins",
-    image: "/img/raspberry-whitechoc.jpg",
+    image: hallonmuffins,
     description: "Söta muffins med frisk hallonbalans.",
     time: { prep: 12, bake: 20 },
     difficulty: "Lätt",
@@ -143,7 +159,7 @@ export const recipes = [
     id: "muffin-5",
     title: "Bananmuffins",
     category: "Muffins",
-    image: "/img/banana-muffins.jpg",
+    image: bananamuffins,
     description: "Extra saftiga muffins gjorda på mogen banan.",
     time: { prep: 12, bake: 18 },
     difficulty: "Lätt",
@@ -186,7 +202,7 @@ export const recipes = [
     id: "cookie-1",
     title: "Chocolate Chip Cookies",
     category: "Kakor",
-    image: "/img/choc-chip.jpg",
+    image: chocChip,
     description: "Segmjuka kakor med smältande chokladbitar.",
     time: { prep: 12, bake: 17 },
     difficulty: "Lätt",
@@ -230,7 +246,7 @@ export const recipes = [
     id: "cookie-2",
     title: "Kolakakor",
     category: "Kakor",
-    image: "/img/kolakakor.jpg",
+    image: kolakakor,
     description: "Gyllene kolakakor som smälter i munnen.",
     time: { prep: 8, bake: 10 },
     difficulty: "Lätt",
@@ -257,7 +273,7 @@ export const recipes = [
     id: "cookie-3",
     title: "Havrekakor",
     category: "Kakor",
-    image: "/img/oat-cookies.jpg",
+    image: havrekakor,
     description: "Knapriga och rustika havrekakor.",
     time: { prep: 12, bake: 10 },
     difficulty: "Lätt",
@@ -289,7 +305,7 @@ export const recipes = [
     id: "cookie-4",
     title: "Drömmar",
     category: "Kakor",
-    image: "/img/drommar.jpg",
+    image: drommar,
     description: "Spröda klassiska drömmar.",
     time: { prep: 12, bake: 18 },
     difficulty: "Lätt",
@@ -318,7 +334,7 @@ export const recipes = [
     id: "cookie-5",
     title: "Chokladsnittar",
     category: "Kakor",
-    image: "/img/chokladsnitt.jpg",
+    image: chokladsnittar,
     description: "Segknapriga chokladsnittar med pärlsocker.",
     time: { prep: 45, bake: 12 },
     difficulty: "Lätt",
@@ -350,7 +366,7 @@ export const recipes = [
     id: "bun-1",
     title: "Kanelbullar",
     category: "Bullar",
-    image: "/img/kanelbullar.jpg",
+    image: kanelbullar,
     description: "Klassiska svenska kanelbullar.",
     time: { prep: 25, bake: 8, rise: 50 },
     difficulty: "Medel",
@@ -385,7 +401,7 @@ export const recipes = [
     id: "bun-2",
     title: "Vaniljbullar",
     category: "Bullar",
-    image: "/img/vaniljbullar.jpg",
+    image: vaniljbullar,
     description: "Fluffiga bullar fyllda med len vanilj fyllning.",
     time: { prep: 30, bake: 12, rise: 60 },
     difficulty: "Medel",
@@ -427,7 +443,7 @@ export const recipes = [
     id: "bun-3",
     title: "Kardemummabullar",
     category: "Bullar",
-    image: "/img/kardemummabullar.jpg",
+    image: kardemummabullar,
     description: "Aromatiska bullar med kardemumma.",
     time: { prep: 25, bake: 14, rise: 90 },
     difficulty: "Medel",
@@ -482,7 +498,7 @@ export const recipes = [
     id: "bun-4",
     title: "Nutellabullar",
     category: "Bullar",
-    image: "/img/nutellabullar.jpg",
+    image: nutellabullar,
     description: "Bullar fyllda med len nutella.",
     time: { prep: 30, bake: 10, rise: 60 },
     difficulty: "Medel",
@@ -516,7 +532,7 @@ export const recipes = [
     id: "bun-5",
     title: "Saffransbullar",
     category: "Bullar",
-    image: "/img/saffransbullar.jpg",
+    image: saffransbullarVanilj,
     description: "Luftiga juliga saffransbullar fyllda med vanilj och saffran.",
     time: { prep: 30, bake: 8, rise: 60 },
     difficulty: "Medel",
