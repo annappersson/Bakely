@@ -31,7 +31,7 @@ function HomePage() {
       <div className="feature-card planning-card">
         <div className="content">
           <h3>Planera din bakning</h3>
-          <p>Få hjälp med schema, tider och steg-för-steg planering.</p>
+          <p>Få hjälp med schema, tider och steg-för-steg planering</p>
           <Link to="/planner" className="btn-startPlan">
             Börja Planera
           </Link>
