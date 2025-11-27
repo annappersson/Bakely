@@ -18,6 +18,11 @@ import hallonmoussetarta from "../img/hallonmoussetarta.jpg";
 import chokladtarta from "../img/chokladtarta.jpg";
 import blabarscheesecake from "../img/blabarscheesecake.jpg";
 import graddtarta from "../img/graddtarta.jpg";
+import morotslimpa from "../img/morotslimpa.jpg";
+import honokaka from "../img/honokaka.jpg";
+import kalljasta_frallor from "../img/kalljasta-frallor.jpg";
+import sirapslimpa from "../img/sirapslimpa.jpg";
+import lingonlimpa_med_graddfil from "../img/lingonlimpa_med_graddfil.jpg";
 
 export const recipes = [
   /* -------------------------------------------------- */
@@ -582,6 +587,176 @@ export const recipes = [
   /* -------------------------------------------------- */
   /* 🍞 BRÖD (10 st) */
   /* -------------------------------------------------- */
+  {
+    id: "bread-1",
+    title: "Morotslimpa",
+    category: "Bröd",
+    image: morotslimpa,
+    description: "Mjuka och saftiga limpor med rivna morötter.",
+    time: { prep: 20, bake: 45 },
+    difficulty: "Lätt",
+    servings: 2,
+    ingredients: [
+      "25 g färsk jäst",
+      "5 1/2 dl fingervarmt vatten (37°C)",
+      "1/2 dl rapsolja",
+      "3/4 dl ljus sirap",
+      "2 dl havregryn",
+      "3 dl grahamsmjöl",
+      "1 msk salt",
+      "3 dl finrivna morötter (ca 150 g)",
+      "11 dl vetemjöl (ca 660 g)",
+    ],
+    steps: [
+      "Smula jästen i en degbunke. Tillsätt vattnet och rör tills jästen lösts upp.",
+      "Tillsätt olja, sirap, havregryn, grahamsmjöl, salt, morötter och vetemjöl. Arbeta degen 5–10 minuter.",
+      "Låt jäsa övertäckt ca 45 minuter.",
+      "Knåda degen lätt och dela i två bitar. Forma limpor och lägg i smorda formar.",
+      "Jäs ytterligare 20 minuter.",
+      "Grädda i 200°C i nedre delen av ugnen 40–45 minuter.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 45,
+    },
+  },
+
+  {
+    id: "bread-2",
+    title: "Kalljästa Frallor",
+    category: "Bröd",
+    image: kalljasta_frallor,
+    description:
+      "Superenkla frallor som jäser över natten – bara skär och grädda.",
+    time: { prep: 10, bake: 20 },
+    difficulty: "Lätt",
+    servings: 14,
+    ingredients: [
+      "25 g färsk jäst",
+      "5 dl kallt vatten",
+      "1 msk honung",
+      "1 msk olivolja",
+      "2 tsk salt",
+      "11 dl rågsikt (ca 600 g)",
+    ],
+    steps: [
+      "Rör ut jästen i kallt vatten.",
+      "Tillsätt honung, olivolja, salt och rågsikt. Rör ihop till en deg.",
+      "Täck bunken och låt jäsa i kylen minst 10 timmar.",
+      "Sätt ugnen på 225°C.",
+      "Häll ut degen på mjölat bakbord utan att knåda. Pudra med mjöl.",
+      "Skär i bitar och lägg på plåt.",
+      "Grädda mitt i ugnen ca 20 minuter.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 600,
+    },
+  },
+
+  {
+    id: "bread-3",
+    title: "Sirapslimpa",
+    category: "Bröd",
+    image: sirapslimpa,
+    description: "Mörk, mjuk och saftig limpa med filmjölk och sirap.",
+    time: { prep: 20, bake: 40 },
+    difficulty: "Medel",
+    servings: 2,
+    ingredients: [
+      "50 g smör",
+      "5 dl filmjölk",
+      "50 g färsk jäst",
+      "2 dl mörk sirap",
+      "1 msk salt",
+      "7–8 dl vetemjöl special (ca 420–480 g)",
+      "8 dl rågsikt (ca 480 g)",
+    ],
+    steps: [
+      "Smält smöret och blanda med filmjölken. Värm till 37°C.",
+      "Smula jästen i en bunke och tillsätt degvätskan, sirapen och saltet.",
+      "Tillsätt mjölet lite i taget och knåda ca 5 minuter.",
+      "Jäs under bakduk ca 45 minuter.",
+      "Forma två limpor och lägg på plåt. Jäs ytterligare 40 minuter.",
+      "Grädda i 175°C i 35–40 minuter eller tills innertemp är 95°C.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 45,
+    },
+  },
+
+  {
+    id: "bread-4",
+    title: "Hönökaka",
+    category: "Bröd",
+    image: honokaka,
+    description: "Mjuka, luftiga och lättgräddade Hönökakor.",
+    time: { prep: 25, bake: 5 },
+    difficulty: "Medel",
+    servings: 4,
+    ingredients: [
+      "5 dl mjölk",
+      "50 g färsk jäst",
+      "1 dl brödsirap",
+      "1 msk salt",
+      "9–10 dl vetemjöl (540–600 g)",
+      "6 dl rågsikt (ca 360 g)",
+      "100 g rumsvarmt smör",
+    ],
+    steps: [
+      "Värm mjölken till 37°C och lös upp jästen med mjölk och sirap.",
+      "Blanda salt, vetemjöl och rågsikt och tillsätt lite i taget.",
+      "Knåda till en smidig deg och tillsätt smöret. Knåda 10 minuter.",
+      "Jäs övertäckt ca 1 timme.",
+      "Sätt ugnen på 250°C.",
+      "Dela degen i 4 bitar. Kavla ut till rundlar ca 27 cm.",
+      "Nagga och jäs 20 minuter.",
+      "Grädda 3–5 minuter tills gyllene.",
+    ],
+    plannerInfo: {
+      canMakeAhead: false,
+      freezerFriendly: true,
+      restTime: 60,
+    },
+  },
+
+  {
+    id: "bread-5",
+    title: "Lingonlimpa med Gräddfil",
+    category: "Bröd",
+    image: lingonlimpa_med_graddfil,
+    description: "Saftig filmjölkslimpa med rågmjöl, lingon och linfrön.",
+    time: { prep: 10, bake: 70 },
+    difficulty: "Lätt",
+    servings: 1,
+    ingredients: [
+      "1/2 dl hela linfrön",
+      "5 dl vetemjöl",
+      "2 dl grovt rågmjöl",
+      "1/2 dl rågkross",
+      "2 tsk bikarbonat",
+      "1 tsk salt",
+      "5 dl gräddfil",
+      "1 dl rårörda lingon",
+    ],
+    steps: [
+      "Sätt ugnen på 175°C och smörj en form på 1,5 liter.",
+      "Blanda alla torra ingredienser.",
+      "Tillsätt gräddfil och lingon. Blanda till en kladdig deg.",
+      "Häll i formen.",
+      "Grädda i nedre delen av ugnen ca 70 minuter.",
+      "Låt svalna på galler under bakduk.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 0,
+    },
+  },
 
   /* -------------------------------------------------- */
   /* 🎂 TÅRTOR (10 st) */
