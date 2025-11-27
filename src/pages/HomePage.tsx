@@ -1,6 +1,9 @@
 import "../assets/scss/HomePage.scss";
 import { Link } from "react-router";
 import { Search, Heart, Cookie, Cake, Wheat, ChefHat } from "lucide-react";
+import { recipes } from "../data/recipes";
+
+const mostLoved = recipes.slice(0, 3);
 
 function HomePage() {
   return (
@@ -45,11 +48,18 @@ function HomePage() {
         <Link to="/recipes">Se Alla</Link>
       </div>
 
-      {/* Placeholder – här kommer dina riktiga mockdata sen */}
       <div className="recipe-list">
-        <div className="recipe-card">Recipe 1</div>
-        <div className="recipe-card">Recipe 2</div>
-        <div className="recipe-card">Recipe 3</div>
+        {mostLoved.map((recipe) => (
+          <Link
+            to={`/recipe/${recipe.id}`}
+            key={recipe.id}
+            className="recipe-card"
+          >
+            <img src={recipe.image} alt={recipe.title} />
+            <h4>{recipe.title}</h4>
+            <p>{recipe.category}</p>
+          </Link>
+        ))}
       </div>
 
       {/* CATEGORIES */}
