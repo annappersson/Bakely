@@ -3,7 +3,7 @@ import { Container, Button } from "react-bootstrap";
 import { recipes } from "../data/recipes";
 import { useRecipeSelection } from "../hooks/useRecipeSelection";
 import RecipeSelector from "../components/RecipeSelector";
-import Timeline from "../components/TimeLine";
+import Timeline from "../components/Timeline";
 import "../assets/scss/plannerpage.scss";
 import "../assets/scss/recipeselector.scss";
 import "../assets/scss/timeline.scss";
