@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { recipes } from "../data/recipes";
 import { useRecipeSelection } from "../hooks/useRecipeSelection";
 import RecipeSelector from "../components/RecipeSelector";

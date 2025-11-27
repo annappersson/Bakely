@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { recipes as allRecipes } from "../data/recipes";
-import { usePlannerMulti, type Recipe } from "./usePlannerMulti";
+import { usePlannerMulti } from "./usePlannerMulti";
 
 export const useRecipeSelection = (ovenSlots = 1) => {
   const [selectedRecipeIds, setSelectedRecipeIds] = useState<string[]>([]);
