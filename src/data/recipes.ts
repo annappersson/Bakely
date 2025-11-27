@@ -13,6 +13,11 @@ import chokladmuffins from "../img/chocolate-muffins.jpg";
 import blåbärMuffins from "../img/blueberry-muffins.jpg";
 import nutellabullar from "../img/nutellabullar.jpg";
 import saffransbullarVanilj from "../img/saffransbullarVanilj.jpg";
+import prinsesstartaHallon from "../img/prinsesstarta-hallon.jpg";
+import hallonmoussetarta from "../img/hallonmoussetarta.jpg";
+import chokladtarta from "../img/chokladtarta.jpg";
+import blabarscheesecake from "../img/blabarscheesecake.jpg";
+import graddtarta from "../img/graddtarta.jpg";
 
 export const recipes = [
   /* -------------------------------------------------- */
@@ -581,4 +586,234 @@ export const recipes = [
   /* -------------------------------------------------- */
   /* 🎂 TÅRTOR (10 st) */
   /* -------------------------------------------------- */
+  {
+    id: "cake-1",
+    title: "Prinsesstårta med hallonsylt",
+    category: "Tårtor",
+    image: prinsesstartaHallon,
+    description:
+      "Klassisk prinsesstårta fylld med hallonsylt, marsankräm och fluffig grädde.",
+    time: { prep: 40, bake: 40, rise: 0 },
+    difficulty: "Medel",
+    servings: 8,
+    ingredients: {
+      tårtbotten: [
+        "4 ägg",
+        "2 dl strösocker",
+        "1 dl vetemjöl",
+        "1 dl potatismjöl",
+        "2 tsk bakpulver",
+      ],
+      fyllning: [
+        "3 dl marsankräm",
+        "4 dl vispgrädde",
+        "2 tsk vaniljsocker",
+        "1/2 dl hallonsylt",
+      ],
+      garnering: [
+        "1 färdigt marsipanlock",
+        "ros och blad",
+        "15 färska hallon",
+        "florsocker",
+      ],
+    },
+    steps: [
+      "Sätt ugnen på 175°C.",
+      "Smörj och bröa en rund form ca 24 cm i diameter.",
+      "Vispa ägg och socker pösigt. Blanda vetemjöl, potatismjöl och bakpulver, och vänd ner i smeten.",
+      "Häll smeten i formen och grädda i nedre delen av ugnen ca 40 min.",
+      "Låt bottnen svalna och dela den i tre delar.",
+      "Gör marsankrämen enligt anvisning och låt den kallna.",
+      "Vispa grädden och rör ihop med marsankrämen.",
+      "Lägg första bottnen på ett fat och bred på hallonsylt och ett lager kräm.",
+      "Lägg på nästa botten och bred på mer kräm.",
+      "Lägg på sista bottnen och täck hela tårtan med resten av krämen.",
+      "Lägg försiktigt på marsipanlocket.",
+      "Garnera med rosor, blad, hallon och pudra över florsocker.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: false,
+      restTime: 0,
+    },
+  },
+
+  {
+    id: "cake-2",
+    title: "Gräddtårta med jordgubbar",
+    category: "Tårtor",
+    image: graddtarta,
+    description:
+      "Somrig klassisk gräddtårta fylld med vaniljkräm och jordgubbar.",
+    time: { prep: 50, bake: 40, rise: 0 },
+    difficulty: "Medel",
+    servings: 10,
+    ingredients: {
+      botten: [
+        "4 ägg",
+        "2 dl socker",
+        "1 1/2 dl vetemjöl",
+        "1/2 dl potatismjöl",
+        "1 1/2 tsk bakpulver",
+      ],
+      vaniljkräm: [
+        "1 vaniljstång",
+        "1 1/2 dl mjölk",
+        "1 1/2 dl vispgrädde",
+        "3 msk socker",
+        "2 äggulor",
+        "1 msk majsstärkelse",
+      ],
+      jordgubbsfyllning: ["1 dl vispgrädde", "1 dl jordgubbssylt"],
+      garnering: ["3 dl vispgrädde", "1 liter jordgubbar"],
+    },
+    steps: [
+      "Sätt ugnen på 175°C.",
+      "Smörj eller klä en 24 cm form med bakplåtspapper.",
+      "Vispa ägg och socker vitt och pösigt.",
+      "Sikta ner mjöl, potatismjöl och bakpulver i smeten och rör om försiktigt.",
+      "Häll smeten i formen och grädda ca 40 min. Låt kallna och dela i tre bottnar.",
+      "Dela vaniljstången, skrapa ur fröna och koka alla ingredienser försiktigt tills krämen tjocknar. Låt svalna.",
+      "Vispa grädden och blanda med jordgubbssylten.",
+      "Vispa grädden till garnering.",
+      "Lägg första bottnen på fatet, bred på hälften av jordgubbsfyllningen och hälften av vaniljkrämen.",
+      "Lägg nästa botten och bred på resterande fyllningar.",
+      "Lägg på sista bottnen med snittytan uppåt.",
+      "Spritsa grädde runt och dekorera med jordgubbar.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: false,
+      restTime: 0,
+    },
+  },
+
+  {
+    id: "cake-1",
+    title: "Blåbärscheesecake",
+    category: "Tårtor",
+    image: blabarscheesecake,
+    description:
+      "Len och fräsch blåbärscheesecake med svartvinbärsgelé och bär på toppen.",
+    time: { prep: 40, bake: 0 },
+    difficulty: "Medel",
+    servings: 12,
+    ingredients: [
+      "100 g rumstempererat smör",
+      "300 g digestivekex",
+
+      "6 gelatinblad",
+      "1 dl outspädd svartvinbärssaft",
+      "2 1/2 dl vispgrädde",
+      "400 g blåbär",
+      "600 g naturell färskost",
+      "2 tsk vaniljpulver",
+      "100 g rörsocker",
+
+      "Dekoration: björnbär, blåbär, ätbara blommor",
+    ],
+    steps: [
+      "Lägg bakplåtspapper i botten av formen. Smält smöret.",
+      "Smula kexen fint och blanda med smöret. Tryck ut i formen och ställ i kylen.",
+      "Lägg gelatinblad i kallt vatten i 10 min.",
+      "Koka upp svartvinbärssaft, ta av från värmen och rör i gelatinet.",
+      "Vispa grädden.",
+      "Rör färskosten mjuk. Blanda i vaniljpulver och rörsocker.",
+      "Tillsätt 50 g hela blåbär och 300 g krossade blåbär. Vänd ner grädden och rör i saften med gelatin.",
+      "Häll smeten över botten och kyl minst 4 timmar.",
+      "Dekorera med blåbär, björnbär och ätbara blommor.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 240,
+    },
+  },
+
+  {
+    id: "cake-2",
+    title: "Chokladtårta med Chokladmousse",
+    category: "Tårtor",
+    image: chokladtarta,
+    description: "Saftig chokladtårta med fyllig mörk chokladmousse.",
+    time: { prep: 35, bake: 60 },
+    difficulty: "Medel",
+    servings: 16,
+    ingredients: [
+      "5 dl vetemjöl",
+      "5 dl strösocker",
+      "2 dl kakao",
+      "1 msk vaniljsocker",
+      "1 msk bakpulver",
+      "1 tsk salt",
+      "2 dl mjölk",
+      "2 dl neutral olja",
+      "2 dl varmt kaffe",
+      "2 ägg",
+
+      "Mousse:",
+      "300 g mörk choklad (70%)",
+      "125 g smör",
+      "4 dl vispgrädde",
+      "3 ägg",
+      "1 1/2 dl strösocker",
+      "1/2 dl apelsinjuice eller rom",
+    ],
+    steps: [
+      "Sätt ugnen på 175°C och klä en springform (26 cm).",
+      "Blanda de torra ingredienserna.",
+      "Tillsätt mjölk, olja, kaffe och ägg. Blanda till en slät smet.",
+      "Häll i formen, sänk till 150°C och grädda ca 1 timme. Låt svalna.",
+      "Mousse: Smält choklad och smör försiktigt.",
+      "Vispa grädden luftigt.",
+      "Vispa ägg och socker pösigt.",
+      "Vänd i chokladen i äggsmeten och sedan grädden.",
+      "Dela bottnen i tre delar. Droppa apelsinjuice på lagren.",
+      "Bred mousse på två lager och montera ihop tårtan. Täck med resten av moussen.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: false,
+      restTime: 60,
+    },
+  },
+
+  {
+    id: "cake-3",
+    title: "Hallonmoussetårta",
+    category: "Tårtor",
+    image: hallonmoussetarta,
+    description: "Luftig hallonmoussetårta med digestivebotten och lime.",
+    time: { prep: 30, bake: 0 },
+    difficulty: "Lätt",
+    servings: 12,
+    ingredients: [
+      "3 gelatinblad",
+      "100 g smör",
+      "200 g digestivekex",
+      "3 ägg",
+      "1 dl råsocker",
+      "200 g kvarg (gärna hallon/blåbär)",
+      "Skal av 1 lime",
+      "500 g hallon",
+      "3 dl vispgrädde",
+      "1 dl rostade hackade hasselnötter",
+    ],
+    steps: [
+      "Tina hallonen om de är frysta.",
+      "Blötlägg gelatinbladen.",
+      "Mixa kex och smör och tryck ut i en springform.",
+      "Vispa ägg och socker vitt och pösigt.",
+      "Smält gelatinet i vattenbad och vispa ner i äggsmeten.",
+      "Vispa ner kvarg, limeskal och nästan alla hallon.",
+      "Vänd ner vispad grädde.",
+      "Häll moussen över botten och frys. Ta ut 30 min före servering.",
+      "Toppa med hallon och hasselnötter.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 240,
+    },
+  },
 ];
