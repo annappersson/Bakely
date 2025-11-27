@@ -864,7 +864,7 @@ export const recipes = [
   },
 
   {
-    id: "cake-1",
+    id: "cake-3",
     title: "Blåbärscheesecake",
     category: "Tårtor",
     image: blabarscheesecake,
@@ -906,7 +906,7 @@ export const recipes = [
   },
 
   {
-    id: "cake-2",
+    id: "cake-4",
     title: "Chokladtårta med Chokladmousse",
     category: "Tårtor",
     image: chokladtarta,
@@ -954,7 +954,7 @@ export const recipes = [
   },
 
   {
-    id: "cake-3",
+    id: "cake-5",
     title: "Hallonmoussetårta",
     category: "Tårtor",
     image: hallonmoussetarta,
