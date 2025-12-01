@@ -1,9 +1,12 @@
 @import "bootstrap/scss/bootstrap"; // om du istället importerar bootstrap i main, ta bort detta rad
 
+#app {
+    padding-bottom: 5rem;
+}
+
 .build-page {
     max-width: 980px;
     margin: 0 auto;
-    padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
 
     h1 {
         font-weight: 700;
