@@ -20,7 +20,6 @@ export default function FlavorSelector({
   title,
   options,
   selectedIds,
-  single = false,
   onToggle,
 }: Props) {
   return (
