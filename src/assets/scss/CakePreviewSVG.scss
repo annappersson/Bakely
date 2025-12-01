@@ -1,0 +1,28 @@
+.cake-preview-svg {
+    width: 100%;
+    max-width: 420px; // responsive cap
+    margin: 0 auto;
+    display: block;
+
+    .no-selection {
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* små styling tweaks när den placeras i kort/card */
+.cake-preview-svg+.preview-meta {
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #555;
+    font-size: 0.95rem;
+}

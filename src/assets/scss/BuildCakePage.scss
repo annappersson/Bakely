@@ -1,0 +1,44 @@
+@import "bootstrap/scss/bootstrap"; // om du istället importerar bootstrap i main, ta bort detta rad
+
+.build-page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+
+    h1 {
+        font-weight: 700;
+        color: #2b2b2b;
+    }
+
+    .card {
+        border-radius: 14px;
+    }
+
+    .step-title {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .layer-control .layer-count {
+        background: #fff;
+        border-radius: 8px;
+        padding: 0.35rem 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-weight: 600;
+    }
+
+    .suggestions {
+        background: linear-gradient(90deg, rgba(255, 245, 240, 0.9), rgba(255, 250, 255, 0.9));
+        padding: 0.75rem;
+        border-radius: 10px;
+        box-shadow: 0 6px 20px rgba(16, 24, 40, 0.04);
+    }
+}
+
+/* liten responsiv justering: mobile-first */
+@media (max-width: 768px) {
+    .cake-preview .cake-layer {
+        max-width: 92%;
+    }
+}
