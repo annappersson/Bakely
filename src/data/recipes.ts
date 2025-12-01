@@ -11,7 +11,7 @@ import hallonmuffins from "../assets/img/hallonmuffins.jpeg";
 import citronmuffins from "../assets/img/citronmuffins.jpg";
 import chokladmuffins from "../assets/img/chokladmuffins.jpg";
 import blåbärMuffins from "../assets/img/blabarsmuffins.jpg";
-import nutellabullar from "../assets/img/nutellabullar.jpg";
+import nutellabullar from "../assets/img/nutella.webp";
 import saffransbullarVanilj from "../assets/img/saffransbullar.jpg";
 import prinsesstartaHallon from "../assets/img/prinsesstarta.jpg";
 import hallonmoussetarta from "../assets/img/hallonmoussetarta.jpg";
