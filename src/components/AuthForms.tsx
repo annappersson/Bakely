@@ -11,7 +11,7 @@ export const SignUpForm: React.FC = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMsg(null);
-    const { error, user } = await signUp(email, password);
+    const { error } = await signUp(email, password);
     if (error) setMsg(error.message);
     else setMsg("Kolla din mail för verifiering (om aktiverat).");
   };
