@@ -27,6 +27,9 @@ import morotstarta from "../assets/img/morotstarta.jpg";
 import karamelltarta from "../assets/img/karamelltarta.jpg";
 import marangtarta from "../assets/img/marangtarta_med_bar.jpg";
 import vackerJordgubbstarta from "../assets/img/vacker_jordgubbstarta.jpg";
+import pepparkaksmuffin from "../assets/img/pepparkaksmuffin.jpg";
+import pepparkaksmuffinsfrosting from "../assets/img/pepparkaksmuffins_med_frosting_och_lingon.jpg";
+import applemuffins from "../assets/img/appelmuffins.jpg";
 
 export const recipes = [
   /* -------------------------------------------------- */
@@ -207,6 +210,120 @@ export const recipes = [
       "Grädda mitt i ugnen i 15-20 min, känn med provsticka så att muffinsen är torra i mitten. Låt svalna på galler.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 0 },
+  },
+  {
+    id: "muffin-6",
+    title: "Äppelmuffins",
+    category: "Muffins",
+    image: applemuffins,
+    description: "Saftiga muffins med kaneläpplen.",
+    time: { prep: 15, bake: 20 },
+    difficulty: "Lätt",
+    servings: 12,
+    ingredients: [
+      "125 g smör",
+      "2 ägg",
+      "1 1/2 dl strösocker",
+      "2 1/2 dl vetemjöl",
+      "1/2 tsk bakpulver",
+      "1/2 tsk vaniljsocker",
+      "2 msk mjölk",
+      "2 äpplen (gärna santana eller discovery)",
+      "2 msk strösocker",
+      "1 tsk kanel",
+      "12-24 muffinsformar",
+    ],
+    steps: [
+      "Sätt ugnen på 200°C.",
+      "Smält smöret på låg värme och låt svalna något.",
+      "Vispa ägg och socker pösigt.",
+      "Blanda mjöl, bakpulver och vaniljsocker. Vänd ner mjölblandningen i ägg- och sockersmeten. Tillsätt smör och mjölk, vänd ihop till en smet.",
+      "Fördela smeten i muffinsformar som står på plåt eller i muffinsplåt.",
+      "Dela, kärna ur och skär äpplena i 24 klyftor. Blanda med socker och kanel.",
+      "Stick ner 2 äppelklyftor i varje muffinsform.",
+      "Grädda mitt i ugnen ca 20 minuter. Känn med provsticka så att muffinsen är torra i mitten.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 0,
+    },
+  },
+  {
+    id: "muffin-7",
+    title: "Pepparkaksmuffins",
+    category: "Muffins",
+    image: pepparkaksmuffin,
+    description: "Kryddiga pepparkaksmuffins med lingon.",
+    time: { prep: 10, bake: 15 },
+    difficulty: "Lätt",
+    servings: 12,
+    ingredients: [
+      "50 g smör (+ extra till formen)",
+      "3 dl vetemjöl",
+      "2 tsk bakpulver",
+      "1 dl strösocker",
+      "2 tsk malen kardemumma",
+      "2 tsk malen kanel",
+      "1 tsk malen ingefära",
+      "1/2 tsk malen kryddnejlika",
+      "1 ägg",
+      "1 1/2 dl mjölk (3%)",
+      "1/2 dl mörk sirap",
+      "1/2 dl lingonsylt eller rårörda lingon",
+      "3 msk ströbröd (till formen)",
+    ],
+    steps: [
+      "Sätt ugnen på 200°C.",
+      "Smält smöret och låt svalna något.",
+      "Blanda mjöl, bakpulver, socker och kryddor i en bunke.",
+      "Vispa ihop smör, ägg, sirap och mjölk. Rör ner smörblandningen och lingonen i mjölet och blanda till en slät smet.",
+      "Fördela smeten i smord och bröad muffinsplåt eller pappersformar.",
+      "Grädda i nedre delen av ugnen ca 15 minuter.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 0,
+    },
+  },
+  {
+    id: "muffin-8",
+    title: "Pepparkaksmuffins med frosting och lingon",
+    category: "Muffins",
+    image: pepparkaksmuffinsfrosting,
+    description:
+      "Pepparkaksmuffins toppade med krämig frosting och rårörda lingon.",
+    time: { prep: 20, bake: 15 },
+    difficulty: "Mellan",
+    servings: 12,
+    ingredients: [
+      "100 g rumsvarmt margarin",
+      "2 1/2 dl farinsocker",
+      "2 ägg",
+      "1 1/2 dl filmjölk",
+      "3 dl vetemjöl",
+      "1 msk pepparkakskrydda",
+      "1 tsk bikarbonat",
+      "200 g naturell färskost",
+      "2 dl florsocker",
+      "25 g margarin",
+      "ca 100 g frysta lingon",
+      "1/2 dl strösocker",
+    ],
+    steps: [
+      "Sätt ugnen på 175°C.",
+      "Muffins: Vispa margarin och farinsocker luftigt. Tillsätt äggen ett i taget och rör ner filmjölken.",
+      "Blanda vetemjöl, pepparkakskrydda och bikarbonat. Vänd försiktigt ner mjölblandningen i smeten.",
+      "Fördela smeten i muffinsformar och grädda (ca 15 minuter för stora, 12-14 minuter för mellan, 10-12 minuter för små).",
+      "Frosting: Blanda färskost, florsocker och margarin och vispa till krämig smet.",
+      "Dekoration: Blanda lingon och socker, låt tina. När muffinsen svalnat, spritsa eller klicka på frostingen och toppa med lingon.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: false,
+      restTime: 0,
+    },
   },
 
   /* -------------------------------------------------- */
