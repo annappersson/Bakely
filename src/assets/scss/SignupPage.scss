@@ -1,0 +1,139 @@
+.signup-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff4e6, #ffe9f0);
+    padding: 20px;
+}
+
+.signup-card {
+    width: 100%;
+    max-width: 380px;
+    background: #ffffffcc;
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fff7f2;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #5a3e36;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #846e63;
+    margin-bottom: 20px;
+}
+
+form {
+    text-align: left;
+    margin-bottom: 20px;
+
+    label {
+        font-size: 14px;
+        color: #5a3e36;
+    }
+
+    input {
+        border-radius: 10px !important;
+        padding: 10px 12px;
+    }
+
+    button[type="submit"] {
+        margin-top: 14px;
+        width: 100%;
+        background: #f7b7b7;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        padding: 10px 0;
+        transition: 0.2s;
+
+        &:hover {
+            background: #f39f9f;
+        }
+    }
+}
+
+.divider {
+    text-align: center;
+    margin: 18px 0;
+    color: #9a8a80;
+    font-size: 13px;
+    position: relative;
+
+    span {
+        background: #ffffffcc;
+        padding: 0 8px;
+        position: relative;
+        z-index: 2;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #e0d4cf;
+        z-index: 1;
+    }
+}
+
+.oauth-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+
+    .oauth-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.signup-text {
+    font-size: 14px;
+    color: #6b5b55;
+
+    .create-account {
+        color: #e89494;
+        font-weight: 600;
+        margin-left: 4px;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

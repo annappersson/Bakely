@@ -1,0 +1,147 @@
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, #ffeaf4, #fff7e5);
+    padding-bottom: 5rem;
+}
+
+.login-card {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 28px;
+    padding: 2rem 1.6rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+/* LOGO */
+.logo-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ffe3ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.cake-icon {
+    font-size: 2rem;
+}
+
+/* TEXT */
+.title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #8b5b5b;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 1.4rem;
+}
+
+/* FORM */
+form {
+    text-align: left;
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    input {
+        border-radius: 14px !important;
+        padding: 0.9rem !important;
+        border: 1px solid #eee;
+        background: #fafafa;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        margin-top: 10px;
+        padding: 0.8rem;
+        border-radius: 16px;
+
+        background: linear-gradient(180deg, #ffb5c9, #ffa5be);
+        border: none;
+        font-weight: 600;
+        color: white;
+
+        &:hover {
+            background: linear-gradient(180deg, #ffa5be, #ff93af);
+        }
+    }
+}
+
+/* BOTTOM LINKS */
+.bottom-links {
+    margin-top: 1.4rem;
+}
+
+.forgot {
+    font-size: 0.85rem;
+    color: #f27da5;
+    text-decoration: none;
+}
+
+.divider {
+    margin: 1rem 0 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+        font-size: 0.8rem;
+        opacity: 0.7;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #e5e5e5;
+    }
+}
+
+/* OAUTH BUTTONS */
+.oauth-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.oauth-btn {
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+/* SIGNUP LINK */
+.signup-text {
+    font-size: 0.85rem;
+
+    .create-account {
+        color: #f27da5;
+        font-weight: 600;
+        text-decoration: none;
+    }
+}

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import "./assets/scss/BottomNav.scss";
-
+import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import CakeBuilderPage from "./pages/CakeBuilderPage";
@@ -9,14 +9,25 @@ import SavedPage from "./pages/SavedPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/Auth/LoginPage";
 import SignupPage from "./pages/Auth/SignupPage";
-
 import BottomNav from "./components/BottomNav";
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import AllRecipesPage from "./pages/AllRecipesPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div id="app">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sok" element={<SearchPage />} />

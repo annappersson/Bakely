@@ -1,9 +1,12 @@
 import "../assets/scss/HomePage.scss";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Search, Heart, Cookie, Cake, Wheat, ChefHat } from "lucide-react";
 import { recipes } from "../data/recipes";
 import { useAuth } from "../hooks/useAuth";
 import logoIcon from "../assets/img/logobakely.png";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import Loading from "../components/Loading";
 
 <div className="logo">
   <img src={logoIcon} alt="Bakely Logo" className="logo-img" />
@@ -13,9 +16,38 @@ import logoIcon from "../assets/img/logobakely.png";
 const mostLoved = recipes.slice(0, 3);
 
 function HomePage() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const handleLogout = async () => {
+    setLoading(true); // starta loading
+
+    try {
+      await signOut(); // logga ut
+
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      toast("Du är nu utloggad 👋", {
+        icon: <span>🍰</span>,
+        style: {
+          background: "#ffeaf1",
+          color: "#8a5a6a",
+          borderRadius: "12px",
+          padding: "14px 16px",
+          fontSize: "15px",
+          boxShadow: "0px 4px 14px rgba(0,0,0,0.08)",
+        },
+      });
+    } catch (err: any) {
+      toast.error(err?.message || "Något gick fel.");
+    } finally {
+      setLoading(false); // stoppa loading
+      setTimeout(() => navigate("/logga-in"), 200);
+    }
+  };
+
   const { user, signOut } = useAuth();
   return (
     <div className="home-page">
+      {loading && <Loading show={loading} />}
       {/* HEADER */}
       <header className="home-header">
         <div className="logo">
@@ -30,7 +62,7 @@ function HomePage() {
               Logga in
             </Link>
           ) : (
-            <button className="auth-btn" onClick={signOut}>
+            <button className="auth-btn" onClick={handleLogout}>
               Logga ut
             </button>
           )}
@@ -50,7 +82,7 @@ function HomePage() {
       <div className="build-card">
         <h3>Bygg din Tårta</h3>
         <p>Mix & matcha smaker, fyllningar och frostings</p>
-        <Link to="/bygga-tarta" className="btn-start">
+        <Link to="/bygg-tarta" className="btn-start">
           Börja Bygga
         </Link>
       </div>
