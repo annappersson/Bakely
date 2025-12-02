@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router";
 const ProtectedRoutes: React.FC = () => {
   const { user } = useAuth();
 
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/logga-in" replace />;
 
   return <Outlet />; // <—— visar barnrutterna korrekt
 };

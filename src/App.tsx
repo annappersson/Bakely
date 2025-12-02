@@ -12,24 +12,26 @@ import SignupPage from "./pages/Auth/SignupPage";
 
 import BottomNav from "./components/BottomNav";
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
+import AllRecipesPage from "./pages/AllRecipesPage";
 
 function App() {
   return (
     <div id="app">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/search" element={<SearchPage />} />
+        <Route path="/sok" element={<SearchPage />} />
+        <Route path="/recept" element={<AllRecipesPage />} />
 
         {/* Skyddade rutter */}
         <Route element={<ProtectedRoutes />}>
-          <Route path="/planner" element={<PlannerPage />} />
-          <Route path="/cake-builder" element={<CakeBuilderPage />} />
-          <Route path="/saved" element={<SavedPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/planera" element={<PlannerPage />} />
+          <Route path="/bygg-tarta" element={<CakeBuilderPage />} />
+          <Route path="/sparade" element={<SavedPage />} />
+          <Route path="/profil" element={<ProfilePage />} />
         </Route>
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/logga-in" element={<LoginPage />} />
+        <Route path="/skapa-konto" element={<SignupPage />} />
       </Routes>
 
       {/* Bottom Navigation - alltid synlig när man är inloggad */}

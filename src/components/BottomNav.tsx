@@ -6,10 +6,10 @@ const BottomNav = () => {
 
   const navItems = [
     { to: "/", label: "Hem", icon: <Home size={22} /> },
-    { to: "/search", label: "Sök", icon: <Search size={22} /> },
-    { to: "/cake-builder", label: "Bygg", icon: <Layers size={22} /> },
-    { to: "/saved", label: "Sparade", icon: <Heart size={22} /> },
-    { to: "/profile", label: "Profil", icon: <User size={22} /> },
+    { to: "/sok", label: "Sök", icon: <Search size={22} /> },
+    { to: "/bygg-tarta", label: "Bygg", icon: <Layers size={22} /> },
+    { to: "/sparade", label: "Sparade", icon: <Heart size={22} /> },
+    { to: "/profil", label: "Profil", icon: <User size={22} /> },
   ];
 
   return (

@@ -26,7 +26,7 @@ function HomePage() {
         <div className="header-right">
           {/* LOGIN / LOGOUT BUTTON */}
           {!user ? (
-            <Link to="/login" className="auth-btn">
+            <Link to="/logga-in" className="auth-btn">
               Logga in
             </Link>
           ) : (
@@ -50,7 +50,7 @@ function HomePage() {
       <div className="build-card">
         <h3>Bygg din Tårta</h3>
         <p>Mix & matcha smaker, fyllningar och frostings</p>
-        <Link to="/cake-builder" className="btn-start">
+        <Link to="/bygga-tarta" className="btn-start">
           Börja Bygga
         </Link>
       </div>
@@ -58,7 +58,7 @@ function HomePage() {
         <div className="content">
           <h3>Planera din bakning</h3>
           <p>Få hjälp med schema, tider och steg-för-steg planering</p>
-          <Link to="/planner" className="btn-startPlan">
+          <Link to="/planera" className="btn-startPlan">
             Börja Planera
           </Link>
         </div>
@@ -67,12 +67,12 @@ function HomePage() {
       {/* MOST LOVED */}
       <div className="section-header">
         <h3>Mest Gillade</h3>
-        <Link to="/recipes">Se Alla</Link>
+        <Link to="/recept">Se Alla</Link>
       </div>
       <div className="recipe-list">
         {mostLoved.map((recipe) => (
           <Link
-            to={`/recipe/${recipe.id}`}
+            to={`/recept/${recipe.id}`}
             key={recipe.id}
             className="recipe-card"
           >
