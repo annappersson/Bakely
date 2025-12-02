@@ -5,11 +5,11 @@ const BottomNav = () => {
   const location = useLocation();
 
   const navItems = [
-    { to: "/", label: "Home", icon: <Home size={22} /> },
-    { to: "/search", label: "Search", icon: <Search size={22} /> },
-    { to: "/build", label: "Build", icon: <Layers size={22} /> },
-    { to: "/saved", label: "Saved", icon: <Heart size={22} /> },
-    { to: "/profile", label: "Profile", icon: <User size={22} /> },
+    { to: "/", label: "Hem", icon: <Home size={22} /> },
+    { to: "/search", label: "Sök", icon: <Search size={22} /> },
+    { to: "/cake-builder", label: "Bygg", icon: <Layers size={22} /> },
+    { to: "/saved", label: "Sparade", icon: <Heart size={22} /> },
+    { to: "/profile", label: "Profil", icon: <User size={22} /> },
   ];
 
   return (
@@ -19,7 +19,9 @@ const BottomNav = () => {
           key={item.to}
           to={item.to}
           className={
-            "nav-item " + (location.pathname === item.to ? "active" : "")
+            "nav-item " +
+            (location.pathname === item.to ? "active" : "") +
+            (item.label === "Bygg" ? " highlight" : "")
           }
         >
           {item.icon}

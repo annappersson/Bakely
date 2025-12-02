@@ -19,11 +19,11 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/planner" element={<PlannerPage />} />
-        <Route path="/cake-builder" element={<CakeBuilderPage />} />
 
         {/* Skyddade rutter */}
         <Route element={<ProtectedRoutes />}>
+          <Route path="/planner" element={<PlannerPage />} />
+          <Route path="/cake-builder" element={<CakeBuilderPage />} />
           <Route path="/saved" element={<SavedPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
