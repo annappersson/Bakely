@@ -96,3 +96,36 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.category-bar {
+    display: flex;
+    gap: 10px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.cat-btn {
+    background: #ffeef7;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #b55d7a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+        background: #ffd9eb;
+    }
+
+    &.active {
+        background: #ff9ec9;
+        color: white;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+    }
+}
