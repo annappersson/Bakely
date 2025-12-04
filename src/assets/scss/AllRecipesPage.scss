@@ -129,3 +129,77 @@
         transform: scale(1.05);
     }
 }
+
+/* ------------------------- */
+/*     CATEGORY BAR CUTE     */
+/* ------------------------- */
+
+.category-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 0;
+    margin: 0 16px 10px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.cat-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px 16px;
+    background: #fff1f6;
+    color: #8a4d5b;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+
+    box-shadow: 0 3px 8px rgba(255, 185, 205, 0.35);
+    transition: 0.2s ease;
+    white-space: nowrap;
+
+    .icon {
+        display: flex;
+        align-items: center;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:hover {
+        background: #ffe4ed;
+    }
+}
+
+.cat-btn.active {
+    background: #ff8fb6;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 143, 182, 0.4);
+}
+
+/* ------------------------- */
+/*   FADE ANIMATION LIST     */
+/* ------------------------- */
+
+.fade-in {
+    animation: fadeIn 0.35s ease both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

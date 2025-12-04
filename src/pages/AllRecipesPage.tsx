@@ -4,10 +4,26 @@ import { useState, useEffect } from "react";
 import { recipes } from "../data/recipes";
 
 import Pagination from "../components/Pagination";
-import logoIcon from "../assets/img/logobakely.png";
 import Header from "../components/Header";
 
-const categories = ["Alla", "Tårtor", "Kakor", "Bröd", "Muffins"];
+// Ikoner
+import {
+  Cookie,
+  Cake,
+  Wheat,
+  Croissant,
+  Dessert,
+  Sparkles,
+} from "lucide-react";
+
+const categories = [
+  { name: "Alla", icon: <Sparkles size={18} /> },
+  { name: "Tårtor", icon: <Cake size={18} /> },
+  { name: "Kakor", icon: <Cookie size={18} /> },
+  { name: "Bröd", icon: <Wheat size={18} /> },
+  { name: "Muffins", icon: <Dessert size={18} /> },
+  { name: "Bullar", icon: <Croissant size={18} /> },
+];
 
 function AllRecipesPage() {
   const [page, setPage] = useState(1);
@@ -53,17 +69,18 @@ function AllRecipesPage() {
       <div className="category-bar">
         {categories.map((cat) => (
           <button
-            key={cat}
-            className={`cat-btn ${activeCategory === cat ? "active" : ""}`}
-            onClick={() => handleCategoryChange(cat)}
+            key={cat.name}
+            className={`cat-btn ${activeCategory === cat.name ? "active" : ""}`}
+            onClick={() => handleCategoryChange(cat.name)}
           >
-            {cat}
+            <span className="icon">{cat.icon}</span>
+            {cat.name}
           </button>
         ))}
       </div>
 
       {/* RECIPE LIST */}
-      <div className="recipe-list">
+      <div className="recipe-list fade-in">
         {visibleRecipes.map((recipe) => (
           <Link
             to={`/recept/${recipe.id}`}
