@@ -39,10 +39,11 @@ import saffransmunk from "../assets/img/saffransmunkar.jpg";
 import grotbrod from "../assets/img/grotbrod.jpg";
 import kavring from "../assets/img/kavring.jpg";
 import zucchinibrod from "../assets/img/zucchinibrod.jpg";
+import type { Recipe } from "../types/types";
 
-export const recipes = [
+export const recipes: Recipe[] = [
   /* -------------------------------------------------- */
-  /* 🧁 MUFFINS (5 st) */
+  /* 🧁 MUFFINS */
   /* -------------------------------------------------- */
   {
     id: "muffin-1",
@@ -336,7 +337,7 @@ export const recipes = [
   },
 
   /* -------------------------------------------------- */
-  /* 🍪 KAKOR (5 st) */
+  /* 🍪 KAKOR */
   /* -------------------------------------------------- */
   {
     id: "cookie-1",
@@ -1242,7 +1243,7 @@ export const recipes = [
     image: prinsesstartaHallon,
     description:
       "Klassisk prinsesstårta fylld med hallonsylt, marsankräm och fluffig grädde.",
-    time: { prep: 40, bake: 40, rise: 0 },
+    time: { prep: 40, bake: 40 },
     difficulty: "Medel",
     servings: 8,
     ingredients: {
@@ -1294,7 +1295,7 @@ export const recipes = [
     image: graddtarta,
     description:
       "Somrig klassisk gräddtårta fylld med vaniljkräm och jordgubbar.",
-    time: { prep: 50, bake: 40, rise: 0 },
+    time: { prep: 50, bake: 40 },
     difficulty: "Medel",
     servings: 10,
     ingredients: {

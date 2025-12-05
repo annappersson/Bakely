@@ -1,0 +1,133 @@
+.recipe-detail-page {
+    padding-bottom: 80px;
+    background: linear-gradient(#fff7fa, #ffffff);
+    padding-bottom: 5rem;
+
+    .top-image-wrapper {
+        position: relative;
+
+        .back-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #ffffffd8;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            color: #925b66;
+            backdrop-filter: blur(4px);
+            z-index: 5;
+        }
+
+        .like-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #ffffffd8;
+            padding: 8px;
+            border-radius: 50%;
+            color: #d58aa2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: 0.25s;
+            z-index: 5;
+
+            &.liked {
+                background: #ffb8d2;
+                color: white;
+                transform: scale(1.15);
+            }
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+    }
+
+    .recipe-header {
+        padding: 20px;
+
+        h2 {
+            font-size: 24px;
+            color: #7a4b5a;
+            margin-bottom: 6px;
+        }
+
+        .recipe-desc {
+            font-size: 16px;
+            color: #766268;
+        }
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-around;
+        margin: 0 16px 20px;
+        padding: 12px;
+        background: #ffeef4;
+        border-radius: 18px;
+
+        .info-box {
+            text-align: center;
+            color: #8a5a6a;
+            font-size: 14px;
+
+            svg {
+                display: block;
+                margin: 0 auto 4px;
+            }
+        }
+    }
+
+    .extra-info {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0 20px;
+        padding: 8px 12px;
+        background: #fff2f6;
+        border-radius: 14px;
+        color: #8a5a6a;
+        font-size: 14px;
+
+        svg {
+            color: #d58aa2;
+        }
+    }
+
+    .planner-box {
+        margin: 12px 20px;
+        padding: 12px;
+        background: #fff7fc;
+        border-radius: 14px;
+        color: #85556a;
+        font-size: 14px;
+    }
+
+    .content-box {
+        background: #ffffff;
+        margin: 18px;
+        padding: 16px;
+        border-radius: 18px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+        h4 {
+            color: #7a4b5a;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+
+            li {
+                margin-bottom: 6px;
+                color: #5a4a50;
+            }
+        }
+    }
+}

@@ -13,6 +13,7 @@ import BottomNav from "./components/BottomNav";
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import AllRecipesPage from "./pages/AllRecipesPage";
 import { ToastContainer } from "react-toastify";
+import RecipeDetailPage from "./pages/RecipeDetailsPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sok" element={<SearchPage />} />
         <Route path="/recept" element={<AllRecipesPage />} />
+        <Route path="/recept/:id" element={<RecipeDetailPage />} />
 
         {/* Skyddade rutter */}
         <Route element={<ProtectedRoutes />}>
