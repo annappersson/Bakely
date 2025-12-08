@@ -1,29 +1,71 @@
-import { useState } from "react";
+// src/pages/ProfilePage.tsx
+import { useEffect, useState } from "react";
 import "../assets/scss/ProfilePage.scss";
 import { Heart, CakeSlice, Bookmark } from "lucide-react";
+import { supabase } from "../supabaseClient";
+
+interface Collection {
+  id: string;
+  user_id: string;
+  name: string;
+  description?: string | null;
+  created_at: string;
+  collection_items?: any[]; // används för att räkna antal recept
+}
 
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState<"saved" | "created" | "liked">(
+  const [activeTab, setActiveTab] = useState<"saved" | "liked" | "created">(
     "saved"
   );
 
+  const [userId, setUserId] = useState<string | null>(null);
+  const [collections, setCollections] = useState<Collection[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // ⭐ 1. Hämta inloggad användare
+  useEffect(() => {
+    async function fetchUser() {
+      const { data } = await supabase.auth.getUser();
+      setUserId(data?.user?.id || null);
+    }
+    fetchUser();
+  }, []);
+
+  // ⭐ 2. Hämta användarens samlingar med antal recept
+  useEffect(() => {
+    if (!userId) return;
+
+    async function fetchCollections() {
+      setLoading(true);
+
+      const { data, error } = await supabase
+        .from("user_collections")
+        .select("*, collection_items(*)") // inkludera recept
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Kunde inte hämta samlingar:", error);
+      } else if (data) {
+        setCollections(data as Collection[]);
+      }
+
+      setLoading(false);
+    }
+
+    fetchCollections();
+  }, [userId]);
+
   return (
     <div className="profile-page">
-      {/* HEADER */}
       <div className="profile-header">
         <button className="back-btn">←</button>
         <h2>Min Profil</h2>
         <button className="menu-btn">⋮</button>
       </div>
 
-      {/* USER INFO */}
       <div className="profile-card">
-        <img
-          className="profile-img"
-          src="/placeholder-profile.jpg"
-          alt="profile"
-        />
-
+        <img className="profile-img" src="/placeholder-profile.jpg" alt="" />
         <h3 className="profile-name">Ditt Namn</h3>
         <p className="profile-bio">Bakningsentusiast 🧁</p>
 
@@ -45,7 +87,6 @@ export default function ProfilePage() {
         <button className="edit-profile-btn">Redigera Profil</button>
       </div>
 
-      {/* TABS */}
       <div className="profile-tabs">
         <button
           onClick={() => setActiveTab("saved")}
@@ -53,12 +94,14 @@ export default function ProfilePage() {
         >
           Sparade
         </button>
+
         <button
           onClick={() => setActiveTab("created")}
           className={activeTab === "created" ? "active" : ""}
         >
           Skapade
         </button>
+
         <button
           onClick={() => setActiveTab("liked")}
           className={activeTab === "liked" ? "active" : ""}
@@ -67,21 +110,12 @@ export default function ProfilePage() {
         </button>
       </div>
 
-      {/* KATEGORIKNAPPSRAD */}
-      <div className="category-buttons">
-        <button className="active">Alla</button>
-        <button>Tårtor</button>
-        <button>Cupcakes</button>
-        <button>Cookies</button>
-        <button>Bröd</button>
-      </div>
-
-      {/* RECEPTGRID — fylls senare */}
+      {/* Receptlistor byts senare */}
       <div className="recipe-grid">
         <p className="placeholder-text">Recept kommer här… 🍰</p>
       </div>
 
-      {/* 🔥 MINA SAMLINGAR */}
+      {/* ⭐ DYNAMISKA SAMLINGAR ⭐ */}
       <div className="collections">
         <div className="collections-header">
           <h3>Mina Samlingar</h3>
@@ -89,35 +123,24 @@ export default function ProfilePage() {
         </div>
 
         <div className="collection-list">
-          <div className="collection-card pink">
-            <div className="icon">
-              <Heart />
-            </div>
-            <div>
-              <h4>Favoriter</h4>
-              <p>24 recept</p>
-            </div>
-          </div>
+          {loading && <p>Laddar samlingar…</p>}
 
-          <div className="collection-card mint">
-            <div className="icon">
-              <CakeSlice />
-            </div>
-            <div>
-              <h4>Födelsedagstårtor</h4>
-              <p>12 recept</p>
-            </div>
-          </div>
+          {!loading && collections.length === 0 && (
+            <p className="text-muted">Inga samlingar ännu.</p>
+          )}
 
-          <div className="collection-card yellow">
-            <div className="icon">
-              <Bookmark />
-            </div>
-            <div>
-              <h4>Snabba Bakverk</h4>
-              <p>18 recept</p>
-            </div>
-          </div>
+          {!loading &&
+            collections.map((c) => (
+              <div key={c.id} className={`collection-card pink`}>
+                <div className="icon">
+                  <Bookmark />
+                </div>
+                <div>
+                  <h4>{c.name}</h4>
+                  <p>{c.collection_items?.length || 0} recept</p>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>

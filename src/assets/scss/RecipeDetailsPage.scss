@@ -1,42 +1,12 @@
 .recipe-detail-page {
-    padding-bottom: 80px;
     background: linear-gradient(#fff7fa, #ffffff);
-    padding-bottom: 5rem;
+    padding-bottom: 4rem;
 
+    /* ============================
+        TOP IMAGE + BUTTONS
+    ============================ */
     .top-image-wrapper {
         position: relative;
-
-        .back-btn {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            background: #ffffffd8;
-            padding: 8px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            color: #925b66;
-            backdrop-filter: blur(4px);
-            z-index: 5;
-        }
-
-        .like-btn {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: #ffffffd8;
-            padding: 8px;
-            border-radius: 50%;
-            color: #d58aa2;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            transition: 0.25s;
-            z-index: 5;
-
-            &.liked {
-                background: #ffb8d2;
-                color: white;
-                transform: scale(1.15);
-            }
-        }
 
         .recipe-image {
             width: 100%;
@@ -45,68 +15,94 @@
             border-bottom-left-radius: 24px;
             border-bottom-right-radius: 24px;
         }
+
+        .back-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 10px;
+            background: #ffffffd9;
+            border-radius: 50%;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            color: #9e5b6c;
+            z-index: 5;
+        }
+
+        .like-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 10px;
+            background: #ffb8d8cc;
+            border-radius: 50%;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(255, 122, 170, 0.25);
+            z-index: 5;
+            transition: 0.25s;
+
+            &:active {
+                transform: scale(0.9);
+            }
+        }
     }
 
+    /* ============================
+        HEADER TEXT
+    ============================ */
     .recipe-header {
         padding: 20px;
 
         h2 {
-            font-size: 24px;
+            font-size: 26px;
+            font-weight: 700;
             color: #7a4b5a;
-            margin-bottom: 6px;
+            margin: 0;
         }
 
         .recipe-desc {
-            font-size: 16px;
-            color: #766268;
+            margin-top: 6px;
+            color: #7e646c;
+            font-size: 15px;
         }
     }
 
+    /* ============================
+        TIME + INFO BOXES
+    ============================ */
     .info-row {
         display: flex;
         justify-content: space-around;
-        margin: 0 16px 20px;
-        padding: 12px;
+        margin: 12px 16px;
+        padding: 14px;
         background: #ffeef4;
         border-radius: 18px;
 
         .info-box {
             text-align: center;
-            color: #8a5a6a;
-            font-size: 14px;
+            color: #874f64;
+
+            p {
+                font-size: 15px;
+                margin: 4px 0 0;
+                font-weight: 600;
+            }
+
+            span {
+                font-size: 12px;
+                opacity: 0.7;
+            }
 
             svg {
-                display: block;
-                margin: 0 auto 4px;
+                color: #d58aa2;
+                margin-bottom: 4px;
             }
         }
     }
 
-    .extra-info {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin: 0 20px;
-        padding: 8px 12px;
-        background: #fff2f6;
-        border-radius: 14px;
-        color: #8a5a6a;
-        font-size: 14px;
-
-        svg {
-            color: #d58aa2;
-        }
-    }
-
-    .planner-box {
-        margin: 12px 20px;
-        padding: 12px;
-        background: #fff7fc;
-        border-radius: 14px;
-        color: #85556a;
-        font-size: 14px;
-    }
-
+    /* ============================
+        CONTENT CARDS
+    ============================ */
     .content-box {
         background: #ffffff;
         margin: 18px;
@@ -116,8 +112,8 @@
 
         h4 {
             color: #7a4b5a;
-            margin-top: 16px;
             margin-bottom: 8px;
+            font-size: 18px;
         }
 
         ul,
@@ -128,6 +124,63 @@
                 margin-bottom: 6px;
                 color: #5a4a50;
             }
+        }
+    }
+
+    /* ============================
+        MODAL
+    ============================ */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+    }
+
+    .modal {
+        background: #fff7fb;
+        padding: 20px;
+        border-radius: 18px;
+        width: 85%;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+        h3 {
+            color: #7a4b5a;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #e8c4d2;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            background: #ff8fb8;
+            border: none;
+            padding: 10px;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .cancel-btn {
+            width: 100%;
+            background: #ffffff;
+            border: none;
+            padding: 10px;
+            color: #8a5a6a;
+            font-weight: 600;
+            border-radius: 12px;
         }
     }
 }
