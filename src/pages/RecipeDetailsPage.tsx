@@ -7,55 +7,40 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 
 import { Heart, Clock, Flame, Timer, Users, ArrowLeft } from "lucide-react";
-import CollectionModal from "../components/CollectionModal";
 
 export default function RecipeDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const recipe = recipes.find((r) => r.id === id);
 
-  const [userId, setUserId] = useState<string | null>(null);
   const [collections, setCollections] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedCollection, setSelectedCollection] = useState<string>("");
 
-  // ⭐ 1. Hämta inloggad användare
-  useEffect(() => {
-    async function fetchUser() {
-      const { data } = await supabase.auth.getUser();
-      setUserId(data?.user?.id || null);
-    }
-    fetchUser();
-  }, []);
+  async function fetchCollections() {
+    const { data: userCollections, error } = await supabase
+      .from("user_collections")
+      .select("*");
 
-  // ⭐ 2. Hämta användarens samlingar när userId är laddat
-  useEffect(() => {
-    if (!userId) return;
-
-    async function fetchCollections() {
-      const { data } = await supabase
-        .from("user_collections")
-        .select("*")
-        .eq("user_id", userId);
-
-      setCollections(data || []);
-    }
-
-    fetchCollections();
-  }, [userId]);
+    if (!error) setCollections(userCollections || []);
+  }
 
   async function likeRecipe() {
-    if (!selectedCollection || !userId) return;
+    if (!selectedCollection) return;
 
     await supabase.from("user_collection_items").insert({
-      user_id: userId,
       collection_id: selectedCollection,
-      recipe_id: id,
+      recipe_id: recipe?.id,
       type: "recipe",
     });
 
     setShowModal(false);
   }
+
+  useEffect(() => {
+    fetchCollections();
+  }, []);
 
   if (!recipe) return <p>Receptet hittades inte.</p>;
 
@@ -148,15 +133,36 @@ export default function RecipeDetailPage() {
         </div>
 
         {/* 📌 LIKE MODAL */}
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal">
+              <h3>Lägg till i samling 💗</h3>
 
-        <CollectionModal
-          show={showModal}
-          recipeId={recipe.id}
-          onClose={() => setShowModal(false)}
-          onAdded={(collectionId) => {
-            console.log("Recept sparat i samling", collectionId);
-          }}
-        />
+              <select
+                value={selectedCollection}
+                onChange={(e) => setSelectedCollection(e.target.value)}
+              >
+                <option value="">Välj samling</option>
+                {collections.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+
+              <button className="confirm-btn" onClick={likeRecipe}>
+                Lägg till
+              </button>
+
+              <button
+                className="cancel-btn"
+                onClick={() => setShowModal(false)}
+              >
+                Avbryt
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

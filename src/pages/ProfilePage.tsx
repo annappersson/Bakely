@@ -1,7 +1,7 @@
 // src/pages/ProfilePage.tsx
 import { useEffect, useState } from "react";
 import "../assets/scss/ProfilePage.scss";
-import { Heart, CakeSlice, Bookmark } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { supabase } from "../supabaseClient";
 
 interface Collection {
