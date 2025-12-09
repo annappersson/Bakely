@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import "../assets/scss/EditProfilePage.scss";
 import { toast } from "react-toastify";
+import Header from "../components/Header";
 
 export default function EditProfilePage() {
   const [loading, setLoading] = useState(false);
@@ -109,55 +110,58 @@ export default function EditProfilePage() {
   }
 
   return (
-    <div className="edit-profile-page">
-      <h2>Redigera Profil</h2>
+    <>
+      <Header />
+      <div className="edit-profile-page">
+        <h2>Redigera Profil</h2>
 
-      <div className="section">
-        <h3>Profil</h3>
+        <div className="section">
+          <h3>Profil</h3>
 
-        <input
-          type="text"
-          placeholder="Namn"
-          value={profile.name}
-          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-        />
+          <input
+            type="text"
+            placeholder="Namn"
+            value={profile.name}
+            onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+          />
 
-        <textarea
-          placeholder="Bio"
-          value={profile.bio}
-          onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-        />
+          <textarea
+            placeholder="Bio"
+            value={profile.bio}
+            onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
+          />
 
-        <button onClick={updateProfile} disabled={loading}>
-          Spara profil
-        </button>
+          <button onClick={updateProfile} disabled={loading}>
+            Spara profil
+          </button>
+        </div>
+
+        <div className="section">
+          <h3>Login</h3>
+
+          <input
+            type="email"
+            placeholder="E-post"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <button onClick={updateEmail} disabled={loading}>
+            Uppdatera e-post
+          </button>
+
+          <input
+            type="password"
+            placeholder="Nytt lösenord"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button onClick={updatePassword} disabled={loading}>
+            Byt lösenord
+          </button>
+        </div>
       </div>
-
-      <div className="section">
-        <h3>Login</h3>
-
-        <input
-          type="email"
-          placeholder="E-post"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <button onClick={updateEmail} disabled={loading}>
-          Uppdatera e-post
-        </button>
-
-        <input
-          type="password"
-          placeholder="Nytt lösenord"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button onClick={updatePassword} disabled={loading}>
-          Byt lösenord
-        </button>
-      </div>
-    </div>
+    </>
   );
 }
