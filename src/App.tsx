@@ -14,6 +14,7 @@ import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import AllRecipesPage from "./pages/AllRecipesPage";
 import { ToastContainer } from "react-toastify";
 import RecipeDetailPage from "./pages/RecipeDetailsPage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/bygg-tarta" element={<CakeBuilderPage />} />
           <Route path="/sparade" element={<SavedPage />} />
           <Route path="/profil" element={<ProfilePage />} />
+          <Route path="/redigera-profil" element={<EditProfilePage />} />
         </Route>
 
         <Route path="/logga-in" element={<LoginPage />} />

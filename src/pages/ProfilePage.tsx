@@ -4,6 +4,8 @@ import "../assets/scss/ProfilePage.scss";
 import { Bookmark } from "lucide-react";
 import { supabase } from "../supabaseClient";
 import Header from "../components/Header";
+import { Link } from "react-router";
+import { useAuth } from "../hooks/useAuth";
 
 interface Collection {
   id: string;
@@ -18,7 +20,7 @@ export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState<"saved" | "liked" | "created">(
     "saved"
   );
-
+  const { user, profile } = useAuth();
   const [userId, setUserId] = useState<string | null>(null);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [loading, setLoading] = useState(false);
@@ -70,8 +72,12 @@ export default function ProfilePage() {
 
         <div className="profile-card">
           <img className="profile-img" src="/placeholder-profile.jpg" alt="" />
-          <h3 className="profile-name">Ditt Namn</h3>
-          <p className="profile-bio">Bakningsentusiast 🧁</p>
+          <h3 className="profile-name">
+            {profile?.name || user?.email || "Ditt Namn"}
+          </h3>
+          <p className="profile-bio">
+            {profile?.bio || "Bakningsentusiast 🧁"}
+          </p>
 
           <div className="stats">
             <div>
@@ -87,8 +93,9 @@ export default function ProfilePage() {
               <p>Likes</p>
             </div>
           </div>
-
-          <button className="edit-profile-btn">Redigera Profil</button>
+          <Link to="/redigera-profil" className="edit-profile-btn">
+            Redigera Profil
+          </Link>
         </div>
 
         <div className="profile-tabs">

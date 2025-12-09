@@ -6,7 +6,8 @@ import Loading from "../components/Loading";
 
 interface Profile {
   id: string;
-  full_name: string | null;
+  name: string | null;
+  bio: string | null;
   avatar_url: string | null;
 }
 
@@ -80,7 +81,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (data.user) {
       await supabase.from("profiles").upsert({
         id: data.user.id,
-        full_name: name,
+        name: name,
+        bio: null,
         avatar_url: null,
       });
     }
