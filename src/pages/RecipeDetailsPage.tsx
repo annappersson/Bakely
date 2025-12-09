@@ -7,29 +7,38 @@ import CollectionModal from "../components/CollectionModal";
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { toastInfo } from "../utils/toastConfig";
+import Loading from "../components/Loading";
 
 export default function RecipeDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth(); // ← loading från context
 
   const recipe = recipes.find((r) => r.id === id);
-
   const [showModal, setShowModal] = useState(false);
 
   if (!recipe) return <p>Receptet hittades inte.</p>;
 
   const handleLikeClick = () => {
+    if (authLoading) {
+      toastInfo("Laddar användarinformation…");
+      return;
+    }
+
     if (!user) {
       toastInfo("Du måste vara inloggad för att spara recept 💗");
       return;
     }
+
     setShowModal(true);
   };
 
   return (
     <>
       <Header />
+
+      {/* Overlay loader medan auth laddar */}
+      <Loading show={authLoading} />
 
       <div className="recipe-detail-page">
         {/* 📌 TOP IMAGE + BTN */}
@@ -38,7 +47,11 @@ export default function RecipeDetailPage() {
             <ArrowLeft size={22} />
           </button>
 
-          <button className="like-btn" onClick={handleLikeClick}>
+          <button
+            className="like-btn"
+            onClick={handleLikeClick}
+            disabled={authLoading} // disable under loading
+          >
             <Heart size={20} />
           </button>
 
@@ -85,7 +98,6 @@ export default function RecipeDetailPage() {
         {/* 📌 INGREDIENTS */}
         <div className="content-box">
           <h4>Ingredienser</h4>
-
           <ul>
             {Array.isArray(recipe.ingredients)
               ? recipe.ingredients.map((ing, i) => <li key={i}>{ing}</li>)
@@ -107,7 +119,6 @@ export default function RecipeDetailPage() {
         {/* 📌 STEPS */}
         <div className="content-box">
           <h4>Gör så här</h4>
-
           <ol>
             {recipe.steps.map((step, i) => (
               <li key={i}>{step}</li>

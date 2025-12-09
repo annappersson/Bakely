@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Alert, Button, Form } from "react-bootstrap";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import Loading from "../components/Loading"; // loading komponenten
 import { toastError, toastSuccess } from "../utils/toastConfig";
