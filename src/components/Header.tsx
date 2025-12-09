@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { Heart } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import Loading from "./Loading";
 import logoIcon from "../assets/img/logobakely.png";

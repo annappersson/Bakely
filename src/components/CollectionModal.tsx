@@ -8,6 +8,7 @@ import {
 } from "../services/collections";
 import "../assets/scss/CollectionModal.scss";
 import { toast } from "react-toastify";
+import { toastError, toastInfo, toastSuccess } from "../utils/toastConfig";
 
 // Typdefinitioner
 interface Collection {
@@ -30,15 +31,6 @@ function isCollection(obj: any): obj is Collection {
   return obj && typeof obj.id === "string" && typeof obj.name === "string";
 }
 
-const toastStyle = {
-  background: "#ffeaf1",
-  color: "#8a5a6a",
-  borderRadius: "12px",
-  padding: "14px 16px",
-  fontSize: "15px",
-  boxShadow: "0px 4px 14px rgba(0,0,0,0.08)",
-};
-
 const CollectionModal: React.FC<Props> = ({
   show,
   recipeId,
@@ -57,9 +49,7 @@ const CollectionModal: React.FC<Props> = ({
 
   const loadCollections = async () => {
     if (!user) {
-      toast.info("Du måste vara inloggad för att spara recept 💗", {
-        style: toastStyle,
-      });
+      toastInfo("Du måste vara inloggad för att spara recept 💗");
       return;
     }
 
@@ -67,7 +57,7 @@ const CollectionModal: React.FC<Props> = ({
     const { data, error } = await fetchCollectionsForUser(user.id);
 
     if (error) {
-      toast.error("Kunde inte hämta samlingar!");
+      toastError("Kunde inte hämta samlingar!");
     } else {
       setCollections(Array.isArray(data) ? data.filter(isCollection) : []);
     }
@@ -78,12 +68,12 @@ const CollectionModal: React.FC<Props> = ({
   // Skapa ny samling och lägg till recept
   const handleCreateAndAdd = async () => {
     if (!user) {
-      toast.error("Du måste vara inloggad.");
+      toastError("Du måste vara inloggad.");
       return;
     }
 
     if (!newName.trim()) {
-      toast.error("Samlingen måste ha ett namn.");
+      toastError("Samlingen måste ha ett namn.");
       return;
     }
 
@@ -95,7 +85,7 @@ const CollectionModal: React.FC<Props> = ({
     );
 
     if (createError || !collection) {
-      toast.error("Kunde inte skapa samlingen 😭");
+      toastError("Kunde inte skapa samlingen 😭");
       setLoading(false);
       return;
     }
@@ -106,11 +96,9 @@ const CollectionModal: React.FC<Props> = ({
     );
 
     if (addError) {
-      toast.error("Kunde inte lägga till recept.");
+      toastError("Kunde inte lägga till recept.");
     } else {
-      toast.success(`Recept sparat i ${collection.name}! ✨`, {
-        style: toastStyle,
-      });
+      toastSuccess(`Recept sparat i ${collection.name}! ✨`);
     }
 
     onAdded?.(collection.id);
@@ -127,9 +115,7 @@ const CollectionModal: React.FC<Props> = ({
     if (error) {
       toast.warning("Receptet finns redan i den här samlingen 💞");
     } else {
-      toast.success(`Sparat i ${name ?? "samling"}! ✨`, {
-        style: toastStyle,
-      });
+      toastSuccess(`Sparat i ${name ?? "samling"}! ✨`);
       onAdded?.(collectionId);
       onClose();
     }
