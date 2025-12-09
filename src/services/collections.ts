@@ -24,15 +24,14 @@ export async function createCollection(
   userId: string,
   name: string,
   description?: string
-) {
+): Promise<{ data?: Collection; error?: any }> {
   const { data, error } = await supabase
-    .from("collections")
+    .from("user_collections")
     .insert([{ user_id: userId, name, description }])
-    .select()
-    .single()
-    .returns<Collection>();
+    .select() // .single() används för att hämta ett objekt
+    .single();
 
-  return { data, error };
+  return { data: data ?? undefined, error };
 }
 
 export async function addRecipeToCollection(
@@ -42,8 +41,7 @@ export async function addRecipeToCollection(
   const { data, error } = await supabase
     .from("collection_items")
     .insert([{ collection_id: collectionId, recipe_id: recipeId }])
-    .select()
-    .single();
+    .select();
 
   return { data, error };
 }

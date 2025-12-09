@@ -1,12 +1,10 @@
-// src/pages/RecipeDetailPage.tsx
 import "../assets/scss/RecipeDetailsPage.scss";
 import { useParams, useNavigate } from "react-router";
 import { recipes } from "../data/recipes";
 import Header from "../components/Header";
-import { useEffect, useState } from "react";
-import { supabase } from "../supabaseClient";
-
 import { Heart, Clock, Flame, Timer, Users, ArrowLeft } from "lucide-react";
+import CollectionModal from "../components/CollectionModal";
+import { useState } from "react";
 
 export default function RecipeDetailPage() {
   const { id } = useParams();
@@ -14,33 +12,7 @@ export default function RecipeDetailPage() {
 
   const recipe = recipes.find((r) => r.id === id);
 
-  const [collections, setCollections] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
-  const [selectedCollection, setSelectedCollection] = useState<string>("");
-
-  async function fetchCollections() {
-    const { data: userCollections, error } = await supabase
-      .from("user_collections")
-      .select("*");
-
-    if (!error) setCollections(userCollections || []);
-  }
-
-  async function likeRecipe() {
-    if (!selectedCollection) return;
-
-    await supabase.from("user_collection_items").insert({
-      collection_id: selectedCollection,
-      recipe_id: recipe?.id,
-      type: "recipe",
-    });
-
-    setShowModal(false);
-  }
-
-  useEffect(() => {
-    fetchCollections();
-  }, []);
 
   if (!recipe) return <p>Receptet hittades inte.</p>;
 
@@ -49,7 +21,7 @@ export default function RecipeDetailPage() {
       <Header />
 
       <div className="recipe-detail-page">
-        {/* 📌 TOP IMAGE + LIKE BUTTON + BACK BUTTON */}
+        {/* 📌 TOP IMAGE + BTN */}
         <div className="top-image-wrapper">
           <button className="back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={22} />
@@ -62,7 +34,7 @@ export default function RecipeDetailPage() {
           <img src={recipe.image} alt={recipe.title} className="recipe-image" />
         </div>
 
-        {/* 📌 TITLE + DESCRIPTION */}
+        {/* 📌 TITLE */}
         <div className="recipe-header">
           <h2>{recipe.title}</h2>
           {recipe.description && (
@@ -70,7 +42,7 @@ export default function RecipeDetailPage() {
           )}
         </div>
 
-        {/* 📌 TIME INFO BOXES */}
+        {/* 📌 TIME INFO */}
         <div className="info-row">
           <div className="info-box">
             <Clock size={20} />
@@ -132,37 +104,13 @@ export default function RecipeDetailPage() {
           </ol>
         </div>
 
-        {/* 📌 LIKE MODAL */}
-        {showModal && (
-          <div className="modal-overlay">
-            <div className="modal">
-              <h3>Lägg till i samling 💗</h3>
-
-              <select
-                value={selectedCollection}
-                onChange={(e) => setSelectedCollection(e.target.value)}
-              >
-                <option value="">Välj samling</option>
-                {collections.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-
-              <button className="confirm-btn" onClick={likeRecipe}>
-                Lägg till
-              </button>
-
-              <button
-                className="cancel-btn"
-                onClick={() => setShowModal(false)}
-              >
-                Avbryt
-              </button>
-            </div>
-          </div>
-        )}
+        {/* 📌 SAVE MODAL */}
+        <CollectionModal
+          show={showModal}
+          recipeId={recipe.id}
+          onClose={() => setShowModal(false)}
+          onAdded={() => console.log("Recept sparat!")}
+        />
       </div>
     </>
   );
