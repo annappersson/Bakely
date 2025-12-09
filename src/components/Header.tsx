@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import Loading from "./Loading";
 import logoIcon from "../assets/img/logobakely.png";
+import { toastError, toastSuccess } from "../utils/toastConfig";
 
 export default function Header() {
   const { user, signOut } = useAuth();
@@ -19,21 +20,11 @@ export default function Header() {
 
       await new Promise((res) => setTimeout(res, 1000));
 
-      toast("Du är nu utloggad 👋", {
-        icon: <span>🍰</span>,
-        style: {
-          background: "#ffeaf1",
-          color: "#8a5a6a",
-          borderRadius: "12px",
-          padding: "14px 16px",
-          fontSize: "15px",
-          boxShadow: "0px 4px 14px rgba(0,0,0,0.08)",
-        },
-      });
+      toastSuccess("Du är nu utloggad 👋");
 
       navigate("/logga-in");
     } catch (err: any) {
-      toast.error(err?.message || "Ett fel uppstod.");
+      toastError(err?.message || "Ett fel uppstod.");
     } finally {
       setLoading(false);
     }

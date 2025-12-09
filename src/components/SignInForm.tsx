@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Alert, Button, Form } from "react-bootstrap";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router"; // viktigt!
 import Loading from "./Loading";
+import { toastError, toastSuccess } from "../utils/toastConfig";
 
 export const SignInForm: React.FC = () => {
   const { signIn } = useAuth();
@@ -22,25 +22,15 @@ export const SignInForm: React.FC = () => {
       const { error } = await signIn(email, password);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       if (error) {
-        toast.error("Fel email eller lösenord.");
+        toastError("Fel email eller lösenord.");
         return;
       }
 
-      toast.success("Välkommen tillbaka! ", {
-        icon: <span>💕</span>,
-        style: {
-          background: "#ffeaf1",
-          color: "#8a5a6a",
-          borderRadius: "12px",
-          padding: "14px 16px",
-          fontSize: "15px",
-          boxShadow: "0px 4px 14px rgba(0,0,0,0.08)",
-        },
-      });
+      toastSuccess("Välkommen tillbaka! ");
 
       navigate("/"); // redirect efter toasten
     } catch (err: any) {
-      toast.error(err?.message || "Något gick fel.");
+      toastError(err?.message || "Något gick fel.");
     } finally {
       setLoading(false);
     }

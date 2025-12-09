@@ -5,16 +5,27 @@ import Header from "../components/Header";
 import { Heart, Clock, Flame, Timer, Users, ArrowLeft } from "lucide-react";
 import CollectionModal from "../components/CollectionModal";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { toastInfo } from "../utils/toastConfig";
 
 export default function RecipeDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const recipe = recipes.find((r) => r.id === id);
 
   const [showModal, setShowModal] = useState(false);
 
   if (!recipe) return <p>Receptet hittades inte.</p>;
+
+  const handleLikeClick = () => {
+    if (!user) {
+      toastInfo("Du måste vara inloggad för att spara recept 💗");
+      return;
+    }
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -27,7 +38,7 @@ export default function RecipeDetailPage() {
             <ArrowLeft size={22} />
           </button>
 
-          <button className="like-btn" onClick={() => setShowModal(true)}>
+          <button className="like-btn" onClick={handleLikeClick}>
             <Heart size={20} />
           </button>
 

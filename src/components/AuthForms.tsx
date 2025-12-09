@@ -4,6 +4,7 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import Loading from "../components/Loading"; // loading komponenten
+import { toastError, toastSuccess } from "../utils/toastConfig";
 
 export const SignUpForm: React.FC = () => {
   const { signUp } = useAuth();
@@ -26,30 +27,15 @@ export const SignUpForm: React.FC = () => {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       if (error) {
-        toast.error(error.message, {
-          style: {
-            background: "#ffeaf1",
-            color: "#8a5a6a",
-          },
-        });
+        toastError(error.message || "Något gick fel vid registrering.");
         return;
       }
 
-      toast.success("Konto skapat! Kolla din mail 📧", {
-        icon: <span>✨</span>,
-        style: {
-          background: "#ffeaf1",
-          color: "#8a5a6a",
-          borderRadius: "12px",
-          padding: "14px 16px",
-          fontSize: "15px",
-          boxShadow: "0px 4px 14px rgba(0,0,0,0.08)",
-        },
-      });
+      toastSuccess("Konto skapat! Kolla din mail 📧");
 
       navigate("/logga-in"); // redirect efter toast
     } catch (err: any) {
-      toast.error(err?.message || "Något gick fel.");
+      toastError(err?.message || "Något gick fel.");
     } finally {
       setLoading(false); // stoppa loading
     }

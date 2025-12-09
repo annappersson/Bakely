@@ -30,6 +30,15 @@ function isCollection(obj: any): obj is Collection {
   return obj && typeof obj.id === "string" && typeof obj.name === "string";
 }
 
+const toastStyle = {
+  background: "#ffeaf1",
+  color: "#8a5a6a",
+  borderRadius: "12px",
+  padding: "14px 16px",
+  fontSize: "15px",
+  boxShadow: "0px 4px 14px rgba(0,0,0,0.08)",
+};
+
 const CollectionModal: React.FC<Props> = ({
   show,
   recipeId,
@@ -48,7 +57,9 @@ const CollectionModal: React.FC<Props> = ({
 
   const loadCollections = async () => {
     if (!user) {
-      toast.info("Du måste vara inloggad för att spara recept 💗");
+      toast.info("Du måste vara inloggad för att spara recept 💗", {
+        style: toastStyle,
+      });
       return;
     }
 
@@ -97,7 +108,9 @@ const CollectionModal: React.FC<Props> = ({
     if (addError) {
       toast.error("Kunde inte lägga till recept.");
     } else {
-      toast.success(`Recept sparat i ${collection.name}! ✨`);
+      toast.success(`Recept sparat i ${collection.name}! ✨`, {
+        style: toastStyle,
+      });
     }
 
     onAdded?.(collection.id);
@@ -114,7 +127,9 @@ const CollectionModal: React.FC<Props> = ({
     if (error) {
       toast.warning("Receptet finns redan i den här samlingen 💞");
     } else {
-      toast.success(`Sparat i ${name ?? "samling"}! ✨`);
+      toast.success(`Sparat i ${name ?? "samling"}! ✨`, {
+        style: toastStyle,
+      });
       onAdded?.(collectionId);
       onClose();
     }
