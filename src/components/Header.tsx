@@ -5,6 +5,7 @@ import { useState } from "react";
 import Loading from "./Loading";
 import logoIcon from "../assets/img/logobakely.png";
 import { toastError, toastSuccess } from "../utils/toastConfig";
+import "../assets/scss/Header.scss";
 
 export default function Header() {
   const { user, signOut } = useAuth();
@@ -34,10 +35,10 @@ export default function Header() {
       {loading && <Loading show={loading} />}
 
       <header className="home-header">
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src={logoIcon} alt="Bakely Logo" className="logo-img" />
           Bakely
-        </div>
+        </Link>
 
         <div className="header-right">
           {!user ? (

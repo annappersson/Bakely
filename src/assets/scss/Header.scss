@@ -1,0 +1,17 @@
+@import "bootstrap/scss/bootstrap";
+@import "./Global.scss";
+
+
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+
+
+    .logo {
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+}
