@@ -42,9 +42,6 @@ import zucchinibrod from "../assets/img/zucchinibrod.jpg";
 import type { Recipe } from "../types/types";
 
 export const recipes: Recipe[] = [
-  /* -------------------------------------------------- */
-  /* 🧁 MUFFINS */
-  /* -------------------------------------------------- */
   {
     id: "muffin-1",
     title: "Blåbärsmuffins",
@@ -75,8 +72,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Blåbären går att byta mot hallon eller björnbär.",
+      "Muffinsarna kan frysas direkt efter gräddning.",
+      "Sätt muffinsformarna i en muffinsplåt för jämn gräddning.",
+    ],
   },
-
   {
     id: "muffin-2",
     title: "Chokladmuffins",
@@ -112,8 +113,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Använd riktigt hett vatten för att göra smeten extra luftig.",
+      "Tillsätt hackad mörk choklad för ännu rikare smak.",
+      "Kan toppas med glasyr eller florsocker innan servering.",
+    ],
   },
-
   {
     id: "muffin-3",
     title: "Citronmuffins",
@@ -148,8 +153,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Riv bara det yttersta gula skalet – det vita kan bli beskt.",
+      "Dekorera med florsocker eller citronglasyr för extra fräschhet.",
+      "Passar perfekt med en kopp te eller som frukostmuffins.",
+    ],
   },
-
   {
     id: "muffin-4",
     title: "Hallon-vitchokladmuffins",
@@ -180,8 +189,12 @@ export const recipes: Recipe[] = [
       "Grädda i cirka 20 minuter.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: false, restTime: 0 },
+    tips: [
+      "Frys inte muffins med hallon, de blir vattniga vid upptining.",
+      "Vänd i hallonen försiktigt för att undvika att de mosas.",
+      "Vit choklad kan bytas mot mörk choklad för en annan smakprofil.",
+    ],
   },
-
   {
     id: "muffin-5",
     title: "Bananmuffins",
@@ -204,22 +217,20 @@ export const recipes: Recipe[] = [
     ],
     steps: [
       "Sätt ugnen på 200°C.",
-
       "Skala bananerna. Mosa den ena med en gaffel och skär den andra i 12 skivor.",
-
       "Vispa smör och socker vitt och fluffigt.",
-
       "Vispa ner ett ägg i taget.",
-
       "Rör ner bananmoset och mjölken.",
-
       "Blanda vetemjöl, vaniljsocker, bakpulver och kokos i en annan bunke och vänd ner i smeten.",
-
       "Fördela smeten i 12 muffinsformar (medium, ca 7 cm i diameter för 12 st), på en plåt. Tryck ner en bananskiva i varje muffins.",
-
       "Grädda mitt i ugnen i 15-20 min, känn med provsticka så att muffinsen är torra i mitten. Låt svalna på galler.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 0 },
+    tips: [
+      "Använd riktigt mogna bananer för bästa sötma och saftighet.",
+      "Tillsätt hackade nötter för extra crunch.",
+      "Kan frysas efter gräddning, men toppa med skivad banan först vid servering.",
+    ],
   },
   {
     id: "muffin-6",
@@ -258,6 +269,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Äppelklyftorna kan förkokas lätt för mjukare muffins.",
+      "Toppa med lite pärlsocker för extra krispighet.",
+      "Kan göras med olika äppelsorter, t.ex. Granny Smith för syrligare smak.",
+    ],
   },
   {
     id: "muffin-7",
@@ -296,6 +312,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Tillsätt extra lingon om du vill ha mer syra mot kryddorna.",
+      "Smörj formarna noggrant så att muffinsen lossnar lätt.",
+      "Perfekt att frysa och ta fram vid julbak.",
+    ],
   },
   {
     id: "muffin-8",
@@ -334,6 +355,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 0,
     },
+    tips: [
+      "Frostingen gör sig bäst om den spritsas på kalla muffins.",
+      "Lingonen kan bytas mot färska bär när de är i säsong.",
+      "För en extra touch, riv lite pepparkaka över frostingen.",
+    ],
   },
 
   /* -------------------------------------------------- */
@@ -361,28 +387,23 @@ export const recipes: Recipe[] = [
     ],
     steps: [
       "Grovhacka chokladen.",
-
       "Blanda vetemjöl, bikarbonat, vaniljsocker och majsstärkelse.",
-
       "Vispa smör, strösocker och farinsocker fluffigt. Tillsätt ägget och vispa lite till.",
-
       "Tillsätt mjölblandningen. Arbeta snabbt ihop till en deg. Blanda i den grovhackade chokladen.",
-
       "Ställ degen i kylskåpet i ca 20 minuter.",
-
       "Sätt ugnen på 175°C.",
-
       "Dela degen i 18 lika stora bitar (för 18 st kakor, ca 50 g/bit). Rulla bitarna till bollar.",
-
       "Dela upp bollarna på 2 plåtar med bakplåtspapper(för 18 st kakor). Lägg bollarna med ordentligt avstånd mellan varandra eftersom dom ska flyta ut.",
-
       "Grädda en plåt i taget, mitt i ugnen i ca 15-20 minuter.",
-
       "Ta ut kakorna och låt dem svalna på plåten i 2-3 minuter innan du flyttar över dem på ett galler och låter svalna helt.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 20 },
+    tips: [
+      "Kyl degen innan gräddning för tjockare, segare cookies.",
+      "Använd gärna mörk choklad med hög kakaohalt för extra smak.",
+      "Kan frysa kakorna efter gräddning, värm lätt i ugnen innan servering.",
+    ],
   },
-
   {
     id: "cookie-2",
     title: "Kolakakor",
@@ -402,14 +423,16 @@ export const recipes: Recipe[] = [
     ],
     steps: [
       "Låt smöret bli mjukt i mikron. Blanda med socker, vaniljsocker, sirap, vetemjöl och bakpulver, gärna i en matberedare eller med en elvisp. Arbeta degen tills den går ihop och tryck ihop det sista med händerna.",
-
       "Halvera degen. Forma till 2 rullar (för 30 st). Lägg dem på bakpappersklädd plåt och platta ut dem till ca 0,5 cm.",
-
       "Grädda mitt i ugnen i 175°C i 10-12 minuter. Ta ut plåten och skär kakorna diagonalt.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: false, restTime: 0 },
+    tips: [
+      "Rulla degen till rullar och kyl lite innan gräddning för jämnare kakor.",
+      "Skär kakorna direkt efter gräddning medan de är varma för jämna snitt.",
+      "Kan förvaras i burk i rumstemperatur i flera dagar.",
+    ],
   },
-
   {
     id: "cookie-3",
     title: "Havrekakor",
@@ -428,20 +451,19 @@ export const recipes: Recipe[] = [
     ],
     steps: [
       "Sätt ugnen på 200°C.",
-
       "Häll smör, havregryn och socker i en bunke. Vispa snabbt ihop med en elvisp.",
-
       "Rör ihop mjöl och bakpulver och vänd ner i bunken med havregrynen och blanda till en deg.",
-
       "Forma små bollar av degen och lägg på två plåtar med bakplåtspapper.",
-
       "Sätt in plåtarna, i omgångar, i mitten av ugnen ca 10 minuter.",
-
       "Låt kakorna svalna på plåten.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 0 },
+    tips: [
+      "Använd gärna havregryn av grov typ för mer tuggmotstånd.",
+      "Låt kakorna svalna helt innan du flyttar dem för att undvika att de smular.",
+      "Kan frysas om du vill göra i förväg.",
+    ],
   },
-
   {
     id: "cookie-4",
     title: "Drömmar",
@@ -461,16 +483,17 @@ export const recipes: Recipe[] = [
     ],
     steps: [
       "Sätt ugnen på 150˚C.",
-
       "Rör smör, socker och vaniljsocker smidigt. Tillsätt oljan lite i taget under vispning. Blanda hjorthornssaltet med lite av mjölet och rör ner i degen. Arbeta in resten av mjölet.",
-
       "Rulla små kulor av degen. Lägg dem på plåtar med bakplåtspapper.",
-
       "Grädda mitt i ugnen ca 15 - 20 minuter. Låt kakorna kallna på plåten.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: false, restTime: 0 },
+    tips: [
+      "Låt degen vila i kylen en stund för lättare hantering.",
+      "Grädda tills kakorna precis börjar få lite färg för bästa sprödhet.",
+      "Förvara i burk med lock för att behålla krispigheten.",
+    ],
   },
-
   {
     id: "cookie-5",
     title: "Chokladsnittar",
@@ -490,16 +513,17 @@ export const recipes: Recipe[] = [
     ],
     steps: [
       "Sätt ugnen på 175°C.",
-
       "Blanda mjöl, socker, kakao och vanilj i en bunke eller direkt på bakbordet. Tillsätt ägget och rumsvarmt smör och knåda ihop till en deg.",
-
       "Arbeta degen smidig. Rulla ut till 5 längder (för 60 st), lika långa som en plåt. Fördela längderna på två plåtar. Platta till dem lite. Pensla med uppvispat ägg och strö på pärlsocker.",
-
       "Grädda i 10-12 minuter. Skär längderna i bitar lite på snedden när de fortfarande är varma.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: false, restTime: 0 },
+    tips: [
+      "Skär kakorna medan de är varma för jämna snitt.",
+      "Strö på pärlsocker precis innan gräddning för vacker yta.",
+      "Förvara i burk med lock för att behålla segheten.",
+    ],
   },
-
   {
     id: "cookie-6",
     title: "Saftig sockerkaka",
@@ -533,8 +557,12 @@ export const recipes: Recipe[] = [
       "Grädda i nedre delen av ugnen i 35–40 minuter. Testa med sticka – den ska vara torr.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 0 },
+    tips: [
+      "Smörj formen ordentligt och bröa med ströbröd för lättare lossning.",
+      "Tillsätt kardemumma eller citrus för extra smak.",
+      "Testa med sticka – när den är torr är kakan perfekt gräddad.",
+    ],
   },
-
   {
     id: "cookie-7",
     title: "Hallongrottor",
@@ -562,8 +590,12 @@ export const recipes: Recipe[] = [
       "Grädda mitt i ugnen i 10–15 minuter. Låt svalna på galler.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 0 },
+    tips: [
+      "Låt degen vila i kylen för enklare hantering.",
+      "Fyll hallonsylten precis innan gräddning för bästa konsistens.",
+      "Kan frysas och tinas i rumstemperatur innan servering.",
+    ],
   },
-
   {
     id: "cookie-8",
     title: "Snickerskaka",
@@ -592,6 +624,11 @@ export const recipes: Recipe[] = [
       "Skär i bitar. Förvara i kylskåp i tät burk.",
     ],
     plannerInfo: { canMakeAhead: true, freezerFriendly: true, restTime: 60 },
+    tips: [
+      "Pressa massan ordentligt i formen för jämn tjocklek.",
+      "Låt chokladen stelna i rumstemperatur innan du skär.",
+      "Kan frysas i bitar för längre hållbarhet.",
+    ],
   },
 
   /* -------------------------------------------------- */
@@ -623,15 +660,19 @@ export const recipes: Recipe[] = [
     },
     steps: [
       "Smula jästen i en bunke. Smält matfettet i en kastrull eller i en skål i mikrovågsugnen på full effekt (max 800 W) ca 30 sek. Tillsätt mjölken och värm till fingervarmt (37°C). Häll lite av degvätskan över jästen och rör tills den löst sig.",
-      "Tillsätt resten av degvätskan, socker, salt och nästan allt vetemjölet, spara lite till utbakningen. Arbeta degen smidig för hand eller i maskin tills degen släpper bunkens kanter. Låt degen jäsa övertäckt ca 30 min.",
+      "Tillsätt resten av degvätskan, socker, salt och nästan allt vetemjöl, spara lite till utbakningen. Arbeta degen smidig för hand eller i maskin tills degen släpper bunkens kanter. Låt degen jäsa övertäckt ca 30 min.",
       "Rör matfettet smidigt med kanel och socker.",
       "Ta upp degen på arbetsbänk och knåda den smidig med resterande mjöl. Kavla ut degen till en platta, ca 30x40 cm (för 20 st). Bred på fyllningen och rulla ihop från långsidan. Skär rullen i ca 2 cm breda bitar. Lägg bitarna med snittytan uppåt på en bakplåtspappersklädd plåt eller i bullformar av papper.",
       "Låt bullarna jäsa under bakduk ca 20 min.",
       "Pensla bullarna med uppvispat ägg och strö över lite pärlsocker. Grädda bullarna mitt i ugnen i 250°C, ca 8 min. Låt kallna på galler under bakduk innan de packas i påse eller burk med lock.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 50 },
+    tips: [
+      "Se till att mjölken inte är för varm, annars kan jästen dö.",
+      "Låt bullarna jäsa tillräckligt för mjuka och luftiga bullar.",
+      "Pensla med ägg precis innan gräddning för glansig yta.",
+    ],
   },
-
   {
     id: "bun-2",
     title: "Vaniljbullar",
@@ -651,29 +692,27 @@ export const recipes: Recipe[] = [
         "1 krm salt",
         "ca 15 dl vetemjöl (15 dl motsvarar ca 900 g)",
       ],
-      Fyllning: [
+      fyllning: [
         "200 g rumstempererat smör",
         "1 1/2 dl strösocker",
         "1/2 dl vaniljsocker",
       ],
     },
-
     steps: [
       "Smält smöret och häll i mjölken, värm till 37°C. Rör ut jästen i mjölken.",
-
       "Häll i socker, kardemumma och salt. Blanda i nästan allt vetemjöl. Knåda till en smidig deg. Låt den jäsa till dubbel storlek under en handduk, ca 40 minuter.",
-
       "Rör ihop fyllningen.",
-
       "Dela degen i 2 bitar (för 30 bullar), kavla ut dem till 2 fyrkanter (ca 3 mm tjocka). Bre fyllningen på fyrkanterna. Rulla ihop och skiva rullarna i ca 3 cm tjocka skivor. Lägg bullskivorna på en bakplåtspappersklädd plåt eller i stora bullformar. Låt dem jäsa till dubbel storlek, ca 20 minuter.",
-
       "Sätt ugnen på 225°C.",
-
       "Pensla bullarna med ägg och strö på mandelsplitter. Grädda bullarna gyllenbruna i mitten av ugnen i 12-15 minuter. Låt dem svalna på galler.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 60 },
+    tips: [
+      "Använd rumstempererat smör för fyllningen för enkel spridning.",
+      "Jäsning till dubbel storlek ger luftigare bullar.",
+      "Täck bullarna med bakduk under jästiden för att behålla fukten.",
+    ],
   },
-
   {
     id: "bun-3",
     title: "Kardemummabullar",
@@ -703,32 +742,25 @@ export const recipes: Recipe[] = [
     },
     steps: [
       "Deg: Mät upp alla ingredienser (förutom smöret i en bunke) och smula jästen. Degvätskan behöver inte värmas. Kör i en degblandare i ca 3 minuter tills degen har gått ihop och tillsätt smöret i små bitar.",
-
-      "Kör degen i degblandaren ytterligare ca 10 minuter. Gör ett glutentest genom att ta en bit deg och rulla till en boll. Dra i degen, degen ska hålla ihop. Om degen går sönder behöver du köra den lite till i degblandaren. ",
-
+      "Kör degen i degblandaren ytterligare ca 10 minuter. Gör ett glutentest genom att ta en bit deg och rulla till en boll. Dra i degen, degen ska hålla ihop. Om degen går sönder behöver du köra den lite till i degblandaren.",
       "Forma degen till en boll och låt den vila ca 10 minuter.",
-
       "Fyllning: Vispa ihop ingredienserna med en elvisp till en slät fyllning.",
-
-      "Kavla degen till en rektangel (ca 5 mm tunt). Tips! Lyft upp degen försiktigt med händerna för att släppa på spänningen på degen.",
-
+      "Kavla degen till en rektangel (ca 5 mm tunt). Lyft försiktigt för att släppa spänningen.",
       "Bred fyllningen jämnt på degen.",
-
       "Vik degen på hälften från långsidan. Skär ca 1 1/2 cm tjocka remsor och snurra till bullar.",
-
       "Lägg bullarna på en bakpappersklädd plåt och sätt in i ugnen med bara ugnslampan på. Låt jäsa i minst 60 min. Degen kan jäsa upp till 90 minuter.",
-
       "Ta ut bullarna ur ugnen.",
-
-      "Sätt ugnen på 225°C",
-
-      "Pensla bullarna med ett uppvispat ägg och strö över mortlad kardemumma och socker.",
-
+      "Sätt ugnen på 225°C.",
+      "Pensla bullarna med uppvispat ägg och strö över mortlad kardemumma och socker.",
       "Grädda bullarna i mitten av ugnen i ca 12-14 minuter eller tills bullarna är gyllenbruna.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 90 },
+    tips: [
+      "Glutentest säkerställer att degen är ordentligt elastisk.",
+      "Lyft försiktigt degen vid kavling för att undvika luftbubblor.",
+      "Låt bullarna jäsa tills de är luftiga, annars blir de kompakt.",
+    ],
   },
-
   {
     id: "bun-4",
     title: "Nutellabullar",
@@ -761,8 +793,12 @@ export const recipes: Recipe[] = [
       "Låt bullarna svalna på ett galler.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 60 },
+    tips: [
+      "Använd rumstempererat smör i fyllningen för enkel bredning.",
+      "Jäs bullarna ordentligt för fluffiga resultat.",
+      "Pensla med ägg precis innan gräddning för fin yta.",
+    ],
   },
-
   {
     id: "bun-5",
     title: "Saffransbullar",
@@ -807,6 +843,11 @@ export const recipes: Recipe[] = [
       "Grädda mitt i ugnen i cirka 8 minuter. Låt svalna på galler under bakduk.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 60 },
+    tips: [
+      "Mortla saffranet med lite socker för jämnare smak.",
+      "Knåda degen ordentligt för mjuka bullar.",
+      "Jäsning innan formning gör bullarna luftigare.",
+    ],
   },
   {
     id: "bun-6",
@@ -869,8 +910,12 @@ export const recipes: Recipe[] = [
       "Pensla de varma bullarna med rabarbersockerlagen och låt svalna.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 120 },
+    tips: [
+      "Kyl degen innan utbakning för bättre hantering.",
+      "Inkokt rabarber ger saftig och smakrik fyllning.",
+      "Spritsa vaniljkrämen när bullarna fortfarande är varma för bästa resultat.",
+    ],
   },
-
   {
     id: "bun-7",
     title: "Saffranslängd med vit choklad",
@@ -906,8 +951,12 @@ export const recipes: Recipe[] = [
       "Grädda i 25–30 minuter.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 60 },
+    tips: [
+      "Hacka chokladen jämnt för en fin fördelning.",
+      "Jäs längderna ordentligt för saftig konsistens.",
+      "Pensla med ägg innan gräddning för fin färg och glans.",
+    ],
   },
-
   {
     id: "bun-8",
     title: "Saffransmunkar",
@@ -948,10 +997,15 @@ export const recipes: Recipe[] = [
       "Servera ljumna.",
     ],
     plannerInfo: { canMakeAhead: false, freezerFriendly: true, restTime: 165 },
+    tips: [
+      "Kyld deg gör det lättare att forma munkarna.",
+      "Fritera i rätt temperatur för jämn färg och fluffig insida.",
+      "Rulla direkt i socker efter fritering så att det fastnar.",
+    ],
   },
 
   /* -------------------------------------------------- */
-  /* 🍞 BRÖD (10 st) */
+  /* 🍞 BRÖD */
   /* -------------------------------------------------- */
   {
     id: "bread-1",
@@ -986,8 +1040,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 45,
     },
+    tips: [
+      "Riv morötterna fint för jämn saftighet.",
+      "Låt limporna svalna helt innan du skär upp dem.",
+      "Formarna kan smörjas med lite olja för att undvika fastbränning.",
+    ],
   },
-
   {
     id: "bread-2",
     title: "Kalljästa Frallor",
@@ -1020,8 +1078,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 600,
     },
+    tips: [
+      "Perfekt för morgonen – gör degen kvällen innan.",
+      "Knåda inte degen efter kylning, annars tappar den luftighet.",
+      "Pudra rikligt med mjöl vid utbakning för att enkelt forma frallor.",
+    ],
   },
-
   {
     id: "bread-3",
     title: "Sirapslimpa",
@@ -1053,8 +1115,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 45,
     },
+    tips: [
+      "Knåda degen ordentligt för en jämn och elastisk struktur.",
+      "Använd termometer för perfekt innertemperatur.",
+      "Limporna går utmärkt att frysa efter gräddning.",
+    ],
   },
-
   {
     id: "bread-4",
     title: "Hönökaka",
@@ -1088,8 +1154,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 60,
     },
+    tips: [
+      "Kavla ut jämnt för att kakorna ska gräddas jämt.",
+      "Nagga ytan för att undvika luftbubblor.",
+      "Servera nygräddade eller frys för senare bruk.",
+    ],
   },
-
   {
     id: "bread-5",
     title: "Lingonlimpa med Gräddfil",
@@ -1122,6 +1192,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Blanda försiktigt så lingonen inte mosas.",
+      "Svalna limpan helt innan skärning.",
+      "Linfröna ger extra saftighet – kan bytas mot chiafrön.",
+    ],
   },
   {
     id: "bread-6",
@@ -1159,8 +1234,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 60,
     },
+    tips: [
+      "Koka gröten ordentligt och låt den kallna innan degblandning.",
+      "Forma frallorna med mjölade händer för enklare hantering.",
+      "Pensla med vatten för att havregryn ska fastna.",
+    ],
   },
-
   {
     id: "bread-7",
     title: "Kavring",
@@ -1193,6 +1272,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 0,
     },
+    tips: [
+      "Smeten blir ganska lös – rör försiktigt för jämn konsistens.",
+      "Låt svalna helt innan skärning för bäst struktur.",
+      "Smörj formarna ordentligt för enkel urtagning.",
+    ],
   },
   {
     id: "bread-8",
@@ -1231,10 +1315,15 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 90,
     },
+    tips: [
+      "Riv zucchinin grovt och pressa ur lite vätska om den är mycket saftig.",
+      "Jäs ordentligt för ett saftigt bröd.",
+      "Strö frön innan gräddning för extra crunch och smak.",
+    ],
   },
 
   /* -------------------------------------------------- */
-  /* 🎂 TÅRTOR (10 st) */
+  /* 🎂 TÅRTOR  */
   /* -------------------------------------------------- */
   {
     id: "cake-1",
@@ -1286,8 +1375,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 0,
     },
+    tips: [
+      "Tårtan är enklare att montera om marsankrämen är kall.",
+      "Använd en liten spatel för jämn fördelning av krämen.",
+      "Dekorera precis före servering för fräschast resultat.",
+    ],
   },
-
   {
     id: "cake-2",
     title: "Gräddtårta med jordgubbar",
@@ -1336,8 +1429,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 0,
     },
+    tips: [
+      "Kyl gärna vaniljkrämen innan montering.",
+      "Pensla bottnarna med lite saft för extra saftighet.",
+      "Spritsa grädde snyggt med tyll för ett proffsigt utseende.",
+    ],
   },
-
   {
     id: "cake-3",
     title: "Blåbärscheesecake",
@@ -1351,7 +1448,6 @@ export const recipes: Recipe[] = [
     ingredients: [
       "100 g rumstempererat smör",
       "300 g digestivekex",
-
       "6 gelatinblad",
       "1 dl outspädd svartvinbärssaft",
       "2 1/2 dl vispgrädde",
@@ -1359,7 +1455,6 @@ export const recipes: Recipe[] = [
       "600 g naturell färskost",
       "2 tsk vaniljpulver",
       "100 g rörsocker",
-
       "Dekoration: björnbär, blåbär, ätbara blommor",
     ],
     steps: [
@@ -1378,8 +1473,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 240,
     },
+    tips: [
+      "Kyl cheesecaken minst 4 timmar eller över natten för bästa konsistens.",
+      "Blanda försiktigt blåbären så de inte mosas helt.",
+      "Dekorera precis före servering för fräschast utseende.",
+    ],
   },
-
   {
     id: "cake-4",
     title: "Chokladtårta med Chokladmousse",
@@ -1400,7 +1499,6 @@ export const recipes: Recipe[] = [
       "2 dl neutral olja",
       "2 dl varmt kaffe",
       "2 ägg",
-
       "Mousse:",
       "300 g mörk choklad (70%)",
       "125 g smör",
@@ -1426,8 +1524,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 60,
     },
+    tips: [
+      "Smält choklad och smör försiktigt för att undvika bränning.",
+      "Vispa grädden luftigt men inte för hårt innan du blandar i chokladen.",
+      "Droppa apelsinjuice mellan lagren för extra smak.",
+    ],
   },
-
   {
     id: "cake-5",
     title: "Hallonmoussetårta",
@@ -1465,8 +1567,12 @@ export const recipes: Recipe[] = [
       freezerFriendly: true,
       restTime: 240,
     },
+    tips: [
+      "Frys moussetårtan minst 4 timmar innan servering.",
+      "Blötlägg gelatinblad noggrant för att undvika klumpar.",
+      "Toppa med hallon precis före servering.",
+    ],
   },
-
   {
     id: "cake-6",
     title: "Morotstårta",
@@ -1511,6 +1617,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 60,
     },
+    tips: [
+      "Riv morötterna fint för jämn konsistens.",
+      "Valnötterna kan rostas lätt för mer smak.",
+      "Citronfrosting blir bäst om den är rumstempererad innan bredning.",
+    ],
   },
   {
     id: "cake-7",
@@ -1551,6 +1662,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 120,
     },
+    tips: [
+      "Pensla bottnarna med saft för extra saftighet.",
+      "Vispa fyllningen till fast kräm men inte för hårt.",
+      "Servera samma dag för bästa färska jordgubbssmak.",
+    ],
   },
   {
     id: "cake-8",
@@ -1587,6 +1703,11 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 60,
     },
+    tips: [
+      "Montera tårtan på ett stabilt fat.",
+      "Kolasåsen blir bäst om den svalnar något innan den hälls över.",
+      "Popcornen tillsätts precis före servering för krispighet.",
+    ],
   },
   {
     id: "cake-9",
@@ -1626,5 +1747,10 @@ export const recipes: Recipe[] = [
       freezerFriendly: false,
       restTime: 120,
     },
+    tips: [
+      "Marängen kan göras dagen innan för enklare montering.",
+      "Var försiktig när du vänder ner hallonsåsen så att moussen inte blir rinnig.",
+      "Dekorera med färska bär precis före servering för bästa utseende.",
+    ],
   },
 ];

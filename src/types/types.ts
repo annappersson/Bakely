@@ -23,4 +23,6 @@ export interface Recipe {
     freezerFriendly?: boolean;
     restTime?: number;
   };
+
+  tips: string[];
 }

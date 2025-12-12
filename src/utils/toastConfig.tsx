@@ -37,8 +37,8 @@ export const toastError = (message: string) => {
     icon: <span>⚠️</span>,
     style: {
       ...commonStyle,
-      background: "#ffeaf1",
-      color: "#ff4d4f",
+      background: "#ffd6d9",
+      color: "#b00020",
     },
   };
   toast.error(message, options);

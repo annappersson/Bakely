@@ -4,7 +4,7 @@ import { recipes } from "../data/recipes";
 import Header from "../components/Header";
 import { Heart, Clock, Flame, Timer, Users, ArrowLeft } from "lucide-react";
 import CollectionModal from "../components/CollectionModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { toastInfo } from "../utils/toastConfig";
 import Loading from "../components/Loading";
@@ -13,9 +13,13 @@ export default function RecipeDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth(); // ← loading från context
-
   const recipe = recipes.find((r) => r.id === id);
   const [showModal, setShowModal] = useState(false);
+
+  // När sidan laddas, scrolla alltid till toppen
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [id]); // kör varje gång id ändras (nyt recept)
 
   if (!recipe) return <p>Receptet hittades inte.</p>;
 

@@ -1,0 +1,189 @@
+.collection-modal {
+    .modal-content {
+        position: relative;
+        border-radius: 1rem;
+        padding: 1rem;
+        width: 95%;
+        max-width: 600px;
+        background: #fff; // neutral bakgrund för modal
+
+        .modal-header {
+            border-bottom: none;
+
+            h5.modal-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #ff6b81;
+            }
+
+            .btn-close {
+                font-size: 1.2rem;
+            }
+        }
+
+        .modal-body {
+            padding-top: 0.5rem;
+
+            .grid {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .recipe-tile {
+                    position: relative;
+                    background: linear-gradient(145deg, #ffeaf1, #fff4f8);
+                    padding: 1rem 1.5rem;
+                    border-radius: 1.2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                    border: 1px solid rgba(255, 107, 129, 0.3);
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+
+
+                    &:hover {
+                        transform: scale(1.02);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+                    }
+
+                    &.removing {
+                        animation: flyOutRight 0.4s forwards;
+                    }
+
+                    @keyframes flyOutRight {
+                        0% {
+                            opacity: 1;
+                            transform: translateX(0) scale(1);
+                        }
+
+                        100% {
+                            opacity: 0;
+                            transform: translateX(150%) scale(0.9);
+                        }
+                    }
+
+                    a {
+                        flex: 1;
+                        color: #333; // mörk text för läsbarhet
+                        text-decoration: none;
+
+                        h4 {
+                            margin: 0;
+                            font-size: 1rem;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .remove-btn {
+                        margin-left: 1rem;
+                        background: #ff6b81;
+                        border: none;
+                        color: #fff;
+                        padding: 6px 12px;
+                        border-radius: 0.5rem;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: all 0.2s;
+
+                        &:hover {
+                            background: #ff4b61;
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+            }
+
+            /* Konfirmationsoverlay */
+            .confirm-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.25);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                animation: fadeIn 0.2s ease-out;
+
+                .confirm-dialog {
+                    background: #fff;
+                    border-radius: 1.2rem;
+                    padding: 1rem 1.5rem;
+                    max-width: 340px;
+                    width: 90%;
+                    text-align: center;
+                    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    animation: slideDown 0.2s ease-out;
+
+                    p {
+                        margin: 0;
+                        font-size: 0.95rem;
+                        color: #333;
+                    }
+
+                    .confirm-actions {
+                        display: flex;
+                        gap: 0.5rem;
+                        width: 100%;
+
+                        button {
+                            flex: 1;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Animationer */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+@media (min-width: 480px) {
+    .collection-modal {
+        .modal-body {
+            .grid {
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .collection-modal {
+        .modal-body {
+            .grid {
+                flex-direction: column;
+            }
+        }
+    }
+}

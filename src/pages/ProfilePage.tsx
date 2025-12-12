@@ -6,6 +6,7 @@ import { supabase } from "../supabaseClient";
 import Header from "../components/Header";
 import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
+import CollectionRecipesModal from "../components/CollectionRecipesModal";
 
 interface Collection {
   id: string;
@@ -13,7 +14,7 @@ interface Collection {
   name: string;
   description?: string | null;
   created_at: string;
-  collection_items?: any[]; // används för att räkna antal recept
+  collection_items?: any[];
 }
 
 export default function ProfilePage() {
@@ -24,37 +25,34 @@ export default function ProfilePage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [loading, setLoading] = useState(false);
+  const [openCollectionId, setOpenCollectionId] = useState<string | null>(null);
 
-  // ⭐ 1. Hämta inloggad användare
+  // Hämta inloggad användare
   useEffect(() => {
     async function fetchUser() {
       const { data } = await supabase.auth.getUser();
       setUserId(data?.user?.id || null);
-      console.log("UserId:", data?.user?.id);
     }
     fetchUser();
   }, []);
 
-  // ⭐ 2. Hämta användarens samlingar med antal recept
+  // Hämta användarens samlingar med antal recept
   useEffect(() => {
     if (!userId) return;
 
     async function fetchCollections() {
       setLoading(true);
-
       const { data, error } = await supabase
         .from("user_collections")
-        .select("*, collection_items(*)") // inkludera recept
+        .select("*, collection_items(*)")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
       if (error) {
         console.error("Kunde inte hämta samlingar:", error);
       } else if (data) {
-        console.log("Collections data:", data);
         setCollections(data as Collection[]);
       }
-
       setLoading(false);
     }
 
@@ -93,6 +91,7 @@ export default function ProfilePage() {
               <p>Likes</p>
             </div>
           </div>
+
           <Link to="/redigera-profil" className="edit-profile-btn">
             Redigera Profil
           </Link>
@@ -105,14 +104,12 @@ export default function ProfilePage() {
           >
             Sparade
           </button>
-
           <button
             onClick={() => setActiveTab("created")}
             className={activeTab === "created" ? "active" : ""}
           >
             Skapade
           </button>
-
           <button
             onClick={() => setActiveTab("liked")}
             className={activeTab === "liked" ? "active" : ""}
@@ -121,12 +118,11 @@ export default function ProfilePage() {
           </button>
         </div>
 
-        {/* Receptlistor byts senare */}
         <div className="recipe-grid">
           <p className="placeholder-text">Recept kommer här… 🍰</p>
         </div>
 
-        {/* ⭐ DYNAMISKA SAMLINGAR ⭐ */}
+        {/* DYNAMISKA SAMLINGAR */}
         <div className="collections">
           <div className="collections-header">
             <h3>Mina Samlingar</h3>
@@ -142,7 +138,11 @@ export default function ProfilePage() {
 
             {!loading &&
               collections.map((c) => (
-                <div key={c.id} className={`collection-card pink`}>
+                <div
+                  key={c.id}
+                  className={`collection-card pink`}
+                  onClick={() => setOpenCollectionId(c.id)}
+                >
                   <div className="icon">
                     <Bookmark />
                   </div>
@@ -154,6 +154,13 @@ export default function ProfilePage() {
               ))}
           </div>
         </div>
+
+        {/* MODAL FÖR RECEPT */}
+        <CollectionRecipesModal
+          show={openCollectionId !== null}
+          collectionId={openCollectionId}
+          onClose={() => setOpenCollectionId(null)}
+        />
       </div>
     </>
   );

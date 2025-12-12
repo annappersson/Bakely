@@ -76,6 +76,8 @@
         border: none;
         font-weight: 600;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        color: #333; // mörk text för läsbarhet
+        text-decoration: none;
     }
 }
 
@@ -117,6 +119,7 @@
         border-radius: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         white-space: nowrap;
+
 
         &.active {
             background: #ff9ecd;
