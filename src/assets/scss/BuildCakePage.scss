@@ -1,5 +1,6 @@
-@import "bootstrap/scss/bootstrap"; // om du istället importerar bootstrap i main, ta bort detta rad
-@import "./Global.scss";
+@import "bootstrap/scss/bootstrap";
+@import "./Global";
+
 
 #app {
     padding-bottom: 5rem;
