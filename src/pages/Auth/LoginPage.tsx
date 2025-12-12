@@ -23,16 +23,7 @@ export default function LoginPage() {
             <Link to="/reset-password" className="forgot">
               Glömt lösenord?
             </Link>
-
-            <div className="divider">
-              <span>eller fortsätt med</span>
-            </div>
-
-            <div className="oauth-row">
-              <button className="oauth-btn">G</button>
-              <button className="oauth-btn"></button>
-              <button className="oauth-btn">f</button>
-            </div>
+            <div className="divider"></div>
 
             <div className="signup-text">
               Har du inget konto?

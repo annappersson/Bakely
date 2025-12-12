@@ -22,15 +22,7 @@ export default function SignupPage() {
           <SignUpForm />
 
           <div className="bottom-links">
-            <div className="divider">
-              <span>eller fortsätt med</span>
-            </div>
-
-            <div className="oauth-row">
-              <button className="oauth-btn">G</button>
-              <button className="oauth-btn"></button>
-              <button className="oauth-btn">f</button>
-            </div>
+            <div className="divider"></div>
 
             <div className="signup-text">
               Har du redan ett konto?
