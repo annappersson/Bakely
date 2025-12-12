@@ -1,12 +1,9 @@
-@import "bootstrap/scss/bootstrap";
-@import "./Global.scss";
-
 .planner-page {
     max-width: 900px;
-    min-height: 100vh;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+    margin: 0 auto;
+    padding: 1rem;
+    padding-bottom: 6rem; // extra space under bottomnav
+    background: linear-gradient(145deg, #fff7fa, #ffffff);
 
     header {
         text-align: center;
@@ -14,41 +11,95 @@
 
         h2 {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: #ff7f50;
+            color: #7a4b5a; // Bakely-färg
+            font-weight: 700;
+            margin-bottom: 0.25rem;
         }
 
         p {
             font-size: 1rem;
-            color: #555;
+            color: #5a4a50;
         }
     }
 
     .planner-details {
-        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
 
-        h3 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
+        .card {
+            background: linear-gradient(145deg, #fef0f4, #fff8fa); // mjuk rosa Bakely-färg
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
 
-        .recipe-timeline {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            background-color: #fafafa;
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            }
 
-            h4 {
-                margin-bottom: 0.25rem;
-                color: #ff7f50;
+            h3 {
+                font-size: 1.15rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                color: #7a4b5a;
             }
 
             p {
-                font-size: 0.9rem;
-                color: #555;
+                font-size: 0.95rem;
+                color: #5a4a50;
                 margin-bottom: 0.5rem;
             }
+
+            ul {
+                padding-left: 1.5rem;
+                margin-top: 0.5rem;
+
+                li {
+                    margin-bottom: 0.4rem;
+                    font-size: 0.95rem;
+                    color: #4d3c45;
+                }
+            }
+
+            .recipe-tips {
+                margin-bottom: 1rem;
+
+                strong {
+                    display: block;
+                    margin-bottom: 0.25rem;
+                    color: #5a3d4b;
+                }
+            }
+        }
+
+        button {
+            width: 100%;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.6rem;
+            font-size: 0.95rem;
+            background: #7a4b5a;
+            color: #fff;
+            border: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+
+            &:hover {
+                background: #5e3a4b;
+            }
+
+            &:active {
+                transform: scale(0.95);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+        }
+    }
+
+    // Tablet/desktop
+    @media (min-width: 768px) {
+        .planner-details {
+            gap: 2rem;
         }
     }
 }

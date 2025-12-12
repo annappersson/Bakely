@@ -1,6 +1,3 @@
-@import "bootstrap/scss/bootstrap";
-@import "./Global.scss";
-
 .recipe-selector {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -22,8 +19,9 @@
         }
 
         &.selected {
-            border-color: #ff7f50;
-            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.4);
+            border-color: #e8c4d2; // mild pastellfärg istället för orange
+            box-shadow: 0 5px 15px rgba(234, 203, 216, 0.4); // mjuk shadow
+            background-color: #fff0f5; // mjuk bakely-liknande bakgrund
         }
 
         img {

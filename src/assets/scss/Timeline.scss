@@ -1,6 +1,3 @@
-@import "bootstrap/scss/bootstrap";
-@import "./Global.scss";
-
 .timeline {
     margin: 0.5rem 0;
     padding-left: 0;
@@ -12,25 +9,28 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #f7f7f7;
-        border-left: 4px solid #ff7f50;
+        background-color: #ffe5ee; // lite mörkare pastellrosa
+        border-left: 4px solid #d58aa2; // tydligare kant
         padding: 0.5rem 1rem;
         border-radius: 6px;
         font-size: 0.9rem;
-        transition: background-color 0.2s ease;
+        transition: all 0.25s ease;
 
         &:hover {
-            background-color: #ffece2;
+            background-color: #ffd5e6; // lite tydligare hover
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); // mer lyft
+            transform: translateX(3px);
+            border-left-color: #c4668f; // markerad kant vid hover
         }
 
         .step-name {
             font-weight: 500;
-            color: #333;
+            color: #5a4a50;
         }
 
         .step-duration {
             font-size: 0.85rem;
-            color: #666;
+            color: #7e5a6a;
         }
     }
 }
