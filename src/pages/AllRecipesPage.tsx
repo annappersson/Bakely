@@ -1,5 +1,5 @@
 import "../assets/scss/AllRecipesPage.scss";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useState, useEffect } from "react";
 import { recipes } from "../data/recipes";
 import Pagination from "../components/Pagination";
@@ -25,10 +25,19 @@ const categories = [
 ];
 
 function AllRecipesPage() {
+  const [searchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get("category") || "Alla";
+
   const [page, setPage] = useState(1);
-  const [activeCategory, setActiveCategory] = useState("Alla");
+  const [activeCategory, setActiveCategory] = useState(categoryFromUrl);
 
   const recipesPerPage = 5;
+
+  // ⭐ Sync URL → state (om man kommer från HomePage eller delar länk)
+  useEffect(() => {
+    setActiveCategory(categoryFromUrl);
+    setPage(1);
+  }, [categoryFromUrl]);
 
   // ⭐ Filter recipes by category
   const filteredRecipes =
@@ -49,7 +58,7 @@ function AllRecipesPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  // ⭐ Reset to page 1 when category changes
+  // ⭐ Handle category click (behåller nuvarande beteende)
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
     setPage(1);

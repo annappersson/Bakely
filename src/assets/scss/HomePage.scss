@@ -4,10 +4,6 @@
 .home-page {
   max-width: 100vw;
 
-
-
-
-
   .search-wrapper {
     display: flex;
     align-items: center;
@@ -17,6 +13,7 @@
     padding: 0.8rem;
     border-radius: 12px;
     margin-bottom: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 
     input {
       border: none;
@@ -152,7 +149,7 @@
       color: #7ecf86;
     }
 
-    .cat-more {
+    .cat-muffins {
       background: linear-gradient(90deg, rgba(253, 209, 222, 1) 0%, rgba(241, 211, 231, 1) 50%, rgba(233, 212, 239, 1) 100%);
       color: #B46BFF;
     }

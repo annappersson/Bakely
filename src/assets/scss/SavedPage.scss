@@ -1,0 +1,94 @@
+.saved-page {
+    padding: 1.25rem;
+    min-height: 100vh;
+
+    .page-header {
+        margin-bottom: 1rem;
+
+        h2 {
+            font-size: 1.4rem;
+        }
+
+        p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+    }
+
+    .collections-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .collection-card {
+        border-radius: 14px;
+        padding: 1rem;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        background: #fff;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        transition: transform 0.15s ease;
+
+        &:active {
+            transform: scale(0.97);
+        }
+
+        &.pink {
+            background: #fff5f8;
+        }
+
+        &.create {
+            justify-content: center;
+            flex-direction: column;
+            color: #e2558a;
+            font-weight: 500;
+        }
+
+        .icon {
+            background: #ffe1ec;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .info {
+            text-align: left;
+
+            h4 {
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+            p {
+                font-size: 0.8rem;
+                color: #666;
+            }
+        }
+    }
+
+    .empty-state {
+        text-align: center;
+        margin-top: 3rem;
+        color: #999;
+
+        svg {
+            margin-bottom: 0.5rem;
+        }
+
+        span {
+            font-size: 0.85rem;
+        }
+    }
+
+    .sort-select {
+        border-radius: 10px;
+        padding: 0.4rem 0.6rem;
+        border: none;
+        background: #fff;
+        font-size: 0.9rem;
+    }
+
+}

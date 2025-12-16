@@ -1,18 +1,19 @@
 import "../assets/scss/HomePage.scss";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Search, Cookie, Cake, Wheat, ChefHat } from "lucide-react";
 import { recipes } from "../data/recipes";
-import logoIcon from "../assets/img/logobakely.png";
 import Header from "../components/Header";
-
-<div className="logo">
-  <img src={logoIcon} alt="Bakely Logo" className="logo-img" />
-  Bakely
-</div>;
-
-const mostLoved = recipes.slice(0, 3);
+import { useState } from "react";
 
 function HomePage() {
+  const mostLoved = recipes.slice(0, 3);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  function goToCategory(category: string) {
+    navigate(`/recept?category=${encodeURIComponent(category)}`);
+  }
+
   return (
     <div className="home-page">
       {/* HEADER */}
@@ -21,8 +22,19 @@ function HomePage() {
       {/* SEARCH */}
       <div className="search-wrapper">
         <Search size={18} />
-        <input type="text" placeholder="Sök recept..." />
+        <input
+          type="text"
+          placeholder="Sök recept..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && query.trim()) {
+              navigate(`/sok?q=${encodeURIComponent(query)}`);
+            }
+          }}
+        />
       </div>
+
       {/* BUILD YOUR CAKE */}
       <div className="build-card">
         <h3>Bygg din Tårta</h3>
@@ -31,6 +43,8 @@ function HomePage() {
           Börja Bygga
         </Link>
       </div>
+
+      {/* PLANERING */}
       <div className="feature-card planning-card">
         <div className="content">
           <h3>Planera din bakning</h3>
@@ -39,13 +53,14 @@ function HomePage() {
             Börja Planera
           </Link>
         </div>
-        <img src="/img/plan-baking-icon.png" alt="" className="icon" />
       </div>
+
       {/* MOST LOVED */}
       <div className="section-header">
         <h3>Mest Gillade</h3>
         <Link to="/recept">Se Alla</Link>
       </div>
+
       <div className="recipe-list">
         {mostLoved.map((recipe) => (
           <Link
@@ -59,29 +74,34 @@ function HomePage() {
           </Link>
         ))}
       </div>
+
       {/* CATEGORIES */}
       <div className="section-header">
         <h3>Kategorier</h3>
       </div>
+
       <div className="categories">
-        <div className="cat cat-cookies">
+        <div className="cat cat-cookies" onClick={() => goToCategory("Kakor")}>
           <Cookie size={22} />
           <span>Kakor</span>
         </div>
 
-        <div className="cat cat-cakes">
+        <div className="cat cat-cakes" onClick={() => goToCategory("Tårtor")}>
           <Cake size={22} />
           <span>Tårtor</span>
         </div>
 
-        <div className="cat cat-breads">
+        <div className="cat cat-breads" onClick={() => goToCategory("Bröd")}>
           <Wheat size={22} />
           <span>Bröd</span>
         </div>
 
-        <div className="cat cat-more">
+        <div
+          className="cat cat-muffins"
+          onClick={() => goToCategory("Muffins")}
+        >
           <ChefHat size={22} />
-          <span>Mer</span>
+          <span>Muffins</span>
         </div>
       </div>
     </div>
