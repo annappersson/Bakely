@@ -1,5 +1,5 @@
 // src/pages/ProfilePage.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../assets/scss/ProfilePage.scss";
 import { Bookmark } from "lucide-react";
 import { supabase } from "../supabaseClient";
@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import CollectionRecipesModal from "../components/CollectionRecipesModal";
+import { recipes } from "../data/recipes";
 
 interface Collection {
   id: string;
@@ -14,14 +15,16 @@ interface Collection {
   name: string;
   description?: string | null;
   created_at: string;
-  collection_items?: any[];
+  collection_items?: {
+    recipe_id: string;
+  }[];
 }
 
 export default function ProfilePage() {
+  const { user, profile } = useAuth();
   const [activeTab, setActiveTab] = useState<"saved" | "liked" | "created">(
     "saved"
   );
-  const { user, profile } = useAuth();
   const [userId, setUserId] = useState<string | null>(null);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [loading, setLoading] = useState(false);
@@ -36,7 +39,7 @@ export default function ProfilePage() {
     fetchUser();
   }, []);
 
-  // Hämta användarens samlingar med antal recept
+  // Hämta användarens samlingar
   useEffect(() => {
     if (!userId) return;
 
@@ -59,17 +62,28 @@ export default function ProfilePage() {
     fetchCollections();
   }, [userId]);
 
+  // Beräkna gillade recept baserat på sparade samlingar
+  const likedRecipes = useMemo(() => {
+    const likedIds = new Set(
+      collections.flatMap(
+        (c) => c.collection_items?.map((i) => i.recipe_id) || []
+      )
+    );
+    return recipes.filter((r) => likedIds.has(r.id));
+  }, [collections]);
+
   return (
     <>
       <Header />
       <div className="profile-page">
-        <div className="profile-header">
-          <h2>Min Profil</h2>
-          <button className="menu-btn">⋮</button>
-        </div>
+        {/* PROFIL HEADER */}
 
         <div className="profile-card">
-          <img className="profile-img" src="/placeholder-profile.jpg" alt="" />
+          <img
+            className="profile-img"
+            src="/placeholder-profile.jpg"
+            alt="Profilbild"
+          />
           <h3 className="profile-name">
             {profile?.name || user?.email || "Ditt Namn"}
           </h3>
@@ -79,16 +93,16 @@ export default function ProfilePage() {
 
           <div className="stats">
             <div>
-              <span>47</span>
-              <p>Recept</p>
+              <span>{likedRecipes.length}</span>
+              <p>Gillade</p>
             </div>
             <div>
               <span>23</span>
               <p>Skapade</p>
             </div>
             <div>
-              <span>1.2k</span>
-              <p>Likes</p>
+              <span>{collections.length}</span>
+              <p>Samlingar</p>
             </div>
           </div>
 
@@ -97,65 +111,88 @@ export default function ProfilePage() {
           </Link>
         </div>
 
+        {/* TABBAR */}
         <div className="profile-tabs">
           <button
-            onClick={() => setActiveTab("saved")}
             className={activeTab === "saved" ? "active" : ""}
+            onClick={() => setActiveTab("saved")}
           >
             Sparade
           </button>
           <button
-            onClick={() => setActiveTab("created")}
             className={activeTab === "created" ? "active" : ""}
+            onClick={() => setActiveTab("created")}
           >
             Skapade
           </button>
           <button
-            onClick={() => setActiveTab("liked")}
             className={activeTab === "liked" ? "active" : ""}
+            onClick={() => setActiveTab("liked")}
           >
             Gillade
           </button>
         </div>
 
-        <div className="recipe-grid">
-          <p className="placeholder-text">Recept kommer här… 🍰</p>
+        {/* INNEHÅLL FÖR AKTIV TAB */}
+        <div className="tab-content">
+          {activeTab === "saved" && (
+            <div className="collections">
+              {loading ? (
+                <p>Laddar samlingar…</p>
+              ) : collections.length === 0 ? (
+                <p className="placeholder-text">Inga samlingar ännu.</p>
+              ) : (
+                collections.map((c) => (
+                  <div
+                    key={c.id}
+                    className="collection-card pink"
+                    onClick={() => setOpenCollectionId(c.id)}
+                  >
+                    <div className="icon">
+                      <Bookmark />
+                    </div>
+                    <div>
+                      <h4>{c.name}</h4>
+                      <p>{c.collection_items?.length || 0} recept</p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+
+          {activeTab === "created" && (
+            <div className="recipe-grid">
+              <p className="placeholder-text">
+                Dina byggda tårtor kommer visas här 🎂
+              </p>
+            </div>
+          )}
+
+          {activeTab === "liked" && (
+            <div className="recipe-grid">
+              {likedRecipes.length === 0 ? (
+                <p className="placeholder-text">
+                  Du har inte gillat några recept ännu 💗
+                </p>
+              ) : (
+                likedRecipes.map((r) => (
+                  <Link
+                    key={r.id}
+                    to={`/recept/${r.id}`}
+                    className="recipe-card"
+                  >
+                    <img src={r.image} alt={r.title} />
+                    <h4>{r.title}</h4>
+                    <p>{r.category}</p>
+                  </Link>
+                ))
+              )}
+            </div>
+          )}
         </div>
 
-        {/* DYNAMISKA SAMLINGAR */}
-        <div className="collections">
-          <div className="collections-header">
-            <h3>Mina Samlingar</h3>
-            <button className="view-all">Visa alla</button>
-          </div>
-
-          <div className="collection-list">
-            {loading && <p>Laddar samlingar…</p>}
-
-            {!loading && collections.length === 0 && (
-              <p className="text-muted">Inga samlingar ännu.</p>
-            )}
-
-            {!loading &&
-              collections.map((c) => (
-                <div
-                  key={c.id}
-                  className={`collection-card pink`}
-                  onClick={() => setOpenCollectionId(c.id)}
-                >
-                  <div className="icon">
-                    <Bookmark />
-                  </div>
-                  <div>
-                    <h4>{c.name}</h4>
-                    <p>{c.collection_items?.length || 0} recept</p>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-
-        {/* MODAL FÖR RECEPT */}
+        {/* MODAL FÖR COLLECTION */}
         <CollectionRecipesModal
           show={openCollectionId !== null}
           collectionId={openCollectionId}
