@@ -1,5 +1,5 @@
 // src/pages/BuildCakePage.tsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import CakePreview from "../components/CakePreviewSVG";
 import FlavorSelector from "../components/FlavorSelector";
@@ -12,6 +12,9 @@ import Header from "../components/Header";
 import SaveCakeModal from "../components/SaveCakeModal";
 
 const BuildCakePage: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolla till toppen
+  }, []);
   const {
     base,
     setBase,

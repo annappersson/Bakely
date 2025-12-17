@@ -32,6 +32,9 @@ interface BuiltCake {
 }
 
 export default function ProfilePage() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolla till toppen
+  }, []);
   const { user, profile } = useAuth();
   const [activeTab, setActiveTab] = useState<"saved" | "liked" | "created">(
     "saved"
