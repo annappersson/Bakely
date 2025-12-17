@@ -2,8 +2,14 @@
 @import "./Global";
 
 .home-page {
+  background-color: #fffdf9; // subtil skillnad mot #fff8f0
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 2rem; // gör att det syns lite mot bakgrunden
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   max-width: 100vw;
 
+  // SEARCH
   .search-wrapper {
     display: flex;
     align-items: center;
@@ -23,43 +29,29 @@
     }
   }
 
-  .build-card {
-    background: #fbe8f5;
-    border-radius: 16px;
-    padding: 1.2rem;
+  // FEATURE CARDS WRAPPER
+  .cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     margin-bottom: 2rem;
 
-    .btn-start {
-      margin-top: 0.8rem;
-      display: inline-block;
-      padding: 0.6rem 1rem;
-      background: #ff7abd;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: .8rem;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .btn-start:hover {
-      background: #fa6ab2;
+    @media (min-width: 1025px) {
+      flex-direction: row;
+      gap: 2rem;
     }
   }
 
-  .planning-card {
-    background: #e6f4ff;
-    /* ljus blå */
+  // GEMENSAM FEATURE CARD
+  .feature-card {
     border-radius: 16px;
-    padding: 1.2rem;
-    margin-bottom: 2rem;
+    padding: 1.5rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-
-    .content {
-      max-width: 70%;
-    }
+    text-align: center;
+    flex: 1;
 
     h3 {
       margin-top: 0;
@@ -67,41 +59,66 @@
     }
 
     p {
-      font-size: .85rem;
-      margin: 4px 0 10px;
-      opacity: .7;
+      font-size: 0.85rem;
+      margin: 0.5rem 0 1rem 0;
+      opacity: 0.7;
     }
 
-    .btn-startPlan {
-      margin-top: 0.8rem;
+    a {
       display: inline-block;
       padding: 0.6rem 1rem;
-      background: #4daaff;
-      /* blå knapp */
-      color: white;
-      border: none;
+      font-size: 0.8rem;
       border-radius: 12px;
-      font-size: .8rem;
       text-decoration: none;
+      color: white;
       cursor: pointer;
-    }
+      transition: background 0.2s ease, transform 0.15s ease;
 
-    .btn-startPlan:hover {
-      background: #3b8dd6;
-    }
+      &:hover {
+        transform: translateY(-1px);
+      }
 
-    .icon {
-      width: 70px;
-      opacity: 0.7;
+      &:active {
+        transform: scale(0.95);
+      }
     }
   }
 
+  // SPECIFIK FÄRG PÅ VARJE KORT
+  .build-card {
+    @extend .feature-card;
+    background: #fbe8f5;
+
+    a {
+      background: #ff7abd;
+
+      &:hover {
+        background: #fa6ab2;
+      }
+    }
+  }
+
+  .planning-card {
+    @extend .feature-card;
+    background: #e6f4ff;
+
+    a {
+      background: #4daaff;
+
+      &:hover {
+        background: #3b8dd6;
+      }
+    }
+  }
+
+  // SECTION HEADER
   .section-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
   }
 
+  // CATEGORIES
   .categories {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -155,12 +172,12 @@
     }
   }
 
+  // RECIPE LIST
   .recipe-list {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
-
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -207,16 +224,94 @@
       }
     }
   }
+}
 
-  @media (max-width: 480px) {
-    .recipe-list .recipe-card {
-      flex: 1 1 100%;
-      max-width: 100%;
-      min-width: 0;
+// MOBILE (<480px)
+@media (max-width: 480px) {
+  .recipe-list .recipe-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .cards-wrapper {
+    flex-direction: column;
+  }
+}
+
+// TABLET (481px - 1024px)
+@media (min-width: 481px) and (max-width: 1024px) {
+  .recipe-list {
+    gap: 1.5rem;
+
+    .recipe-card {
+      flex: 1 1 calc(50% - 1.5rem);
+      max-width: calc(50% - 1.5rem);
+      min-width: 200px;
+
+      img {
+        height: 150px;
+      }
+    }
+  }
+
+  .categories {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .search-wrapper {
+    padding: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
+
+// DESKTOP (>1024px)
+@media (min-width: 1025px) {
+  .recipe-list {
+    gap: 2rem;
+
+    .recipe-card {
+      flex: 1 1 calc(33.333% - 2rem);
+      max-width: calc(33.333% - 2rem);
+
+      img {
+        height: 180px;
+      }
+    }
+  }
+
+  .categories {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  .search-wrapper {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem 1.5rem;
+  }
+
+  .cards-wrapper {
+    flex-direction: row;
+  }
+
+  .feature-card {
+    flex: 1;
+    max-width: 50%;
+    padding: 2rem;
+
+    a {
+      font-size: 1rem;
+      padding: 0.8rem 1.2rem;
     }
   }
 }
 
+// HEADER
 .home-header {
   display: flex;
   justify-content: space-between;
@@ -226,47 +321,23 @@
   .logo {
     font-size: 1.4rem;
     font-weight: 700;
-  }
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #53422e;
 
-  /* NEW: Login / Logout button styling */
-  .auth-btn {
-    padding: 0.45rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 10px;
-    border: none;
-    background: #ff7abd;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
-
-    &:hover {
-      background: #fa68b2;
-      transform: translateY(-2px);
-    }
-
-    &:active {
-      transform: scale(0.95);
+    .logo-img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
     }
   }
-}
 
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.2rem;
-
-  .logo {
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-
-  /* WRAPPER FOR BUTTONS ON THE RIGHT */
   .header-right {
     display: flex;
     align-items: center;
-    gap: 0.6rem; // mellanrum mellan logga in och hjärtat
+    gap: 0.6rem;
   }
 
   .auth-btn {
@@ -306,18 +377,16 @@
   }
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem; // avstånd mellan bild och text
-  font-size: 1.4rem;
-  font-weight: 700;
-  font-family: 'Josefin Sans', sans-serif;
-  color: #53422e;
+// DESKTOP (>1024px)
+@media (min-width: 1025px) {
+  .search-wrapper {
+    max-width: 700px; // gör fältet bredare än tidigare
+    width: 90%; // fyller upp till 90% av skärmens bredd
+    margin: 0 auto 2rem auto; // centrerar och ger lite margin-bottom
+    padding: 1rem 1.5rem; // behåller padding
+  }
 
-  .logo-img {
-    width: 70px; // justera storlek efter behov
-    height: 70px;
-    object-fit: contain;
+  .search-wrapper input {
+    width: 100%; // input fyller wrappern
   }
 }

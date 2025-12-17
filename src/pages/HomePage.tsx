@@ -36,22 +36,17 @@ function HomePage() {
       </div>
 
       {/* BUILD YOUR CAKE */}
-      <div className="build-card">
-        <h3>Bygg din Tårta</h3>
-        <p>Mix & matcha smaker, fyllningar och frostings</p>
-        <Link to="/bygg-tarta" className="btn-start">
-          Börja Bygga
-        </Link>
-      </div>
+      <div className="cards-wrapper">
+        <div className="build-card feature-card">
+          <h3>Bygg din Tårta</h3>
+          <p>Mix & matcha smaker, fyllningar och frostings</p>
+          <Link to="/bygg-tarta">Börja Bygga</Link>
+        </div>
 
-      {/* PLANERING */}
-      <div className="feature-card planning-card">
-        <div className="content">
+        <div className="planning-card feature-card">
           <h3>Planera din bakning</h3>
           <p>Få hjälp med schema, tider och steg-för-steg planering</p>
-          <Link to="/planera" className="btn-startPlan">
-            Börja Planera
-          </Link>
+          <Link to="/planera">Börja Planera</Link>
         </div>
       </div>
 
