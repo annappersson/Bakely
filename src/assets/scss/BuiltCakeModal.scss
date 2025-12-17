@@ -1,0 +1,58 @@
+.built-cake-modal {
+    .modal-content {
+        border-radius: 20px;
+        border: none;
+        padding: 10px 5px;
+        background: #fff6f9;
+        box-shadow: 0 6px 24px rgba(255, 122, 170, 0.18);
+    }
+
+    .modal-header {
+        border-bottom: none;
+
+        .modal-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #ff5f9e;
+        }
+    }
+
+    .modal-body {
+        padding: 1rem 1.5rem;
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+
+            strong {
+                color: #ff5f9e;
+            }
+        }
+    }
+
+    .modal-footer {
+        border-top: none;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn-secondary {
+        background: #ff6fa7;
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding: 6px 14px;
+        font-weight: 600;
+        box-shadow: 0 3px 10px rgba(255, 122, 170, 0.25);
+        transition: 0.15s ease;
+
+        &:hover {
+            background: #ff5b9a;
+            transform: translateY(-2px);
+        }
+
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
+}

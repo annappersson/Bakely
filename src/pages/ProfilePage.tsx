@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import CollectionRecipesModal from "../components/CollectionRecipesModal";
+import BuiltCakeModal from "../components/BuiltCakeModal";
 import { recipes } from "../data/recipes";
 
 interface Collection {
@@ -20,6 +21,17 @@ interface Collection {
   }[];
 }
 
+interface BuiltCake {
+  id: string;
+  user_id: string;
+  name: string;
+  base: string | null;
+  fillings: string[];
+  layers: number;
+  frosting: string | null;
+  created_at: string;
+}
+
 export default function ProfilePage() {
   const { user, profile } = useAuth();
   const [activeTab, setActiveTab] = useState<"saved" | "liked" | "created">(
@@ -27,8 +39,10 @@ export default function ProfilePage() {
   );
   const [userId, setUserId] = useState<string | null>(null);
   const [collections, setCollections] = useState<Collection[]>([]);
+  const [builtCakes, setBuiltCakes] = useState<BuiltCake[]>([]);
   const [loading, setLoading] = useState(false);
   const [openCollectionId, setOpenCollectionId] = useState<string | null>(null);
+  const [openCake, setOpenCake] = useState<BuiltCake | null>(null);
 
   // Hämta inloggad användare
   useEffect(() => {
@@ -39,27 +53,35 @@ export default function ProfilePage() {
     fetchUser();
   }, []);
 
-  // Hämta användarens samlingar
+  // Hämta användarens samlingar och byggda tårtor
   useEffect(() => {
     if (!userId) return;
 
-    async function fetchCollections() {
+    async function fetchCollectionsAndCakes() {
       setLoading(true);
-      const { data, error } = await supabase
+
+      // Samlingar
+      const { data: colData, error: colError } = await supabase
         .from("user_collections")
         .select("*, collection_items(*)")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
-      if (error) {
-        console.error("Kunde inte hämta samlingar:", error);
-      } else if (data) {
-        setCollections(data as Collection[]);
-      }
+      if (!colError && colData) setCollections(colData as Collection[]);
+
+      // Byggda tårtor
+      const { data: cakeData, error: cakeError } = await supabase
+        .from("saved_cakes")
+        .select("*")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+
+      if (!cakeError && cakeData) setBuiltCakes(cakeData as BuiltCake[]);
+
       setLoading(false);
     }
 
-    fetchCollections();
+    fetchCollectionsAndCakes();
   }, [userId]);
 
   // Beräkna gillade recept baserat på sparade samlingar
@@ -77,7 +99,6 @@ export default function ProfilePage() {
       <Header />
       <div className="profile-page">
         {/* PROFIL HEADER */}
-
         <div className="profile-card">
           <img
             className="profile-img"
@@ -97,7 +118,7 @@ export default function ProfilePage() {
               <p>Gillade</p>
             </div>
             <div>
-              <span>23</span>
+              <span>{builtCakes.length}</span>
               <p>Skapade</p>
             </div>
             <div>
@@ -135,6 +156,7 @@ export default function ProfilePage() {
 
         {/* INNEHÅLL FÖR AKTIV TAB */}
         <div className="tab-content">
+          {/* Sparade */}
           {activeTab === "saved" && (
             <div className="collections">
               {loading ? (
@@ -161,14 +183,37 @@ export default function ProfilePage() {
             </div>
           )}
 
+          {/* Skapade tårtor */}
           {activeTab === "created" && (
-            <div className="recipe-grid">
-              <p className="placeholder-text">
-                Dina byggda tårtor kommer visas här 🎂
-              </p>
+            <div className="collections">
+              {loading ? (
+                <p>Laddar tårtor…</p>
+              ) : builtCakes.length === 0 ? (
+                <p className="placeholder-text">
+                  Dina byggda tårtor kommer visas här 🎂
+                </p>
+              ) : (
+                builtCakes.map((cake) => (
+                  <div
+                    key={cake.id}
+                    className="collection-card pink"
+                    onClick={() => setOpenCake(cake)}
+                  >
+                    <div className="icon">
+                      {/* Här kan du sätta en liten tårt-ikon, t.ex emoji */}
+                      🎂
+                    </div>
+                    <div>
+                      <h4>{cake.name}</h4>
+                      <p>Botten: {cake.base || "-"}</p>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           )}
 
+          {/* Gillade */}
           {activeTab === "liked" && (
             <div className="recipe-grid">
               {likedRecipes.length === 0 ? (
@@ -198,6 +243,15 @@ export default function ProfilePage() {
           collectionId={openCollectionId}
           onClose={() => setOpenCollectionId(null)}
         />
+
+        {/* MODAL FÖR BYGGD TÅRTA */}
+        {openCake && (
+          <BuiltCakeModal
+            show={openCake !== null}
+            onHide={() => setOpenCake(null)}
+            cake={openCake}
+          />
+        )}
       </div>
     </>
   );

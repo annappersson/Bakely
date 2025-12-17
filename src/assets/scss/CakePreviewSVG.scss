@@ -1,14 +1,16 @@
 @import "bootstrap/scss/bootstrap";
 @import "./Global";
 
-
 .cake-preview-svg {
     width: 100%;
-    max-width: 420px; // responsive cap
+    max-width: 420px;
     margin: 0 auto;
     display: block;
+    font-family: "Poppins", sans-serif;
+    position: relative;
 
-    .no-selection {
+    /* Placeholder när inget valts */
+    &.no-selection {
         svg {
             display: block;
             width: 100%;
@@ -20,13 +22,53 @@
         display: block;
         width: 100%;
         height: auto;
+        overflow: visible;
     }
-}
 
-/* små styling tweaks när den placeras i kort/card */
-.cake-preview-svg+.preview-meta {
-    margin-top: 0.5rem;
-    text-align: center;
-    color: #555;
-    font-size: 0.95rem;
+    .cake-layer {
+        transition: all 0.3s ease;
+
+        &:hover rect {
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+        }
+    }
+
+    /* Styling för rektanglar (lager) */
+    .cake-rect {
+        transition: all 0.3s ease;
+
+        &:hover {
+            filter: drop-shadow(0 3px 6px rgba(255, 122, 170, 0.2));
+        }
+    }
+
+    /* Glossy effekt (rektangel overlay) */
+    .gloss {
+        opacity: 0.42;
+        pointer-events: none;
+    }
+
+    /* Dekorationer, t.ex. små prickar */
+    circle {
+        transition: all 0.2s ease;
+    }
+
+    /* Underlagets skugga */
+    ellipse {
+        opacity: 0.06;
+    }
+
+    /* Liten text under för beskrivning */
+    +.preview-meta {
+        margin-top: 0.5rem;
+        text-align: center;
+        color: #5b4a3a;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+    /* Responsivt: gör SVG mindre på mobil */
+    @media (max-width: 480px) {
+        max-width: 320px;
+    }
 }

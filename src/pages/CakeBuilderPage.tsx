@@ -1,13 +1,6 @@
+// src/pages/BuildCakePage.tsx
 import React, { useMemo, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Form,
-  InputGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import CakePreview from "../components/CakePreviewSVG";
 import FlavorSelector from "../components/FlavorSelector";
 import { cakeBases } from "../data/cakeBases";
@@ -16,6 +9,7 @@ import { flavorCombos } from "../data/flavorCombos";
 import { useCakeBuilder } from "../hooks/useCakeBuilder";
 import "../assets/scss/BuildCakePage.scss";
 import Header from "../components/Header";
+import SaveCakeModal from "../components/SaveCakeModal";
 
 const BuildCakePage: React.FC = () => {
   const {
@@ -28,58 +22,50 @@ const BuildCakePage: React.FC = () => {
     layers,
     setLayers,
     previewLayers,
-    saveCombo,
     clear,
     loadSaved,
   } = useCakeBuilder();
 
-  // ⭐ ENDA ÄNDRINGEN → vänd lagren
+  // Vänd lagren för korrekt visning i SVG
   const svgLayers = [...previewLayers].reverse();
 
-  const [comboName, setComboName] = useState("");
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
 
+  // För AI-förslag
   const suggestions = useMemo(() => {
     if (!base) return [];
     return flavorCombos.filter((c) => c.base === base);
   }, [base]);
 
-  const handleSave = () => {
-    if (!comboName) {
-      alert("Ge din tårta ett namn först");
-      return;
-    }
-    saveCombo(comboName);
-    alert("Sparat!");
-    setComboName("");
+  // CakeData som skickas till modal
+  const cakeData = {
+    base,
+    fillings: fillingsSelected,
+    layers,
+    frosting,
   };
 
+  // Hämtar sparade kombinationer
   const saved = loadSaved();
 
   return (
     <>
       <Header />
-      <Container className="build-page p-3">
+      <Container className="build-page">
         <h1 className="text-center mb-3">Bygg din tårta</h1>
 
         <Row>
+          {/* Förhandsvisning + Spara */}
           <Col xs={12} md={5} className="mb-3">
             <Card className="p-3">
               <h5 className="mb-2">Förhandsvisning</h5>
-
-              {/* 🆕 Skicka de vända lagren */}
               <CakePreview layers={svgLayers} width={320} />
 
-              <div className="mt-3 d-flex gap-2">
-                <InputGroup>
-                  <Form.Control
-                    placeholder="Namn på din tårta"
-                    value={comboName}
-                    onChange={(e) => setComboName(e.target.value)}
-                  />
-                  <Button variant="primary" onClick={handleSave}>
-                    Spara
-                  </Button>
-                </InputGroup>
+              <div className="mt-3 d-flex gap-2 flex-column flex-md-row">
+                <Button id="bakery" onClick={() => setShowModal(true)}>
+                  Spara
+                </Button>
                 <Button variant="outline-secondary" onClick={clear}>
                   Återställ
                 </Button>
@@ -98,6 +84,7 @@ const BuildCakePage: React.FC = () => {
             </Card>
           </Col>
 
+          {/* Välj bas, fyllning, lager, frosting */}
           <Col xs={12} md={7}>
             <Card className="p-3">
               <Row className="g-3">
@@ -126,7 +113,7 @@ const BuildCakePage: React.FC = () => {
                       description: f.description,
                     }))}
                     selectedIds={fillingsSelected}
-                    onToggle={(id) => toggleFilling(id)}
+                    onToggle={toggleFilling}
                   />
                 </Col>
 
@@ -158,9 +145,9 @@ const BuildCakePage: React.FC = () => {
                       (f) => (
                         <Button
                           key={f}
-                          variant={
-                            frosting === f ? "warning" : "outline-secondary"
-                          }
+                          className={`frosting-option ${
+                            frosting === f ? "selected" : "unselected"
+                          }`}
                           onClick={() => setFrosting(f === frosting ? null : f)}
                           size="sm"
                         >
@@ -199,6 +186,13 @@ const BuildCakePage: React.FC = () => {
           </Col>
         </Row>
       </Container>
+
+      {/* Modal för att spara tårtan */}
+      <SaveCakeModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        cakeData={cakeData}
+      />
     </>
   );
 };

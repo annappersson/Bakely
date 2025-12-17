@@ -9,7 +9,7 @@ export type CakeBase = {
 
 export const cakeBases: CakeBase[] = [
   {
-    id: "vanilla",
+    id: "vanilj",
     name: "Vaniljbotten",
     color: "#F7E7B6",
     description: "Lätt och fluffig vaniljbotten",
