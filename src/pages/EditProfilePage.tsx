@@ -3,17 +3,16 @@ import { supabase } from "../supabaseClient";
 import "../assets/scss/EditProfilePage.scss";
 import { toast } from "react-toastify";
 import Header from "../components/Header";
+import { useAuth } from "../hooks/useAuth";
+import Loading from "../components/Loading";
 
 export default function EditProfilePage() {
+  const { profile, setProfile } = useAuth(); // <-- använd auth context
   const [loading, setLoading] = useState(false);
-  const [profile, setProfile] = useState({
-    name: "",
-    bio: "",
-    avatar_url: "",
-  });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
 
   // Load profile
   useEffect(() => {
@@ -24,26 +23,84 @@ export default function EditProfilePage() {
 
       setEmail(user.email || "");
 
-      const { data: profileData } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
+      if (!profile) {
+        const { data: profileData } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
 
-      if (profileData) {
-        setProfile({
-          name: profileData.name || "",
-          bio: profileData.bio || "",
-          avatar_url: profileData.avatar_url || "",
-        });
+        if (profileData) setProfile(profileData);
       }
     }
-
     loadProfile();
-  }, []);
+  }, [profile, setProfile]);
+
+  // Upload avatar
+  async function uploadAvatar(file: File) {
+    if (!file) return null;
+
+    try {
+      setUploading(true);
+      setProgress(0);
+
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${crypto.randomUUID()}.${fileExt}`;
+      const filePath = fileName;
+
+      const { error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(filePath, file, { cacheControl: "3600", upsert: true });
+
+      if (uploadError) {
+        toast.error("Misslyckades med uppladdning: " + uploadError.message);
+        return null;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(filePath);
+
+      const publicUrl = urlData.publicUrl;
+
+      setProfile({ ...profile!, avatar_url: publicUrl }); // <-- uppdatera global state
+
+      setUploading(false);
+      setProgress(null);
+
+      return publicUrl;
+    } catch (err: any) {
+      setUploading(false);
+      setProgress(null);
+      toast.error("Fel vid uppladdning: " + err.message);
+      return null;
+    }
+  }
+
+  // Delete avatar
+  async function deleteAvatar() {
+    if (!profile?.avatar_url) return;
+
+    try {
+      const fileName = profile.avatar_url.split("/").pop();
+      if (!fileName) return;
+
+      const { error } = await supabase.storage
+        .from("avatars")
+        .remove([fileName]);
+
+      if (error) throw error;
+
+      setProfile({ ...profile, avatar_url: "" });
+      toast.success("Profilbild borttagen!");
+    } catch (err: any) {
+      toast.error("Kunde inte ta bort bilden: " + err.message);
+    }
+  }
 
   // Update profile
   async function updateProfile() {
+    if (!profile) return;
     setLoading(true);
 
     const { data: userData } = await supabase.auth.getUser();
@@ -53,25 +110,13 @@ export default function EditProfilePage() {
       return;
     }
 
-    const updateData: any = {
-      avatar_url: profile.avatar_url || null,
-      bio: profile.bio || null,
-    };
-
-    // bara skicka namn om det finns
-    if (profile.name && profile.name.trim() !== "") {
-      updateData.name = profile.name;
-      updateData.full_name = profile.name; // uppdatera full_name också
-    }
-
     const { error } = await supabase
       .from("profiles")
       .update({
         name: profile.name || null,
-        full_name: profile.name || null,
         bio: profile.bio || null,
         avatar_url: profile.avatar_url || null,
-        updated_at: new Date().toISOString(), // <--- lägg till detta
+        updated_at: new Date().toISOString(),
       })
       .eq("id", user.id);
 
@@ -109,6 +154,8 @@ export default function EditProfilePage() {
     setLoading(false);
   }
 
+  if (!profile) return <Loading show={true} />;
+
   return (
     <>
       <Header />
@@ -116,18 +163,49 @@ export default function EditProfilePage() {
         <h2>Redigera Profil</h2>
 
         <div className="section">
-          <h3>Profil</h3>
+          <div className="profile-photo-wrapper">
+            <img
+              src={profile.avatar_url || "/default-avatar.png"}
+              alt="Avatar"
+              className="avatar-img"
+            />
+
+            <input
+              type="file"
+              accept="image/*"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+
+                await uploadAvatar(file);
+              }}
+            />
+
+            {uploading && (
+              <p>Laddar upp... {progress !== null ? progress + "%" : ""}</p>
+            )}
+
+            {profile.avatar_url && !uploading && (
+              <button
+                className="delete-avatar-btn"
+                type="button"
+                onClick={deleteAvatar}
+              >
+                Ta bort bild
+              </button>
+            )}
+          </div>
 
           <input
             type="text"
             placeholder="Namn"
-            value={profile.name}
+            value={profile.name || ""}
             onChange={(e) => setProfile({ ...profile, name: e.target.value })}
           />
 
           <textarea
             placeholder="Bio"
-            value={profile.bio}
+            value={profile.bio || ""}
             onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
           />
 

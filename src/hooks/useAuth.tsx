@@ -16,6 +16,7 @@ interface AuthContextValue {
   profile: Profile | null;
   session: Session | null;
   loading: boolean;
+  setProfile: React.Dispatch<React.SetStateAction<Profile | null>>; // <-- ny
   signUp: (email: string, password: string, name: string) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<void>;
@@ -31,9 +32,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // -------------------------
-  // Init session on app load
-  // -------------------------
   useEffect(() => {
     const initAuth = async () => {
       try {
@@ -99,16 +97,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setSession(null);
   };
 
-  // -------------------------
-  // Render loader tills auth är klar
-  // -------------------------
-  // if (loading) {
-  //   return <Loading show={true} />;
-  // }
-
   return (
     <AuthContext.Provider
-      value={{ user, profile, session, loading, signUp, signIn, signOut }}
+      value={{
+        user,
+        profile,
+        session,
+        loading,
+        setProfile,
+        signUp,
+        signIn,
+        signOut,
+      }}
     >
       {children}
       <Loading show={loading} />

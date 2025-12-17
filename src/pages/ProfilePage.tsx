@@ -1,4 +1,3 @@
-// src/pages/ProfilePage.tsx
 import { useEffect, useMemo, useState } from "react";
 import "../assets/scss/ProfilePage.scss";
 import { Bookmark } from "lucide-react";
@@ -60,7 +59,6 @@ export default function ProfilePage() {
     async function fetchCollectionsAndCakes() {
       setLoading(true);
 
-      // Samlingar
       const { data: colData, error: colError } = await supabase
         .from("user_collections")
         .select("*, collection_items(*)")
@@ -69,7 +67,6 @@ export default function ProfilePage() {
 
       if (!colError && colData) setCollections(colData as Collection[]);
 
-      // Byggda tårtor
       const { data: cakeData, error: cakeError } = await supabase
         .from("saved_cakes")
         .select("*")
@@ -84,7 +81,6 @@ export default function ProfilePage() {
     fetchCollectionsAndCakes();
   }, [userId]);
 
-  // Beräkna gillade recept baserat på sparade samlingar
   const likedRecipes = useMemo(() => {
     const likedIds = new Set(
       collections.flatMap(
@@ -98,11 +94,10 @@ export default function ProfilePage() {
     <>
       <Header />
       <div className="profile-page">
-        {/* PROFIL HEADER */}
         <div className="profile-card">
           <img
             className="profile-img"
-            src="/placeholder-profile.jpg"
+            src={profile?.avatar_url || "/placeholder-profile.jpg"}
             alt="Profilbild"
           />
           <h3 className="profile-name">
@@ -132,7 +127,6 @@ export default function ProfilePage() {
           </Link>
         </div>
 
-        {/* TABBAR */}
         <div className="profile-tabs">
           <button
             className={activeTab === "saved" ? "active" : ""}
@@ -154,9 +148,7 @@ export default function ProfilePage() {
           </button>
         </div>
 
-        {/* INNEHÅLL FÖR AKTIV TAB */}
         <div className="tab-content">
-          {/* Sparade */}
           {activeTab === "saved" && (
             <div className="collections">
               {loading ? (
@@ -183,7 +175,6 @@ export default function ProfilePage() {
             </div>
           )}
 
-          {/* Skapade tårtor */}
           {activeTab === "created" && (
             <div className="collections">
               {loading ? (
@@ -199,10 +190,7 @@ export default function ProfilePage() {
                     className="collection-card pink"
                     onClick={() => setOpenCake(cake)}
                   >
-                    <div className="icon">
-                      {/* Här kan du sätta en liten tårt-ikon, t.ex emoji */}
-                      🎂
-                    </div>
+                    <div className="icon">🎂</div>
                     <div>
                       <h4>{cake.name}</h4>
                       <p>Botten: {cake.base || "-"}</p>
@@ -213,7 +201,6 @@ export default function ProfilePage() {
             </div>
           )}
 
-          {/* Gillade */}
           {activeTab === "liked" && (
             <div className="recipe-grid">
               {likedRecipes.length === 0 ? (
@@ -237,14 +224,12 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {/* MODAL FÖR COLLECTION */}
         <CollectionRecipesModal
           show={openCollectionId !== null}
           collectionId={openCollectionId}
           onClose={() => setOpenCollectionId(null)}
         />
 
-        {/* MODAL FÖR BYGGD TÅRTA */}
         {openCake && (
           <BuiltCakeModal
             show={openCake !== null}

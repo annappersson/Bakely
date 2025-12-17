@@ -1,56 +1,198 @@
 .edit-profile-page {
-    padding: 20px;
-    max-width: 500px;
+    padding: 16px;
+    max-width: 480px;
     margin: 0 auto;
-    padding-bottom: 2rem;
+    font-family: "Poppins", sans-serif;
+    color: #4b2e1f;
+    padding-bottom: 3rem; // mer space till bottom nav
 
     h2 {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 700;
-        margin-bottom: 20px;
         text-align: center;
+        margin-bottom: 24px;
     }
 
     .section {
-        background: #fff;
-        padding: 18px;
-        border-radius: 16px;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-        margin-bottom: 22px;
+        background: linear-gradient(145deg, #fff4f0, #fffaf6);
+        padding: 20px;
+        border-radius: 24px;
+        box-shadow: 0 6px 20px rgba(75, 46, 31, 0.06);
+        margin-bottom: 20px;
+        transition: all 0.2s ease;
 
         h3 {
             font-size: 18px;
-            margin-bottom: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(75, 46, 31, 0.15);
+            margin-bottom: 16px;
             font-size: 15px;
+            background: #fffaf6;
+            color: #4b2e1f;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #ff6fa7;
+                box-shadow: 0 0 0 4px rgba(255, 111, 167, 0.2);
+            }
         }
 
         button {
             width: 100%;
             padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background: #ff7aae;
-            color: white;
+            border: 2px solid #ff6fa7;
+            border-radius: 20px;
+            background: transparent;
+            color: #ff6fa7;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(255, 122, 170, 0.25);
-            transition: 0.2s;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
 
             &:hover {
-                background: #ff4b90;
+                background: #ff6fa7;
+                color: #fff;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(255, 111, 167, 0.2);
             }
 
             &:disabled {
                 opacity: 0.6;
+                cursor: not-allowed;
+            }
+        }
+
+        /* =========================
+         Avatar / Profile Photo
+      ========================= */
+        .profile-photo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+
+            .avatar-img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 3px solid #ff6fa7;
+                margin-bottom: 12px;
+                transition: all 0.2s;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+
+            input[type="file"] {
+                display: block;
+                cursor: pointer;
+                font-size: 14px;
+                color: #4b2e1f;
+                margin-bottom: 10px;
+            }
+
+            /* Röd “ta bort” knapp */
+            .delete-avatar-btn {
+                background: #fa515f;
+                color: #fff;
+                padding: 8px 14px;
+                border-radius: 16px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                border: none;
+                transition: all 0.2s;
+                box-shadow: 0 3px 8px rgba(255, 111, 167, 0.3);
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+
+                &:hover {
+                    background: #ff4b90;
+                    transform: translateY(-1px);
+                }
+            }
+
+            progress {
+                width: 100%;
+                height: 8px;
+                border-radius: 8px;
+                margin-top: 8px;
+                appearance: none;
+
+                &::-webkit-progress-bar {
+                    background-color: #ffe8e0;
+                    border-radius: 8px;
+                }
+
+                &::-webkit-progress-value {
+                    background-color: #ff6fa7;
+                    border-radius: 8px;
+                }
+
+                &::-moz-progress-bar {
+                    background-color: #ff6fa7;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 22px;
+        }
+
+        .section {
+            padding-bottom: 3rem;
+            border-radius: 20px;
+
+            h3 {
+                font-size: 16px;
+            }
+
+            input,
+            textarea {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            .avatar-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding-bottom: 3rem;
+
+        .section {
+            padding: 14px;
+
+            .avatar-img {
+                width: 90px;
+                height: 90px;
             }
         }
     }
