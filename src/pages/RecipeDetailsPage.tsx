@@ -15,6 +15,7 @@ export default function RecipeDetailPage() {
   const { user, loading: authLoading } = useAuth(); // ← loading från context
   const recipe = recipes.find((r) => r.id === id);
   const [showModal, setShowModal] = useState(false);
+  const [completedSteps, setCompletedSteps] = useState<boolean[]>([]);
 
   // När sidan laddas, scrolla alltid till toppen
   useEffect(() => {
@@ -35,6 +36,20 @@ export default function RecipeDetailPage() {
     }
 
     setShowModal(true);
+  };
+
+  useEffect(() => {
+    if (recipe) {
+      setCompletedSteps(new Array(recipe.steps.length).fill(false));
+    }
+  }, [recipe]);
+
+  const toggleStep = (index: number) => {
+    setCompletedSteps((prev) => {
+      const newSteps = [...prev];
+      newSteps[index] = !newSteps[index];
+      return newSteps;
+    });
   };
 
   return (
@@ -125,7 +140,16 @@ export default function RecipeDetailPage() {
           <h4>Gör så här</h4>
           <ol>
             {recipe.steps.map((step, i) => (
-              <li key={i}>{step}</li>
+              <li key={i} className={completedSteps[i] ? "completed-step" : ""}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={completedSteps[i]}
+                    onChange={() => toggleStep(i)}
+                  />
+                  <span>{step}</span>
+                </label>
+              </li>
             ))}
           </ol>
         </div>

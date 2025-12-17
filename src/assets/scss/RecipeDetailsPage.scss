@@ -189,3 +189,25 @@
         }
     }
 }
+
+.content-box ol li {
+    margin-bottom: 8px;
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        width: 100%; // så hela raden är klickbar
+    }
+
+    input[type="checkbox"] {
+        cursor: pointer;
+    }
+
+    &.completed-step span {
+        text-decoration: line-through;
+        color: #aaa;
+        opacity: 0.7;
+    }
+}
