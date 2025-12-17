@@ -1,158 +1,157 @@
 .search-page {
     padding: 1rem 1rem 4.5rem; // extra botten för bottom nav
     min-height: 100vh;
-}
 
-/* 🔍 Search bar */
-.search-wrapper.large {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    border: 2px solid #fdd1de;
-    background: #fefafa;
-    padding: 0.9rem 1rem;
+    // Gör innehållet mer "kort-liknande" som HomePage
+    background-color: #fffdf9; // subtil skillnad mot root (#fff8f0)
     border-radius: 16px;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem auto 2rem; // gör att det syns mot bakgrunden
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 100vw;
 
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    .search-wrapper.large {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid #fdd1de;
+        background: #fefafa;
+        padding: 0.9rem 1rem;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 
-    svg {
-        color: #ff7abd; // matchar knappar & accent
-    }
+        svg {
+            color: #ff7abd; // matchar knappar & accent
+        }
 
-    input {
-        border: none;
-        background: none;
-        width: 100%;
-        outline: none;
-        font-size: 1rem;
-        color: #53422e;
+        input {
+            border: none;
+            background: none;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            color: #53422e;
 
-        &::placeholder {
-            color: #bfa3ad;
+            &::placeholder {
+                color: #bfa3ad;
+            }
         }
     }
-}
 
-/* 🌸 Hero */
-.search-hero {
-    margin: 1.2rem 0 1.6rem;
+    .search-hero {
+        margin: 1.2rem 0 1.6rem;
 
-    h2 {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #5a3e36;
-        line-height: 1.3;
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #5a3e36;
+            line-height: 1.3;
+        }
+
+        p {
+            color: #8a7470;
+            margin-top: 0.35rem;
+            font-size: 0.9rem;
+        }
     }
 
-    p {
-        color: #8a7470;
-        margin-top: 0.35rem;
+    .search-section {
+        margin-top: 1.8rem;
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #5a3e36;
+            margin-bottom: 0.75rem;
+        }
+    }
+
+    .recipe-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .recipe-card {
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:active {
+            transform: scale(0.97);
+        }
+
+        img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0.45rem 0.6rem 0.1rem;
+            color: #5a3e36;
+        }
+
+        p {
+            font-size: 0.75rem;
+            color: #9a7f78;
+            margin: 0 0.6rem 0.6rem;
+        }
+    }
+
+    .search-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .search-tag {
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        border: none;
+        background: #ffe6ef;
+        color: #b24b6a;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease;
+
+        &:hover {
+            background: #ffd6e4;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    .result-count {
+        font-size: 0.85rem;
+        color: #7e6a65;
+        margin: 0.6rem 0 0.9rem;
+    }
+
+    .empty {
+        text-align: center;
+        margin-top: 2rem;
+        color: #9a8a80;
         font-size: 0.9rem;
     }
 }
 
-/* 🔹 Sections */
-.search-section {
-    margin-top: 1.8rem;
-
-    h3 {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #5a3e36;
-        margin-bottom: 0.75rem;
-    }
-}
-
-/* 🍰 Recipe grid – MOBILE FIRST */
-.recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-}
-
-/* 🍰 Recipe card */
-.recipe-card {
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    &:active {
-        transform: scale(0.97);
-    }
-
-    img {
-        width: 100%;
-        aspect-ratio: 1 / 1; // 🔥 detta fixar stora bilder
-        object-fit: cover;
-        display: block;
-    }
-
-    h4 {
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin: 0.45rem 0.6rem 0.1rem;
-        color: #5a3e36;
-    }
-
-    p {
-        font-size: 0.75rem;
-        color: #9a7f78;
-        margin: 0 0.6rem 0.6rem;
-    }
-}
-
-/* 🔥 Mest sökta tags */
-.search-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.search-tag {
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    border: none;
-    background: #ffe6ef;
-    color: #b24b6a;
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
-
-    &:hover {
-        background: #ffd6e4;
-    }
-
-    &:active {
-        transform: scale(0.95);
-    }
-}
-
-/* 🔎 Result text */
-.result-count {
-    font-size: 0.85rem;
-    color: #7e6a65;
-    margin: 0.6rem 0 0.9rem;
-}
-
-/* 😢 Empty state */
-.empty {
-    text-align: center;
-    margin-top: 2rem;
-    color: #9a8a80;
-    font-size: 0.9rem;
-}
-
-/* 🖥 Tablet */
+/* Tablet */
 @media (min-width: 768px) {
     .search-page {
         padding: 2rem 3rem 4rem;
+        border-radius: 18px;
+        margin: 2rem auto 3rem;
     }
 
     .recipe-grid {
@@ -162,16 +161,32 @@
     .search-hero h2 {
         font-size: 1.6rem;
     }
+
+    .search-wrapper.large {
+        max-width: 600px;
+        margin: 0 auto 2rem auto;
+        padding: 1rem 1.5rem;
+    }
 }
 
-/* 🖥 Desktop */
+/* Desktop */
 @media (min-width: 1024px) {
+    .search-page {
+        max-width: 1200px;
+        margin: 2rem auto 3rem;
+        padding: 2rem 3rem 5rem;
+        border-radius: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
     .recipe-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .search-page {
-        max-width: 1200px;
-        margin: 0 auto;
+    .search-wrapper.large {
+        max-width: 700px;
+        width: 90%;
+        margin: 0 auto 2.5rem auto;
+        padding: 1rem 1.5rem;
     }
 }

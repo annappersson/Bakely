@@ -1,28 +1,69 @@
 .saved-page {
-    padding: 1.25rem;
+    padding: 1rem;
     min-height: 100vh;
 
+    // 🎨 Kort-liknande look
+    background-color: #fffdf9; // subtil skillnad mot root (#fff8f0)
+    border-radius: 16px;
+    margin: 1.5rem auto 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .page-header {
-        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 1.5rem;
 
         h2 {
             font-size: 1.4rem;
+            margin: 0;
+            color: #5a3e36;
         }
 
         p {
             color: #888;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .sort-select {
+            border-radius: 10px;
+            padding: 0.4rem 0.6rem;
+            border: none;
+            background: #fff;
             font-size: 0.9rem;
         }
     }
 
     .collections-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        width: 100%;
+        max-width: 900px;
         gap: 1rem;
+        justify-items: center;
+
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
     }
 
     .collection-card {
-        border-radius: 14px;
+        border-radius: 16px;
         padding: 1rem;
         display: flex;
         gap: 0.75rem;
@@ -32,6 +73,8 @@
         cursor: pointer;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         transition: transform 0.15s ease;
+        width: 100%;
+        max-width: 250px;
 
         &:active {
             transform: scale(0.97);
@@ -52,6 +95,13 @@
             background: #ffe1ec;
             padding: 0.5rem;
             border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                stroke-width: 2;
+            }
         }
 
         .info {
@@ -60,19 +110,24 @@
             h4 {
                 font-size: 0.95rem;
                 margin: 0;
+                color: #5a3e36;
             }
 
             p {
                 font-size: 0.8rem;
                 color: #666;
+                margin: 0.25rem 0 0 0;
             }
         }
     }
 
     .empty-state {
         text-align: center;
-        margin-top: 3rem;
+        margin-top: 2rem;
         color: #999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         svg {
             margin-bottom: 0.5rem;
@@ -82,13 +137,25 @@
             font-size: 0.85rem;
         }
     }
+}
 
-    .sort-select {
-        border-radius: 10px;
-        padding: 0.4rem 0.6rem;
-        border: none;
-        background: #fff;
-        font-size: 0.9rem;
+/* Tablet */
+@media (min-width: 768px) {
+    .saved-page {
+        padding: 2rem;
+        border-radius: 18px;
+        margin: 2rem auto 3rem;
     }
+}
 
+/* Desktop */
+@media (min-width: 1024px) {
+    .saved-page {
+        max-width: 1000px;
+        padding: 2.5rem 3rem 5rem;
+        border-radius: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+        min-height: 70vh;
+    }
 }
