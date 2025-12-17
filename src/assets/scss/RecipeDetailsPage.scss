@@ -1,6 +1,11 @@
 .recipe-detail-page {
-    background: linear-gradient(#fff7fa, #ffffff);
     padding-bottom: 4rem;
+    background-color: #fffdf9; // subtil skillnad mot #fff8f0
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 2rem; // gör att det syns lite mot bakgrunden
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 100vw;
 
     /* ============================
         TOP IMAGE + BUTTONS
