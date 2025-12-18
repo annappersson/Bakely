@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { Home, Search, Layers, User } from "lucide-react";
+import { Home, Search, Layers, User, BookHeart } from "lucide-react";
 
 const BottomNav = () => {
   const location = useLocation();
@@ -9,7 +9,7 @@ const BottomNav = () => {
 
     { to: "/sok", label: "Sök", icon: <Search size={22} /> },
     { to: "/bygg-tarta", label: "Bygg", icon: <Layers size={22} /> },
-    { to: "/recept", label: "Alla Recept", icon: <Layers size={22} /> },
+    { to: "/recept", label: "Alla Recept", icon: <BookHeart size={22} /> },
     // { to: "/sparade", label: "Sparade", icon: <Heart size={22} /> },
     { to: "/profil", label: "Profil", icon: <User size={22} /> },
   ];
