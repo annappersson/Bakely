@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router";
-import { Home, Search, Layers, Heart, User } from "lucide-react";
+import { Home, Search, Layers, User } from "lucide-react";
 
 const BottomNav = () => {
   const location = useLocation();
