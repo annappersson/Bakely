@@ -6,6 +6,7 @@ import { supabase } from "../supabaseClient";
 import { useAuth } from "../hooks/useAuth";
 import CollectionRecipesModal from "../components/CollectionRecipesModal";
 import { toastInfo } from "../utils/toastConfig";
+import ConfirmModal from "../components/ConfirmModal"; // <-- importera vår modal
 import "../assets/scss/SavedPage.scss";
 
 interface Collection {
@@ -26,6 +27,12 @@ const SavedPage = () => {
   const [loading, setLoading] = useState(false);
   const [openCollectionId, setOpenCollectionId] = useState<string | null>(null);
   const [sort, setSort] = useState<SortOption>("newest");
+
+  // State för bekräftelsemodal
+  const [confirmDelete, setConfirmDelete] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   // 🔐 Redirect om ej inloggad
   useEffect(() => {
@@ -59,21 +66,42 @@ const SavedPage = () => {
     loadCollections();
   }, [user?.id]);
 
-  // 🔄 Sortering (client-side, snabb UX)
+  // 🔄 Sortering (client-side)
   const sortedCollections = [...collections].sort((a, b) => {
-    if (sort === "name") {
-      return a.name.localeCompare(b.name, "sv");
-    }
-
-    if (sort === "oldest") {
+    if (sort === "name") return a.name.localeCompare(b.name, "sv");
+    if (sort === "oldest")
       return (
         new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
       );
-    }
-
-    // newest (default)
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   });
+
+  // Ta bort kollektion
+  async function deleteCollection(
+    collectionId: string,
+    collectionName: string
+  ) {
+    try {
+      const { error } = await supabase
+        .from("user_collections")
+        .delete()
+        .eq("id", collectionId);
+
+      if (error) throw error;
+
+      setCollections((prev) => prev.filter((c) => c.id !== collectionId));
+      toastInfo(`Kollektionen "${collectionName}" har tagits bort ✅`);
+    } catch (err: any) {
+      toastInfo(`Kunde inte ta bort kollektionen: ${err.message}`);
+    }
+  }
+
+  // Bekräftad radering
+  function handleDeleteConfirmed() {
+    if (!confirmDelete) return;
+    deleteCollection(confirmDelete.id, confirmDelete.name);
+    setConfirmDelete(null);
+  }
 
   return (
     <>
@@ -110,22 +138,34 @@ const SavedPage = () => {
 
         <div className="collections-grid">
           {sortedCollections.map((c) => (
-            <button
-              key={c.id}
-              className="collection-card pink"
-              onClick={() => setOpenCollectionId(c.id)}
-            >
-              <div className="icon">
-                <Bookmark />
-              </div>
-              <div className="info">
-                <h4>{c.name}</h4>
-                <p>{c.collection_items?.length || 0} recept</p>
-              </div>
-            </button>
+            <div key={c.id} className="collection-card-wrapper">
+              <button
+                className="collection-card pink"
+                onClick={() => setOpenCollectionId(c.id)}
+              >
+                <div className="icon">
+                  <Bookmark />
+                </div>
+                <div className="info">
+                  <h4>{c.name}</h4>
+                  <p>{c.collection_items?.length || 0} recept</p>
+                </div>
+
+                {/* 🗑️ Ta bort-ikon */}
+                <span
+                  className="delete-icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setConfirmDelete({ id: c.id, name: c.name });
+                  }}
+                >
+                  🗑️
+                </span>
+              </button>
+            </div>
           ))}
 
-          {/* ➕ NY SAMLING (future hook) */}
+          {/* ➕ NY SAMLING */}
           <button className="collection-card create">
             <Plus />
             <span>Ny samling</span>
@@ -138,6 +178,14 @@ const SavedPage = () => {
         show={openCollectionId !== null}
         collectionId={openCollectionId}
         onClose={() => setOpenCollectionId(null)}
+      />
+
+      {/* ✅ BEKRÄFTELSEMODAL */}
+      <ConfirmModal
+        show={confirmDelete !== null}
+        message={`Är du säker på att du vill ta bort kollektionen "${confirmDelete?.name}"? Detta kan inte ångras.`}
+        onConfirm={handleDeleteConfirmed}
+        onCancel={() => setConfirmDelete(null)}
       />
     </>
   );

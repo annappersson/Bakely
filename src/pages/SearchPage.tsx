@@ -42,6 +42,10 @@ const SearchPage = () => {
     setSearchParams({ q: value });
   }
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <>
       <Header />

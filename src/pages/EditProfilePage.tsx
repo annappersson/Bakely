@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import "../assets/scss/EditProfilePage.scss";
-import { toast } from "react-toastify";
 import Header from "../components/Header";
 import { useAuth } from "../hooks/useAuth";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router";
+import { toastError, toastSuccess } from "../utils/toastConfig";
 
 export default function EditProfilePage() {
+  const navigate = useNavigate();
   const { profile, setProfile } = useAuth(); // <-- använd auth context
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -53,7 +55,7 @@ export default function EditProfilePage() {
         .upload(filePath, file, { cacheControl: "3600", upsert: true });
 
       if (uploadError) {
-        toast.error("Misslyckades med uppladdning: " + uploadError.message);
+        toastError("Misslyckades med uppladdning: " + uploadError.message);
         return null;
       }
 
@@ -72,7 +74,7 @@ export default function EditProfilePage() {
     } catch (err: any) {
       setUploading(false);
       setProgress(null);
-      toast.error("Fel vid uppladdning: " + err.message);
+      toastError("Fel vid uppladdning: " + err.message);
       return null;
     }
   }
@@ -92,9 +94,9 @@ export default function EditProfilePage() {
       if (error) throw error;
 
       setProfile({ ...profile, avatar_url: "" });
-      toast.success("Profilbild borttagen!");
+      toastSuccess("Profilbild borttagen!");
     } catch (err: any) {
-      toast.error("Kunde inte ta bort bilden: " + err.message);
+      toastError("Kunde inte ta bort bilden: " + err.message);
     }
   }
 
@@ -120,21 +122,21 @@ export default function EditProfilePage() {
       })
       .eq("id", user.id);
 
-    if (error) toast.error("Kunde inte uppdatera profil: " + error.message);
-    else toast.success("Profil uppdaterad!");
+    if (error) toastError("Kunde inte uppdatera profil: " + error.message);
+    else toastSuccess("Profil uppdaterad!");
 
     setLoading(false);
   }
 
   // Update email
   async function updateEmail() {
-    if (!email.trim()) return toast.error("E-post måste fyllas i.");
+    if (!email.trim()) return toastError("E-post måste fyllas i.");
     setLoading(true);
 
     const { error } = await supabase.auth.updateUser({ email });
 
-    if (error) toast.error("Kunde inte uppdatera e-post.");
-    else toast.success("E-post uppdaterad!");
+    if (error) toastError("Kunde inte uppdatera e-post.");
+    else toastSuccess("E-post uppdaterad!");
 
     setLoading(false);
   }
@@ -142,14 +144,14 @@ export default function EditProfilePage() {
   // Update password
   async function updatePassword() {
     if (password.length < 6)
-      return toast.error("Lösenord måste vara minst 6 tecken.");
+      return toastError("Lösenord måste vara minst 6 tecken.");
 
     setLoading(true);
 
     const { error } = await supabase.auth.updateUser({ password });
 
-    if (error) toast.error("Kunde inte ändra lösenord.");
-    else toast.success("Lösenord uppdaterat!");
+    if (error) toastError("Kunde inte ändra lösenord.");
+    else toastSuccess("Lösenord uppdaterat!");
 
     setLoading(false);
   }
@@ -160,6 +162,12 @@ export default function EditProfilePage() {
     <>
       <Header />
       <div className="edit-profile-page">
+        <button
+          className="back-btn"
+          onClick={() => navigate("/profil")} // <-- tillbaka till profil
+        >
+          ← Tillbaka
+        </button>
         <h2>Redigera Profil</h2>
 
         <div className="section">

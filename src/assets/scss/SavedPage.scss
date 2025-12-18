@@ -169,3 +169,13 @@
         min-height: 70vh;
     }
 }
+
+.delete-icon {
+    color: #e2558a;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        color: #ff4c8b; // starkare rosa
+        transform: scale(1.2);
+    }
+}

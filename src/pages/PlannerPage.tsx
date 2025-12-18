@@ -1,5 +1,5 @@
 // src/pages/PlannerPage.tsx
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Button } from "react-bootstrap";
 import { recipes } from "../data/recipes";
 import { useRecipeSelection } from "../hooks/useRecipeSelection";
@@ -89,6 +89,10 @@ const PlannerPage: React.FC = () => {
     selectedCategory === "Alla"
       ? recipes
       : recipes.filter((r) => r.category === selectedCategory);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <>

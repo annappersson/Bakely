@@ -197,3 +197,21 @@
         }
     }
 }
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #ff7eb8;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
