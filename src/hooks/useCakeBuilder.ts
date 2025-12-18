@@ -75,7 +75,7 @@ export function useCakeBuilder() {
       id: Date.now(),
       name,
       base,
-      fillingsSelected,
+      fillings: fillingsSelected,
       frosting,
       layers,
       decorations,

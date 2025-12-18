@@ -8,6 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import CollectionRecipesModal from "../components/CollectionRecipesModal";
 import BuiltCakeModal from "../components/BuiltCakeModal";
 import { recipes } from "../data/recipes";
+import { buildPreviewLayers } from "../utils/cakeUtils";
 
 interface Collection {
   id: string;
@@ -20,7 +21,7 @@ interface Collection {
   }[];
 }
 
-interface BuiltCake {
+export interface BuiltCake {
   id: string;
   user_id: string;
   name: string;
@@ -247,6 +248,7 @@ export default function ProfilePage() {
             show={true}
             onHide={() => setOpenCake(null)}
             cake={openCake}
+            previewLayers={[...buildPreviewLayers(openCake)].reverse()}
           />
         )}
       </div>

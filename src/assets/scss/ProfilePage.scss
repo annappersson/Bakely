@@ -6,6 +6,7 @@
     max-height: 100vh;
     margin: 0 auto;
     padding: 1rem 1rem 7rem;
+    overflow-y: auto;
 
 
     font-family: "Poppins", sans-serif;
@@ -263,6 +264,18 @@
 @media (max-width: 480px) {
     .recipe-grid {
         grid-template-columns: 1fr;
+    }
+
+    .collections {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        overflow-x: auto; // möjliggör horisontell scroll
+        padding: 1rem;
+
+        .collection-card {
+            flex: 0 0 250px; // korten får en fast bredd
+        }
     }
 }
 
