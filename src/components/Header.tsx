@@ -51,9 +51,9 @@ export default function Header() {
             </button>
           )}
 
-          <button className="profile-btn">
+          <Link to="/sparade" className="profile-btn">
             <Heart size={22} />
-          </button>
+          </Link>
         </div>
       </header>
     </>

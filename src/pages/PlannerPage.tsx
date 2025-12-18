@@ -11,6 +11,10 @@ import "../assets/scss/Timeline.scss";
 import Header from "../components/Header";
 
 const PlannerPage: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] =
+    React.useState<string>("Alla");
+  const categories = ["Alla", "Tårtor", "Kakor", "Bröd", "Muffins", "Bullar"];
+
   const {
     selectedRecipeIds,
     selectedRecipeObjects,
@@ -81,6 +85,11 @@ const PlannerPage: React.FC = () => {
     0
   );
 
+  const filteredRecipes =
+    selectedCategory === "Alla"
+      ? recipes
+      : recipes.filter((r) => r.category === selectedCategory);
+
   return (
     <>
       <Header />
@@ -90,9 +99,21 @@ const PlannerPage: React.FC = () => {
           <p>Välj dina recept och planera din bakning</p>
         </header>
 
+        <div className="category-filter">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={cat === selectedCategory ? "active" : ""}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         {/* Receptväljaren */}
         <RecipeSelector
-          recipes={recipes}
+          recipes={filteredRecipes}
           selectedRecipeIds={selectedRecipeIds}
           onToggle={toggleRecipe}
         />

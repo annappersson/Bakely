@@ -2,7 +2,7 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 1rem;
-    padding-bottom: 6rem; // extra space under bottomnav
+    padding-bottom: 3rem; // extra space under bottomnav
     background: linear-gradient(145deg, #fff7fa, #ffffff);
 
     header {
@@ -100,6 +100,37 @@
     @media (min-width: 768px) {
         .planner-details {
             gap: 2rem;
+        }
+    }
+}
+
+.category-filter {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+
+    button {
+        border: 1px solid #e6cbd6;
+        background: #fff;
+        color: #7a4b5a;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            background: #fff1f6;
+        }
+
+        &.active {
+            background: #ff8fb8;
+            color: #fff;
+            border-color: #ff8fb8;
+            font-weight: 600;
         }
     }
 }

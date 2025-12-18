@@ -1,7 +1,9 @@
 @import "bootstrap/scss/bootstrap";
 
 #root {
-    background-color: #fff8f0;
+    background: linear-gradient(180deg,
+            #fff2f8,
+            #ffffff);
     padding-bottom: 2rem;
     min-height: 100vh;
 }

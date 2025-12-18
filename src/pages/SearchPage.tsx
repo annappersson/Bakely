@@ -15,16 +15,24 @@ const SearchPage = () => {
   const mostSearched = ["Choklad", "Kanelbullar", "Blåbär", "Vanilj"];
 
   useEffect(() => {
-    if (!query.trim()) {
+    const trimmedQuery = query.trim();
+
+    if (!trimmedQuery) {
       setResults([]);
       return;
     }
 
-    const filtered = recipes.filter(
-      (r) =>
-        r.title.toLowerCase().includes(query.toLowerCase()) ||
-        r.category.toLowerCase().includes(query.toLowerCase())
-    );
+    const searchWords = trimmedQuery.toLowerCase().split(/\s+/); // dela på alla mellanslag
+
+    const filtered = recipes.filter((r) => {
+      const title = r.title.toLowerCase();
+      const category = r.category.toLowerCase();
+
+      // Om något ord finns i titel eller kategori → match
+      return searchWords.some(
+        (word) => title.includes(word) || category.includes(word)
+      );
+    });
 
     setResults(filtered);
   }, [query]);

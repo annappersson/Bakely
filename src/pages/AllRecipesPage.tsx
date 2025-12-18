@@ -65,55 +65,59 @@ function AllRecipesPage() {
   };
 
   return (
-    <div className="alla-recept-page">
-      {/* HEADER */}
+    <>
       <Header />
+      <div className="alla-recept-page">
+        {/* HEADER */}
 
-      <div className="page-title">
-        <h2>Alla Recept</h2>
+        <div className="page-title">
+          <h2>Alla Recept</h2>
+        </div>
+
+        {/* ⭐ CATEGORY FILTER BAR */}
+        <div className="category-bar">
+          {categories.map((cat) => (
+            <button
+              key={cat.name}
+              className={`cat-btn ${
+                activeCategory === cat.name ? "active" : ""
+              }`}
+              onClick={() => handleCategoryChange(cat.name)}
+            >
+              <span className="icon">{cat.icon}</span>
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
+        {/* RECIPE LIST */}
+        <div className="recipe-list fade-in">
+          {visibleRecipes.map((recipe) => (
+            <Link
+              to={`/recept/${recipe.id}`}
+              key={recipe.id}
+              className="recipe-card"
+            >
+              <img src={recipe.image} alt={recipe.title} />
+              <div className="recipe-info">
+                <h4>{recipe.title}</h4>
+                <p>{recipe.category}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* PAGINATION */}
+        {filteredRecipes.length > recipesPerPage && (
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPreviousPage={() => setPage((p) => p - 1)}
+            onNextPage={() => setPage((p) => p + 1)}
+          />
+        )}
       </div>
-
-      {/* ⭐ CATEGORY FILTER BAR */}
-      <div className="category-bar">
-        {categories.map((cat) => (
-          <button
-            key={cat.name}
-            className={`cat-btn ${activeCategory === cat.name ? "active" : ""}`}
-            onClick={() => handleCategoryChange(cat.name)}
-          >
-            <span className="icon">{cat.icon}</span>
-            {cat.name}
-          </button>
-        ))}
-      </div>
-
-      {/* RECIPE LIST */}
-      <div className="recipe-list fade-in">
-        {visibleRecipes.map((recipe) => (
-          <Link
-            to={`/recept/${recipe.id}`}
-            key={recipe.id}
-            className="recipe-card"
-          >
-            <img src={recipe.image} alt={recipe.title} />
-            <div className="recipe-info">
-              <h4>{recipe.title}</h4>
-              <p>{recipe.category}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* PAGINATION */}
-      {filteredRecipes.length > recipesPerPage && (
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          onPreviousPage={() => setPage((p) => p - 1)}
-          onNextPage={() => setPage((p) => p + 1)}
-        />
-      )}
-    </div>
+    </>
   );
 }
 

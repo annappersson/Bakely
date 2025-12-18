@@ -32,10 +32,8 @@ interface BuiltCake {
 }
 
 export default function ProfilePage() {
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scrolla till toppen
-  }, []);
   const { user, profile } = useAuth();
+
   const [activeTab, setActiveTab] = useState<"saved" | "liked" | "created">(
     "saved"
   );
@@ -46,7 +44,10 @@ export default function ProfilePage() {
   const [openCollectionId, setOpenCollectionId] = useState<string | null>(null);
   const [openCake, setOpenCake] = useState<BuiltCake | null>(null);
 
-  // Hämta inloggad användare
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     async function fetchUser() {
       const { data } = await supabase.auth.getUser();
@@ -55,33 +56,32 @@ export default function ProfilePage() {
     fetchUser();
   }, []);
 
-  // Hämta användarens samlingar och byggda tårtor
   useEffect(() => {
     if (!userId) return;
 
-    async function fetchCollectionsAndCakes() {
+    async function fetchData() {
       setLoading(true);
 
-      const { data: colData, error: colError } = await supabase
+      const { data: colData } = await supabase
         .from("user_collections")
         .select("*, collection_items(*)")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
-      if (!colError && colData) setCollections(colData as Collection[]);
+      if (colData) setCollections(colData as Collection[]);
 
-      const { data: cakeData, error: cakeError } = await supabase
+      const { data: cakeData } = await supabase
         .from("saved_cakes")
         .select("*")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
-      if (!cakeError && cakeData) setBuiltCakes(cakeData as BuiltCake[]);
+      if (cakeData) setBuiltCakes(cakeData as BuiltCake[]);
 
       setLoading(false);
     }
 
-    fetchCollectionsAndCakes();
+    fetchData();
   }, [userId]);
 
   const likedRecipes = useMemo(() => {
@@ -96,135 +96,144 @@ export default function ProfilePage() {
   return (
     <>
       <Header />
-      <div className="profile-page">
-        <div className="profile-card">
-          <img
-            className="profile-img"
-            src={profile?.avatar_url || "/placeholder-profile.jpg"}
-            alt="Profilbild"
-          />
-          <h3 className="profile-name">
-            {profile?.name || user?.email || "Ditt Namn"}
-          </h3>
-          <p className="profile-bio">
-            {profile?.bio || "Bakningsentusiast 🧁"}
-          </p>
 
-          <div className="stats">
-            <div>
-              <span>{likedRecipes.length}</span>
-              <p>Gillade</p>
-            </div>
-            <div>
-              <span>{builtCakes.length}</span>
-              <p>Skapade</p>
-            </div>
-            <div>
-              <span>{collections.length}</span>
-              <p>Samlingar</p>
+      <div className="profile-page">
+        <div className="profile-layout">
+          {/* ================= LEFT COLUMN ================= */}
+          <div>
+            <div className="profile-card">
+              <img
+                className="profile-img"
+                src={profile?.avatar_url || "/placeholder-profile.jpg"}
+                alt="Profilbild"
+              />
+
+              <h3 className="profile-name">
+                {profile?.name || user?.email || "Ditt namn"}
+              </h3>
+
+              <p className="profile-bio">
+                {profile?.bio || "Bakningsentusiast 🧁"}
+              </p>
+
+              <div className="stats">
+                <div>
+                  <span>{likedRecipes.length}</span>
+                  <p>Gillade</p>
+                </div>
+                <div>
+                  <span>{builtCakes.length}</span>
+                  <p>Skapade</p>
+                </div>
+                <div>
+                  <span>{collections.length}</span>
+                  <p>Samlingar</p>
+                </div>
+              </div>
+
+              <Link to="/redigera-profil" className="edit-profile-btn">
+                Redigera profil
+              </Link>
             </div>
           </div>
 
-          <Link to="/redigera-profil" className="edit-profile-btn">
-            Redigera Profil
-          </Link>
-        </div>
+          {/* ================= RIGHT COLUMN ================= */}
+          <div>
+            <div className="profile-tabs">
+              <button
+                className={activeTab === "saved" ? "active" : ""}
+                onClick={() => setActiveTab("saved")}
+              >
+                Sparade
+              </button>
+              <button
+                className={activeTab === "created" ? "active" : ""}
+                onClick={() => setActiveTab("created")}
+              >
+                Skapade
+              </button>
+              <button
+                className={activeTab === "liked" ? "active" : ""}
+                onClick={() => setActiveTab("liked")}
+              >
+                Gillade
+              </button>
+            </div>
 
-        <div className="profile-tabs">
-          <button
-            className={activeTab === "saved" ? "active" : ""}
-            onClick={() => setActiveTab("saved")}
-          >
-            Sparade
-          </button>
-          <button
-            className={activeTab === "created" ? "active" : ""}
-            onClick={() => setActiveTab("created")}
-          >
-            Skapade
-          </button>
-          <button
-            className={activeTab === "liked" ? "active" : ""}
-            onClick={() => setActiveTab("liked")}
-          >
-            Gillade
-          </button>
-        </div>
+            <div className="tab-content">
+              {activeTab === "saved" && (
+                <div className="collections">
+                  {loading ? (
+                    <p>Laddar samlingar…</p>
+                  ) : collections.length === 0 ? (
+                    <p className="placeholder-text">Inga samlingar ännu.</p>
+                  ) : (
+                    collections.map((c) => (
+                      <div
+                        key={c.id}
+                        className="collection-card pink"
+                        onClick={() => setOpenCollectionId(c.id)}
+                      >
+                        <div className="icon">
+                          <Bookmark />
+                        </div>
+                        <div>
+                          <h4>{c.name}</h4>
+                          <p>{c.collection_items?.length || 0} recept</p>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
 
-        <div className="tab-content">
-          {activeTab === "saved" && (
-            <div className="collections">
-              {loading ? (
-                <p>Laddar samlingar…</p>
-              ) : collections.length === 0 ? (
-                <p className="placeholder-text">Inga samlingar ännu.</p>
-              ) : (
-                collections.map((c) => (
-                  <div
-                    key={c.id}
-                    className="collection-card pink"
-                    onClick={() => setOpenCollectionId(c.id)}
-                  >
-                    <div className="icon">
-                      <Bookmark />
-                    </div>
-                    <div>
-                      <h4>{c.name}</h4>
-                      <p>{c.collection_items?.length || 0} recept</p>
-                    </div>
-                  </div>
-                ))
+              {activeTab === "created" && (
+                <div className="collections">
+                  {builtCakes.length === 0 ? (
+                    <p className="placeholder-text">
+                      Dina byggda tårtor kommer visas här 🎂
+                    </p>
+                  ) : (
+                    builtCakes.map((cake) => (
+                      <div
+                        key={cake.id}
+                        className="collection-card pink"
+                        onClick={() => setOpenCake(cake)}
+                      >
+                        <div className="icon">🎂</div>
+                        <div>
+                          <h4>{cake.name}</h4>
+                          <p>Botten: {cake.base || "-"}</p>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+
+              {activeTab === "liked" && (
+                <div className="recipe-grid">
+                  {likedRecipes.length === 0 ? (
+                    <p className="placeholder-text">
+                      Du har inte gillat några recept ännu 💗
+                    </p>
+                  ) : (
+                    likedRecipes.map((r) => (
+                      <Link
+                        key={r.id}
+                        to={`/recept/${r.id}`}
+                        className="recipe-card"
+                      >
+                        <img src={r.image} alt={r.title} />
+                        <h4>{r.title}</h4>
+                        <p>{r.category}</p>
+                      </Link>
+                    ))
+                  )}
+                </div>
               )}
             </div>
-          )}
-
-          {activeTab === "created" && (
-            <div className="collections">
-              {loading ? (
-                <p>Laddar tårtor…</p>
-              ) : builtCakes.length === 0 ? (
-                <p className="placeholder-text">
-                  Dina byggda tårtor kommer visas här 🎂
-                </p>
-              ) : (
-                builtCakes.map((cake) => (
-                  <div
-                    key={cake.id}
-                    className="collection-card pink"
-                    onClick={() => setOpenCake(cake)}
-                  >
-                    <div className="icon">🎂</div>
-                    <div>
-                      <h4>{cake.name}</h4>
-                      <p>Botten: {cake.base || "-"}</p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          )}
-
-          {activeTab === "liked" && (
-            <div className="recipe-grid">
-              {likedRecipes.length === 0 ? (
-                <p className="placeholder-text">
-                  Du har inte gillat några recept ännu 💗
-                </p>
-              ) : (
-                likedRecipes.map((r) => (
-                  <Link
-                    key={r.id}
-                    to={`/recept/${r.id}`}
-                    className="recipe-card"
-                  >
-                    <img src={r.image} alt={r.title} />
-                    <h4>{r.title}</h4>
-                    <p>{r.category}</p>
-                  </Link>
-                ))
-              )}
-            </div>
-          )}
+          </div>
         </div>
 
         <CollectionRecipesModal
@@ -235,7 +244,7 @@ export default function ProfilePage() {
 
         {openCake && (
           <BuiltCakeModal
-            show={openCake !== null}
+            show={true}
             onHide={() => setOpenCake(null)}
             cake={openCake}
           />

@@ -1,6 +1,19 @@
 /* AllaRecept.scss */
 .alla-recept-page {
-    padding: 1rem;
+    padding: 1rem 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background: linear-gradient(160deg,
+            #fff7fa 0%,
+            #ffffff 60%);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 30px rgba(255, 170, 200, 0.18),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
 
     .home-header {
         display: flex;
@@ -51,6 +64,7 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
+        justify-items: center;
 
         .recipe-card {
             display: flex;
@@ -61,11 +75,34 @@
             text-decoration: none;
             color: inherit;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
 
             img {
                 width: 100%;
-                height: auto;
+                height: 180px; // desktop default
+                object-fit: cover;
             }
+
+            /* Mobil */
+            .recipe-card img {
+                height: 160px;
+            }
+
+            /* Tablet */
+            @media (min-width: 600px) {
+                .recipe-card img {
+                    height: 180px;
+                }
+            }
+
+            /* Desktop */
+            @media (min-width: 900px) {
+                .recipe-card img {
+                    height: 200px;
+                }
+            }
+
 
             .recipe-info {
                 padding: 0.5rem 1rem;
@@ -86,16 +123,34 @@
 
 /* Tablet & desktop */
 @media (min-width: 600px) {
-    .recipe-list {
-        grid-template-columns: repeat(2, 1fr);
+    .alla-recept-page {
+        .recipe-list {
+            grid-template-columns: repeat(2, minmax(260px, 1fr));
+            justify-items: stretch;
+        }
     }
 }
 
 @media (min-width: 900px) {
-    .recipe-list {
-        grid-template-columns: repeat(3, 1fr);
+    .alla-recept-page {
+        .recipe-list {
+            grid-template-columns: repeat(3, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
     }
 }
+
+@media (hover: hover) {
+    .recipe-card {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+
 
 .category-bar {
     display: flex;
@@ -201,5 +256,25 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (min-width: 900px) {
+    .alla-recept-page {
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 2rem 2.5rem 3rem;
+    }
+
+    .category-bar {
+        justify-content: center;
+        overflow-x: visible;
+        padding: 16px 0;
+        margin: 0 auto 20px;
+    }
+
+    .cat-btn {
+        padding: 12px 18px;
+        font-size: 15px;
     }
 }

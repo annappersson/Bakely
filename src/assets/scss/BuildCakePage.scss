@@ -5,8 +5,7 @@
     max-width: 980px;
     min-height: calc(100vh - 60px); // tar hänsyn till bottom-nav på 60px
     margin: 0 auto;
-    padding: 1rem;
-    padding-bottom: 2rem; // extra utrymme för bottom-nav
+    padding: 1rem; // extra utrymme för bottom-nav
 
     h1 {
         font-weight: 700;

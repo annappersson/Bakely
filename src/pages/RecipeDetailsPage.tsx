@@ -52,6 +52,12 @@ export default function RecipeDetailPage() {
     });
   };
 
+  const completedCount = completedSteps.filter(Boolean).length;
+  const totalSteps = completedSteps.length;
+  const progressPercent =
+    totalSteps > 0 ? Math.round((completedCount / totalSteps) * 100) : 0;
+  const isDone = totalSteps > 0 && completedCount === totalSteps;
+
   return (
     <>
       <Header />
@@ -134,6 +140,26 @@ export default function RecipeDetailPage() {
                 ))}
           </ul>
         </div>
+        {/* 📊 PROGRESS */}
+        <div className={`steps-progress ${isDone ? "done" : ""}`}>
+          <div className="progress-info">
+            {isDone ? (
+              <span className="done-text">🧁 Klar! Bra jobbat!</span>
+            ) : (
+              <span>
+                {completedCount} / {totalSteps} steg klara
+              </span>
+            )}
+            <span>{progressPercent}%</span>
+          </div>
+
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
 
         {/* 📌 STEPS */}
         <div className="content-box">
@@ -162,6 +188,13 @@ export default function RecipeDetailPage() {
           onAdded={() => console.log("Recept sparat!")}
         />
       </div>
+      {isDone && (
+        <div className="confetti-wrapper">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <span key={i} className="confetti" />
+          ))}
+        </div>
+      )}
     </>
   );
 }

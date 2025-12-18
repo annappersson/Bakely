@@ -3,12 +3,21 @@
 ======================= */
 .profile-page {
     width: 100%;
-    max-width: 480px;
-    min-height: 100vh;
-    margin: auto;
-    padding-bottom: 4rem;
+    max-height: 100vh;
+    margin: 0 auto;
+    padding: 1rem 1rem 7rem;
+
+
     font-family: "Poppins", sans-serif;
-    background: #fff8f9;
+
+    background: linear-gradient(160deg,
+            #fff7fa 0%,
+            #ffffff 60%);
+
+    border-radius: 24px;
+    box-shadow:
+        0 10px 30px rgba(255, 170, 200, 0.18),
+        0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 /* =======================
@@ -254,5 +263,90 @@
 @media (max-width: 480px) {
     .recipe-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 900px) {
+    .profile-page {
+        max-width: 1100px;
+        padding: 2.5rem 3rem;
+    }
+
+    .profile-layout {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 2.5rem;
+        align-items: flex-start;
+    }
+
+    .profile-card {
+        padding: 3rem 2rem;
+        /* mer luft */
+        text-align: center;
+
+        .profile-img {
+            width: 120px;
+            /* större profilbild */
+            height: 120px;
+            border-width: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            /* större namn */
+            font-weight: 700;
+            color: #53422e;
+            max-width: 280px;
+            /* så att det inte går utanför */
+            word-wrap: break-word;
+            margin: 0.5rem auto;
+            /* centrera vid wrap */
+        }
+
+        .profile-bio {
+            font-size: 1rem;
+            /* lite större bio */
+            opacity: 0.8;
+            margin-top: 0.2rem;
+        }
+
+        .stats {
+            margin: 1.5rem 0;
+
+            span {
+                font-size: 1.3rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
+
+        .edit-profile-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+        }
+    }
+
+    .profile-tabs {
+        justify-content: flex-start;
+        gap: 1.5rem;
+        padding-left: 0;
+
+        button {
+            flex: unset;
+            padding: 0.6rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .recipe-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+
+            .recipe-card img {
+                height: 140px;
+            }
+        }
     }
 }
