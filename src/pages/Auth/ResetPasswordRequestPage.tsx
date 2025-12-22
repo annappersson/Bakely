@@ -50,6 +50,7 @@ export default function ResetPasswordRequestPage() {
             placeholder="E-postadress"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="email-input"
           />
 
           <button onClick={handleReset} disabled={loading}>

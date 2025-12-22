@@ -383,3 +383,20 @@ form {
         box-shadow: none !important;
     }
 }
+
+.login-card>.email-input {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 14px;
+    padding: 0.9rem;
+    border: 1px solid #eee;
+    background: #fafafa;
+    font-size: 0.95rem;
+
+    &:focus {
+        outline: none;
+        border-color: #ffb5c9;
+        box-shadow: 0 0 0 3px rgba(255, 181, 201, 0.25);
+        background: white;
+    }
+}
