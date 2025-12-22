@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import "./assets/scss/BottomNav.scss";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/HomePage";
@@ -15,8 +15,25 @@ import AllRecipesPage from "./pages/AllRecipesPage";
 import { ToastContainer } from "react-toastify";
 import RecipeDetailPage from "./pages/RecipeDetailsPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import ResetPasswordRequestPage from "./pages/Auth/ResetPasswordRequestPage";
+import ResetPasswordPage from "./pages/Auth/ResetPasswordPage";
+import { useEffect } from "react";
+import { supabase } from "./supabaseClient";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") {
+        navigate("/aterstall-losenord/nytt");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
   return (
     <div id="app">
       <ToastContainer
@@ -47,6 +64,14 @@ function App() {
 
         <Route path="/logga-in" element={<LoginPage />} />
         <Route path="/skapa-konto" element={<SignupPage />} />
+        <Route
+          path="/aterstall-losenord"
+          element={<ResetPasswordRequestPage />}
+        />
+        <Route
+          path="/aterstall-losenord/nytt"
+          element={<ResetPasswordPage />}
+        />
       </Routes>
 
       {/* Bottom Navigation - alltid synlig när man är inloggad */}

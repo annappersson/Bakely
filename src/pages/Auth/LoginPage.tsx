@@ -20,7 +20,7 @@ export default function LoginPage() {
           <SignInForm />
 
           <div className="bottom-links">
-            <Link to="/reset-password" className="forgot">
+            <Link to="/aterstall-losenord" className="forgot">
               Glömt lösenord?
             </Link>
             <div className="divider"></div>
