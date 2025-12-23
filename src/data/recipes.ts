@@ -51,6 +51,10 @@ import vitloksbrod from "../assets/img/vitloksbrod.jpg";
 import pizzadeg from "../assets/img/pizzadeg.jpg";
 import tunnbrod from "../assets/img/mjukt_tunnbrod.jpg";
 import vortbrod from "../assets/img/vortbrod_pa_surdeg.jpg";
+import saffransflata from "../assets/img/saffransflata.jpg";
+import saffranskrans from "../assets/img/saffranskrans.jpg";
+import julsaffransgran from "../assets/img/julsaffransgran.jpg";
+import wienerbrod from "../assets/img/wienerbrod.jpg";
 import type { Recipe } from "../types/types";
 
 export const recipes: Recipe[] = [
@@ -1210,6 +1214,213 @@ export const recipes: Recipe[] = [
       "Kyld deg gör det lättare att forma munkarna.",
       "Fritera i rätt temperatur för jämn färg och fluffig insida.",
       "Rulla direkt i socker efter fritering så att det fastnar.",
+    ],
+  },
+
+  {
+    id: "bun-9",
+    title: "Saffransfläta med mandel och lingon",
+    category: "Bullar",
+    image: saffransflata, // lägg till din bildimport
+    description:
+      "Saftig saffransfläta fylld med mandelmassa och lingon, penslad med söt glansig sockerlag.",
+    time: { prep: 40, bake: 20, rise: 210 }, // 2h kalljäsning + 1.5h jäsning
+    difficulty: "Medel",
+    servings: 12,
+    ingredients: {
+      deg: [
+        "25 g färsk jäst",
+        "2 dl mjölk (3 %)",
+        "1 förp saffran (1/2 g)",
+        "6 1/2 dl vetemjöl (ca 390 g)",
+        "1 dl strösocker",
+        "75 g rumstempererat smör",
+        "1 ägg",
+        "1/2 tsk salt",
+        "1 uppvispat ägg (till pensling)",
+      ],
+      fyllning: [
+        "150 g mandelmassa",
+        "100 g rumstempererat smör",
+        "1/2 dl strösocker",
+        "1 1/2 dl frysta lingon",
+        "1 msk majsstärkelse",
+        "1 dl hackad sötmandel",
+      ],
+      sockerlag: ["3/4 dl strösocker", "1/2 dl vatten"],
+    },
+    steps: [
+      "Smula jästen i en bunke. Tillsätt mjölk och saffran och rör tills jästen lösts upp.",
+      "Tillsätt mjöl, socker, smör, ägg och salt. Arbeta degen i 10 minuter.",
+      "Låt jäsa i kyl 2 timmar.",
+      "Riv mandelmassan och blanda med smör och socker. Blanda lingon med majsstärkelse.",
+      "Dela degen i två bitar och kavla till 20×30 cm plattor.",
+      "Bred på fyllning, strö över lingon och rulla ihop. Dela varje rulle längsmed.",
+      "Tvinna bitarna till två längder. Jäs 1,5 timme.",
+      "Pensla med ägg och strö över hackad mandel. Grädda 15–20 minuter i 200°C.",
+      "Koka ihop sockerlag och pensla längderna direkt när de kommer ut.",
+    ],
+    plannerInfo: {
+      canMakeAhead: false,
+      freezerFriendly: true,
+      restTime: 210,
+    },
+    tips: [
+      "Kalljäsningen ger bättre smak och lättare hantering.",
+      "Lingonen ger fin syra som bryter av mot mandelmassan.",
+      "Pensla sockerlag direkt när flätan är varm för glansig yta.",
+    ],
+  },
+  {
+    id: "bun-10",
+    title: "Saffranskrans med mörk choklad",
+    category: "Bullar",
+    image: saffranskrans,
+    description:
+      "En festlig saffranskrans fylld med choklad och smör – perfekt till adventsfikat.",
+    time: { prep: 45, bake: 20, rise: 180 }, // 2h kyljäsning + 1h jäsning
+    difficulty: "Medel",
+    servings: 2,
+    ingredients: {
+      deg: [
+        "25 g färsk jäst",
+        "3 1/2 dl mjölk",
+        "1 förp saffran (1/2 g)",
+        "10 dl vetemjöl (600 g)",
+        "1 dl strösocker",
+        "1 tsk salt",
+        "100 g rumstempererat smör",
+        "1 ägg",
+        "1 uppvispat ägg (till pensling)",
+      ],
+      fyllning: [
+        "200 g rumstempererat smör",
+        "1 dl strösocker",
+        "2 msk majsstärkelse",
+        "1 msk vaniljsocker",
+        "100 g hackad mörk choklad",
+      ],
+      glasyr: ["2 dl florsocker", "2 msk kallt vatten"],
+    },
+    steps: [
+      "Smula jästen och rör ut i mjölk och saffran.",
+      "Tillsätt mjöl, socker, salt, smör och ägg. Arbeta 10 min till smidig deg.",
+      "Kalljäs i minst 2 timmar.",
+      "Rör ihop fyllningen och hacka chokladen.",
+      "Dela degen i två delar och kavla till 35×20 cm plattor.",
+      "Bred på fyllningen och rulla ihop. Dela rullen längsmed.",
+      "Fläta ihop och forma till två kransar. Jäs 1 timme.",
+      "Pensla med ägg och grädda ca 20 min i 200°C.",
+      "Rör ihop glasyr och ringla över när kransarna svalnat.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 180,
+    },
+    tips: [
+      "Hackad choklad ger fin textur jämfört med smält choklad.",
+      "Låt kransen svalna helt innan du glaserar.",
+      "Frys kransen utan glasyr och dekorera vid servering.",
+    ],
+  },
+  {
+    id: "bun-11",
+    title: "Julsaffransgran",
+    category: "Bullar",
+    image: julsaffransgran,
+    description:
+      "En vacker saffransgran fylld med nötter och russin – perfekt som julens mittpunkt.",
+    time: { prep: 45, bake: 15, rise: 80 },
+    difficulty: "Medel",
+    servings: 30,
+    ingredients: {
+      deg: [
+        "200 g smör eller margarin",
+        "5 dl mjölk",
+        "50 g jäst för söta degar",
+        "2 förp saffran (1 g)",
+        "2 dl strösocker eller vit sirap",
+        "1 tsk salt",
+        "15 dl vetemjöl (ca 900 g)",
+      ],
+      fyllning: ["1/2 dl hackade nötter", "1/2 dl russin"],
+      pensling: ["1 ägg"],
+      dekor: ["Florsocker (valfritt)"],
+    },
+    steps: [
+      "Smält smöret, tillsätt mjölk och värm till 37°C.",
+      "Rör ut jästen i degvätskan.",
+      "Stöt saffran med lite socker och rör i.",
+      "Tillsätt resten av ingredienserna och arbeta degen 5–10 min.",
+      "Jäs 40 min.",
+      "Kavla ut två rektanglar ca 25×20 cm.",
+      "Strö nötter och russin på ena degen och lägg den andra ovanpå.",
+      "Skär ut en triangel som bildar en gran och lägg på plåt.",
+      "Skär grenar och tvinna dem två varv.",
+      "Jäs 40 min.",
+      "Pensla med ägg och grädda 15 min i 220°C.",
+      "Låt svalna och pudra med florsocker.",
+    ],
+    plannerInfo: {
+      canMakeAhead: true,
+      freezerFriendly: true,
+      restTime: 80,
+    },
+    tips: [
+      "Tvinna grenarna försiktigt så de inte tappar formen.",
+      "Överbliven deg kan formas till småbullar.",
+      "Dekorera med pärlsocker eller vit glasyr för extra julkänsla.",
+    ],
+  },
+  {
+    id: "bun-12",
+    title: "Wienerbröd",
+    category: "Bullar",
+    image: wienerbrod,
+    description:
+      "Spröda och smöriga wienerbröd fyllda med vaniljkräm och toppade med glasyr.",
+    time: { prep: 60, bake: 10, rise: 60 },
+    difficulty: "Svår",
+    servings: 16,
+    ingredients: {
+      deg: [
+        "150 g smör (i 6 skivor)",
+        "25 g jäst",
+        "1 1/4 dl kall mjölk",
+        "1 ägg",
+        "2 krm salt",
+        "1 1/2 msk strösocker",
+        "4 dl vetemjöl (ca 280 g)",
+      ],
+      fyllning: ["1 dl färdig vaniljkräm"],
+      glasyr: ["1 1/4 dl florsocker", "2 1/2 tsk vatten"],
+      pensling: ["Uppvispat ägg"],
+    },
+    steps: [
+      "Skär smöret i 6 skivor och låt ligga i rumstemperatur.",
+      "Smula jästen i en bunke och rör ut i mjölken.",
+      "Vispa upp ägget. Tillsätt hälften i degen (spara resten till pensling).",
+      "Tillsätt salt, socker och nästan allt mjöl. Arbeta snabbt ihop degen.",
+      "Låt vila 10 min i kyl.",
+      "Kavla ut degen till 25×35 cm. Lägg smöret på ena halvan, vik över och nyp ihop.",
+      "Vrid 1/4 varv och kavla ut. Vik i tre delar. Vrid och vila 10 min i kyl.",
+      "Upprepa hela proceduren en gång till.",
+      "Kavla ut till 36×36 cm och skär 9×9 cm rutor.",
+      "Lägg vaniljkräm i mitten och vik hörnen mot mitten.",
+      "Jäs 1 timme under plast.",
+      "Pensla med ägg och grädda 7–10 min i 250°C.",
+      "Rör ihop glasyr och ringla över när bröden svalnat.",
+    ],
+    plannerInfo: {
+      canMakeAhead: false,
+      freezerFriendly: true,
+      restTime: 30,
+    },
+    tips: [
+      "Arbeta snabbt så att smöret inte smälter.",
+      "Kyl vila mellan kavlingarna är avgörande för perfekta lager.",
+      "Fyll med sylt eller äppelmassa för variation.",
     ],
   },
 
