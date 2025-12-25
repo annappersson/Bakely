@@ -26,7 +26,7 @@ export default function SignupPage() {
 
             <div className="signup-text">
               Har du redan ett konto?
-              <Link to="/login" className="create-account">
+              <Link to="/logga-in" className="create-account">
                 {" "}
                 Logga in
               </Link>
